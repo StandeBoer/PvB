@@ -1,23 +1,23 @@
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <a class="navbar-brand" href="index.php">Proeve van Bekwaamheid</a>
-        </div>
-        
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            
-            <ul class="nav navbar-nav navbar-right">
-                <li class="logout">
-                    <!--            <a href="logout.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Logout</a>-->
-                    <form method="POST" action="logout.php">
-                        <div style="margin-top: 8px;">
-                            <input id="button" type="submit" name="logout" class="btn btn-default" style="float: right" value="Uitloggen">
-                        </div>
-                    </form>
-                </li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
+  <nav>
+    <div class="grey darken-4 nav-wrapper">
+      <a href="#" class="brand-logo">Logo</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a class="waves-effect waves-light btn grey z-depth-5" href="logout.php"></i>Uitloggen</a></li>
+      </ul>
+    </div>
+  </nav>
+
+<nav>
+    <div class="z-depth-5 white nav-wrapper">
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+          <li><a class="tekstkleur" href="sass.html">Home</a></li>
+        <li><a class="tekstkleur" href="badges.html">Beoordeling</a></li>
+        <li><a class="tekstkleur" href="collapsible.html">Kerntaken</a></li>
+        <li><a class="tekstkleur" href="collapsible.html">Werkprocessen</a></li>
+        <li><a class="tekstkleur" href="collapsible.html">Criterium</a></li>
+        <li><a class="tekstkleur" href="collapsible.html">Studenten</a></li>
+        <li><a class="tekstkleur" href="collapsible.html">Groepen</a></li>
+
+      </ul>
+    </div>
+  </nav>

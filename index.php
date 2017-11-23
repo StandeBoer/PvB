@@ -1,29 +1,34 @@
 <?php
 include("check.php");
-include("modalAddStudent.php"); 
+include("modalAddStudent.php");
+include("navbar.php");
 ?>
+
+
 <html>
     <head>
         <meta charset="UTF-8">
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="stylesheet.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <title>MiniProeve</title>
+        <link type="text/css" rel="stylesheet" href="stylesheet.css">
+        <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link type="text/css" rel="stylesheet" media="screen,projection" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css" />
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
     </head>
     <body>
-        <?php echo '<h1>Dit is de homepage</h1>'; ?>
-        <!-- Button voor de modal voor het toevoegen van een student -->
-        <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#ModalAddStudent"><i class='fa fa-user fa-md'>Student toevoegen</i></button>
-        
-        
-        <!-- Button om uit te loggen -->
-        <button><a href="logout.php" style="font-size:18px">Uitloggen</a></button>
+        <div class="sideMenu">
+            <!--         Button voor de modal voor het toevoegen van een student -->
+            <ul class="collection">
+                <li class="collection-item"><button data-target="ModalAddStudent" class="btn modal-trigger">Add Student</button></li>
+                <li class="collection-item"><button data-target="ModalAddStudent" class="btn modal-trigger">Add Student</button></li>
+            </ul>
+        </div>
 
-        
-        
-        
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+                $('.modal-trigger').leanModal();
+            });
+        </script>
     </body>
 </html>
