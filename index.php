@@ -2,21 +2,31 @@
 include("check.php");
 include("connect.php");
 include("modalAddStudent.php");
+include("navbar.php");
 ?>
+
+
 <html>
     <head>
         <meta charset="UTF-8">
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="stylesheet.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <title>MiniProeve</title>
+        <link type="text/css" rel="stylesheet" href="stylesheet.css">
+        <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link type="text/css" rel="stylesheet" media="screen,projection" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css" />
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
     </head>
+
     <body> 
-        <!--         Button om uit te loggen -->
-        <button><a href="logout.php" style="font-size:18px">Uitloggen</a></button>
-        <br><br><br>
-        <!-- CODE VOOR COHORT TOEVOEGEN BACK-END -->
+        <div class="sideMenu">
+            <!--         Button voor de modal voor het toevoegen van een student -->
+            <ul class="collection">
+                <li class="collection-item"><button data-target="ModalAddStudent" class="btn modal-trigger">Add Student</button></li>
+                <li class="collection-item"><button data-target="ModalAddStudent" class="btn modal-trigger">Add Student</button></li>
+            </ul>
+        </div>
+        
+                <!-- CODE VOOR COHORT TOEVOEGEN BACK-END -->
         <?php 
         $get_cohort = "SELECT * FROM cohort";
         $result_get_cohort = $conn->query($get_cohort);
@@ -195,35 +205,12 @@ include("modalAddStudent.php");
         }
         ?>       
         <!--EINDE CODE VOOR WERKPROCES TOEVOEGEN BACKEND + KOPPELING NAAR KERNTAAK TOE -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    </body>
-</html>
-<!--
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>MiniProeve</title>
-        <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <link type="text/css" rel="stylesheet" media="screen,projection" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css" />
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-    </head>
-    <body>
-         Button voor de modal voor het toevoegen van een student 
-        <button data-target="ModalAddStudent" class="btn modal-trigger">Add Student</button>
-
-       
-
-         Button om uit te loggen 
-        <button><a href="logout.php" style="font-size:18px">Uitloggen</a></button>
-
 
         <script type="text/javascript">
-            $(document).ready(function() {
+            $(document).ready(function () {
                 // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
                 $('.modal-trigger').leanModal();
             });
         </script>
     </body>
-</html>-->
+</html>
