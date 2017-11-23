@@ -16,6 +16,85 @@ include("modalAddStudent.php");
         <!--         Button om uit te loggen -->
         <button><a href="logout.php" style="font-size:18px">Uitloggen</a></button>
         <br><br><br>
+        <!-- CODE VOOR COHORT TOEVOEGEN BACK-END -->
+        <?php 
+        $get_cohort = "SELECT * FROM cohort";
+        $result_get_cohort = $conn->query($get_cohort);
+        if ($result_get_cohort->num_rows > 0) {
+            echo "Wij hebben de volgende jaren in het systeem staan:<br>";
+            while ($row_get_cohort = $result_get_cohort->fetch_assoc()) {
+                echo $row_get_cohort['cohort_jaar'] . '<br>';
+            }
+        } else {
+            echo "<h4> Er zijn 0 resultaten</h4>";
+        }
+        ?>
+        <form method="POST">
+            <label>Cohort jaar:</label>
+            <input type="text" class="form-control" style="border-radius: 0;" name="cohort_jaar" placeholder="Cohortjaar" required>
+            <br>
+            <input type="submit" name="new_cohort_submit" class="btn btn-success" value="Versturen" style="border-radius: 0;">
+        </form>
+        <?php 
+        if (isset($_POST['new_cohort_submit'])){
+            if (!empty($_POST['cohort_jaar'])){
+                $cohort_jaar = $_POST['cohort_jaar'];
+                $add_cohort_sql = "INSERT INTO cohort(cohort_jaar) VALUES ('" . $cohort_jaar . "')";
+                echo "<meta http-equiv='refresh' content='0'>";
+                if ($conn->query($add_cohort_sql) === TRUE) {
+                    echo "Cohort is toegevoegd";
+                } else {
+                    echo "FOUTMELDING! Probeer opnieuw";
+                }
+            }
+        }
+        
+        ?>
+        <!--EINDE CODE VOOR COHORT TOEVOEGEN BACKEND -->
+                <br><br><br>
+                
+                
+                
+        <!-- CODE VOOR KLAS TOEVOEGEN BACK-END -->
+        <?php 
+        $get_klas = "SELECT * FROM klas";
+        $result_get_klas = $conn->query($get_klas);
+        if ($result_get_klas->num_rows > 0) {
+            echo "Wij hebben de volgende klassen in het systeem staan:<br>";
+            while ($row_get_klas = $result_get_klas->fetch_assoc()) {
+                echo $row_get_klas['klas_naam'] . '<br>';
+            }
+        } else {
+            echo "<h4> Er zijn 0 klassen</h4>";
+        }
+        ?>
+        <form method="POST">
+            <label>Klas</label>
+            <input type="text" class="form-control" style="border-radius: 0;" name="klas_naam" placeholder="Klas" required>
+            <br>
+            <input type="submit" name="new_klas_submit" class="btn btn-success" value="Versturen" style="border-radius: 0;">
+        </form>
+        <?php 
+        if (isset($_POST['new_klas_submit'])){
+            if (!empty($_POST['klas_naam'])){
+                $klas = $_POST['klas_naam'];
+                $add_klas_sql = "INSERT INTO klas(klas_naam) VALUES ('" . $klas . "')";
+                echo "<meta http-equiv='refresh' content='0'>";
+                if ($conn->query($add_klas_sql) === TRUE) {
+                    echo "Klas is toegevoegd";
+                    
+                } else {
+                    echo "FOUTMELDING! Probeer opnieuw";
+                }
+            }
+        }
+        
+        ?>
+        <!--EINDE CODE VOOR KLAS TOEVOEGEN BACKEND -->
+        
+        
+        
+        <br><br>
         <!-- CODE VOOR STUDENT TOEVOEGEN BACK-END -->
         <form method="POST">
             <label>Student naam:</label>
@@ -23,15 +102,16 @@ include("modalAddStudent.php");
             <br>
             <label>Student e-mailadres:</label>
             <input type="text" class="form-control" style="border-radius: 0;" name="student_email" placeholder="Emailadres" required>
-            <input type="submit" name="NewStudentSubmit" class="btn btn-success" value="Versturen" style="border-radius: 0;">
+            <input type="submit" name="new_student_submit" class="btn btn-success" value="Versturen" style="border-radius: 0;">
         </form>
         <?php
-        if (isset($_POST['NewStudentSubmit'])) {
+        if (isset($_POST['new_student_submit'])) {
             if (!empty($_POST['student_naam'] && $_POST['student_email'])) {
                 $student_name = $_POST['student_naam'];
                 $student_email = $_POST['student_email'];
                 $current_date = date('Y');
                 $add_student_sql = "INSERT INTO student (student_naam, student_emailadres, student_jaar) VALUES ('" . $student_name . "', '" . $student_email . "', '" . $current_date . "')";
+                echo "<meta http-equiv='refresh' content='0'>";
                 if ($conn->query($add_student_sql) === TRUE) {
                     echo "Student is toegevoegd";
                 } else {
@@ -46,14 +126,15 @@ include("modalAddStudent.php");
         <form method="POST">
             <label>Om een kerntaak toe te voegen dient u hieronder de naam van de kerntaak aan te geven:</label>
             <input type="text" class="form-control" style="border-radius: 0;" name="kerntaak_naam" placeholder="Kerntaak naam" required>
-            <input type="submit" name="NewKerntaakSubmit" class="btn btn-success" value="Versturen" style="border-radius: 0;">
+            <input type="submit" name="new_kerntaak_submit" class="btn btn-success" value="Versturen" style="border-radius: 0;">
         </form>
         <?php
-        if (isset($_POST['NewKerntaakSubmit'])) {
+        if (isset($_POST['new_kerntaak_submit'])) {
             if (!empty($_POST['kerntaak_naam'])) {
                 $kerntaak_name = $_POST['kerntaak_naam'];
-                $add_kerntaak = "INSERT INTO kerntaak(kerntaak_naam) VALUES ('" . $kerntaak_name . "')";
-                if ($conn->query($add_kerntaak) === TRUE) {
+                $add_kerntaak_sql = "INSERT INTO kerntaak(kerntaak_naam) VALUES ('" . $kerntaak_name . "')";
+                echo "<meta http-equiv='refresh' content='0'>";
+                if ($conn->query($add_kerntaak_sql) === TRUE) {
                     echo "Kerntaak is toegevoegd";
                 } else {
                     echo "FOUTMELDING! Probeer opnieuw";
@@ -66,27 +147,53 @@ include("modalAddStudent.php");
         <!--START CODE VOOR WERKPROCES TOEVOEGEN BACKEND + KOPPELING NAAR KERNTAAK TOE -->
         <form method="POST">
             <label>Om een werkproces toe te voegen selecteerd u eerst de kerntaak en daarna vult u het werkproces in:</label>
-        </form>
+            <br>
         <?php
+        $error = '';
         $get_kerntaak = "SELECT * FROM kerntaak";
         $result_kerntaak = $conn->query($get_kerntaak);
         if ($result_kerntaak->num_rows > 0) {
             ?>
-            <select>
+            <select name="kerntaak_option" required>
+                <option selected="selected" disabled>Kies een kerntaak</option>
             <?php
-            while ($row = $result_kerntaak->fetch_assoc()) {
+            while ($row_kerntaak = $result_kerntaak->fetch_assoc()) {
                 ?>
-                <option value=""><?php echo $row["kerntaak_naam"]?></option>
-                <?php
-                echo "Kerntaaknaam: " . $row["kerntaak_naam"] . "<br>";
+                <option value="<?php echo $row_kerntaak["kerntaak_id"]?>"><?php echo $row_kerntaak["kerntaak_naam"]?></option>
+                <?php  
             }
             ?>
             </select>
         <?php
-        } else {
-            echo "0 results";
         }
         ?>
+            <br><br>
+            <input type="text" class="form-control" style="border-radius: 0;" name="werkproces_naam" placeholder="Werkproces naam" required>
+            <input type="submit" name="new_werkproces_naam" class="btn btn-success" value="Versturen" style="border-radius: 0;">
+        </form>
+        <?php
+        if (isset($_POST['new_werkproces_naam'])){
+            if (isset($_POST['kerntaak_option'])){
+                if (isset($_POST['werkproces_naam'])){
+                    $kerntaak_id = $_POST['kerntaak_option'];
+                    $werkproces_naam = $_POST['werkproces_naam'];
+                    $add_werkproces_sql = "INSERT INTO werkproces(werkproces_naam, kerntaak_id) VALUES ('" . $werkproces_naam . "', '" . $kerntaak_id . "')"; 
+                    echo "<meta http-equiv='refresh' content='0'>";
+                    if ($conn->query($add_werkproces_sql) === TRUE) {
+                        echo "Werkproces is toegevoegd";
+                    } else {
+                        echo "FOUTMELDING! Probeer opnieuw";
+                    }
+                }
+            }  else {
+            $error = 'Foutmelding, selecteer een kerntaak';
+            }
+        }
+        
+        if (!empty($error)){
+            echo $error;
+        }
+        ?>       
         <!--EINDE CODE VOOR WERKPROCES TOEVOEGEN BACKEND + KOPPELING NAAR KERNTAAK TOE -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
