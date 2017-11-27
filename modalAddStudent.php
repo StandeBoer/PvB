@@ -18,10 +18,9 @@
             if (!empty($_POST['student_naam'] && $_POST['student_email'])) {
                 $student_name = $_POST['student_naam'];
                 $student_email = $_POST['student_email'];
-                $current_date = date('Y');
-                $add_student_sql = "INSERT INTO student (student_naam, student_emailadres, student_jaar) VALUES ('" . $student_name . "', '" . $student_email . "', '" . $current_date . "')";
+                $add_student_sql = "INSERT INTO student (student_naam, student_emailadres) VALUES ('" . $student_name . "', '" . $student_email . "')";
                 if ($conn->query($add_student_sql) === TRUE) {
-                    echo "Student is toegevoegd";
+                    echo "";
                 } else {
                     echo "FOUTMELDING! Probeer opnieuw";
                 }
