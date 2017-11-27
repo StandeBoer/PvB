@@ -5,7 +5,7 @@
         <group>
             <file>file:/C:/xampp/htdocs/PvB/index.php</file>
             <file>file:/C:/xampp/htdocs/PvB/connect.php</file>
-            <file>file:/C:/xampp/htdocs/PvB/registration.php</file>
+            <file>file:/C:/xampp/htdocs/PvB/functions.php</file>
             <file>file:/C:/xampp/htdocs/PvB/modalAddStudent.php</file>
         </group>
     </open-files>
