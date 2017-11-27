@@ -45,17 +45,49 @@ if (isset($_POST["submit"])) {
     <head>
         <meta charset="UTF-8">
         <title>MiniProeve</title>
+           <link type="text/css" rel="stylesheet" href="stylesheet.css">
+        <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link type="text/css" rel="stylesheet" media="screen,projection" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css" />
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
     </head>
     <body>
+      
+        <div class="container">
+        <div class="z-depth-5 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
 
-        <form method="POST" id="login_form">
-            <label for="email">E-mail</label>
-            <input name="email" type="email" class="w3-input" id="email" placeholder="E-mail">
-            <label for="inputPassword">Wachtwoord</label>
-            <input name="password" type="password" class="w3-input" id="pass" placeholder="Wachtwoord">
-            <br>
-            <input id="button" type="submit" name="submit" class="btn btn-primary" style="" value="Login">
-        </form>
+            <form class="col s12" method="post" id="login_form">
+            <div class='row'>
+              <div class='col s12'>
+              </div>
+            </div>
+
+            <div class='row'>
+              <div class='input-field col s12'>
+                <label for="email">E-Mail</label>
+                <input name="email" type="email" class="w3-input" id="email" placeholder="E-mail">
+              </div>
+            </div>
+
+            <div class='row'>
+              <div class='input-field col s12'>
+                <label for="inputPassword">Wachtwoord</label>
+                <input name="password" type="password" class="w3-input" id="pass" placeholder="Wachtwoord">
+              </div>
+              <label style='float: right;'>
+								<a class='pink-text' href='#!'><b>Forgot Password?</b></a>
+							</label>
+            </div>
+
+            <br />
+            <center>
+              <div class='row'>
+                  <button id="button" type='submit' name='submit' value="Login" class='col s12 btn btn-large waves-effect indigo'>Login</button>
+              </div>
+            </center>
+          </form>
+        </div>
+      </div>
 
 <?php
 if (!empty($error)) {
@@ -67,3 +99,8 @@ if (!empty($error)) {
 
     </body>
 </html>
+
+
+
+
+
