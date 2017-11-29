@@ -40,8 +40,6 @@
                     <li class="collection-item"><button data-target="ModalAddKerntaak" class="btn modal-trigger">Add Kerntaak</button></li>
                     <li class="collection-item"><button data-target="ModalAddWerkproces" class="btn modal-trigger">Add Werkproces</button></li>
                     <li class="collection-item"><button data-target="ModalAddCriterium" class="btn modal-trigger">Add Criterium</button></li>
-                    <li class="collection-item"><button data-target="ModalAddCohort" class="btn modal-trigger">Add Cohort</button></li>
-                    <li class="collection-item"><button data-target="ModalAddKlas" class="btn modal-trigger">Add Klas</button></li>
                 </ul>
             </div>
             <div class="col s12 m8 l9">

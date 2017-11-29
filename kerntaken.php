@@ -14,13 +14,48 @@
         include("modalAddStudent.php");
         include("ModalAddKerntaak.php");
         include("ModalAddWerkproces.php");
+        include("ModalEditKerntaak.php");
+        include("ModalDeleteKerntaak.php");
         ?>
         <div class="row">
-            <div class="col s3">
-                Col 1
-            </div>
-            <div class="col s9">
-                Col 2
+            <div class="col s12 m4 l3">
+                <h5>Overzicht kerntaken <a data-target="ModalAddKerntaak" class="btn-floating btn-large waves-effect waves-light green btn modal-trigger"><i class="material-icons" >add</i></a></h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Naam</th>
+                            <th>Omschrijving</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $get_kerntaak_inhoud = "SELECT * FROM kerntaak";
+                        $result_get_kerntaak_inhoud = $conn->query($get_kerntaak_inhoud);
+                        if ($result_get_kerntaak_inhoud->num_rows > 0) {
+                            while ($row_get_kerntaak_inhoud = $result_get_kerntaak_inhoud->fetch_assoc()) {
+                                ?>
+                                <tr>
+                                    <td><?php echo $row_get_kerntaak_inhoud['kerntaak_naam']; ?></td>
+                                    <td><?php echo $row_get_kerntaak_inhoud['kerntaak_omschrijving']; ?></td>
+                                    <td><a data-target="ModalEditKerntaak" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></a></td>
+                                    <td><a data-target="ModalDeleteKerntaak" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></a></td>
+                                <tr>
+                                    <?php
+                                }
+                            } else {
+                                echo '0 results';
+                            }
+                            ?>
+                    </tbody>
+                </table>
+
+
+
+                <br>
+                
+                
             </div>
         </div>
         <!--EINDE CODE VOOR KLAS TOEVOEGEN BACKEND -->
