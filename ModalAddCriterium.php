@@ -1,5 +1,9 @@
+<div id="ModalAddCriterium" class="modal">
+    <div class="modal-header">
+        <h5>Add Criterium</h5>
+    </div>
+    <div class="modal-content">
 <!-- CODE VOOR CRITERIUM TOEVOEGEN BACK-END -->
-<h4>Criteria toevoegen</h4>
 <?php
 $get_kerntaak_criterium = "SELECT * FROM kerntaak";
 $result_kerntaak_criterium = $conn->query($get_kerntaak_criterium);
@@ -46,3 +50,5 @@ if ($result_kerntaak_criterium->num_rows > 0) {
 
     </form>
     <!--EINDE CODE VOOR CRITERIUM TOEVOEGEN BACKEND -->
+    </div>
+</div>

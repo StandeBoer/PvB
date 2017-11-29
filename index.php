@@ -11,12 +11,15 @@
         include("check.php");
         include("connect.php");
         include("navbar.php");
-        include("modalAddStudent.php");
+        include("ModalAddStudent.php");
         include("ModalAddKerntaak.php");
         include("ModalAddWerkproces.php");
+        include("ModalAddCriterium.php");
+        include("ModalAddCohort.php");
+        include("ModalAddKlas.php");
         ?>
         <div class="row">
-            <div class="col s3">
+            <div class="col s12 m4 l3" style="background-color: gray; height: 100%;">
                 <h2 style="text-align: center;">Welkom</h2>
                 <?php
                 $get_name = "SELECT user_first_name, user_last_name FROM users WHERE user_emailadres = '" . $_SESSION['email'] . "'";
@@ -41,7 +44,7 @@
                     <li class="collection-item"><button data-target="ModalAddKlas" class="btn modal-trigger">Add Klas</button></li>
                 </ul>
             </div>
-            <div class="col s9">
+            <div class="col s12 m8 l9">
                 Hallo
             </div>
         </div>

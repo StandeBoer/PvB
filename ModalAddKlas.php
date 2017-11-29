@@ -1,3 +1,8 @@
+<div id="ModalAddKlas" class="modal">
+    <div class="modal-header">
+        <h5>Add Klas</h5>
+    </div>
+    <div class="modal-content">
 <!-- CODE VOOR KLAS TOEVOEGEN BACK-END -->
 <?php
 $get_klas = "SELECT * FROM klas";
@@ -32,3 +37,5 @@ if (isset($_POST['new_klas_submit'])) {
 }
 ?>
 <!--EINDE CODE VOOR KLAS TOEVOEGEN BACKEND -->
+    </div>
+</div>

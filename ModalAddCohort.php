@@ -1,3 +1,8 @@
+<div id="ModalAddCohort" class="modal">
+    <div class="modal-header">
+        <h5>Add Cohort</h5>
+    </div>
+    <div class="modal-c"
 <!-- CODE VOOR COHORT TOEVOEGEN BACK-END -->
 <?php
 $get_cohort = "SELECT * FROM cohort";
@@ -32,3 +37,5 @@ if (isset($_POST['new_cohort_submit'])) {
 }
 ?>
 <!--EINDE CODE VOOR COHORT TOEVOEGEN BACKEND -->
+</div>
+</div>
