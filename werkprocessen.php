@@ -31,6 +31,7 @@
                     <li>Levert bijdrage projectplan</li>
                     <li>Levert bijdrage onderwerp</li>
                 </ul>
+                
             </div>
             <div class="col s12 m8 l9">
                 <h5>Overzicht werkprocessen <a data-target="ModalAddWerkproces" class="btn-floating btn-large waves-effect waves-light green btn modal-trigger"><i class="material-icons" >add</i></a></h5>
@@ -64,9 +65,6 @@
                             ?>
                     </tbody>
                 </table>
-
-
-
                 <br>
             </div>
         </div>
@@ -78,6 +76,7 @@
                 // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
                 $('.modal-trigger').leanModal();
                 $('select').material_select();
+                $(".button-collapse").sideNav();
             });
         </script>
     </body>

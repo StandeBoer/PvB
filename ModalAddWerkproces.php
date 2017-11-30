@@ -1,6 +1,6 @@
 <div id="ModalAddWerkproces" class="modal">
-    <div class="modal-header">
-        <h5>Werkproces toevoegen</h5>
+    <div class="modal-header" style="padding: 24px;">
+        <h5>Add werkproces</h5>
     </div>
     <div class="modal-content">
         <!--START CODE VOOR WERKPROCES TOEVOEGEN BACKEND + KOPPELING NAAR KERNTAAK TOE -->

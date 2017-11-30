@@ -1,6 +1,6 @@
 <div id="ModalAddCriterium" class="modal" style="height:50vh">
-    <div class="modal-header">
-        <h5>Criterium toevoegen</h5>
+    <div class="modal-header" style="padding: 24px;">
+        <h5>Add Criterium</h5>
     </div>
     <div class="modal-content">
         <!-- CODE VOOR CRITERIUM TOEVOEGEN BACK-END -->
@@ -42,3 +42,4 @@
                 <!--EINDE CODE VOOR CRITERIUM TOEVOEGEN BACKEND -->
                 </div>
                 </div>
+

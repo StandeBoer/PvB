@@ -18,6 +18,7 @@
         include("ModalEditKerntaak.php");
         ?>
         <div class="row">
+<<<<<<< HEAD
             <div class="col s12 m4 l3" style="background-color: gray; height: 100%;">
                 <br>
                  <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Selecteer cohort</a>
@@ -27,6 +28,14 @@
                     <li> 2015</li>
                     <li> 2016</li>
                 </ul><br><br>
+=======
+            <div class="col s3" style="background-color: grey; float: left; height: 100vh;">
+                Hier moet 1 list komen
+                <div style="position: absolute; bottom: 0;">
+                 <a class="waves-effect waves-light btn">Edit</a>
+                  <a class="waves-effect waves-light btn">Delete</a>
+                </div>
+>>>>>>> Jelmer
             </div>
             <div class="col s12 m8 l9">
                 <h5>Studenten <a data-target="ModalAddStudent" class="btn-floating btn-large waves-effect waves-light green btn modal-trigger"><i class="material-icons" >add</i></a></h5>
@@ -69,6 +78,8 @@
                 // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
                 $('.modal-trigger').leanModal();
                 $('select').material_select();
+                $(".button-collapse").sideNav();
+
             });
         </script>
     </body>

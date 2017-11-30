@@ -16,8 +16,8 @@
         include("ModalAddWerkproces.php");
         ?>
         <div class="row">
-            <div class="col s3">
-                Col 1
+            <div class="col s3" style="background-color: grey; float: left; height: 100vh;">
+                Hier moeten 2 lists komen
             </div>
             <div class="col s9">
                 Col 2
@@ -31,6 +31,8 @@
                 // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
                 $('.modal-trigger').leanModal();
                 $('select').material_select();
+                $(".button-collapse").sideNav();
+
             });
         </script>
     </body>
