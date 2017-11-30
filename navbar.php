@@ -16,7 +16,7 @@
             <li><a class="tekstkleur" href="werkprocessen.php">Werkprocessen</a></li>
             <li><a class="tekstkleur" href="criterium.php">Criterium</a></li>
             <li><a class="tekstkleur" href="studenten.php">Studenten</a></li>
-            <li><a class="tekstkleur" href="groepen.php">Groepen</a></li>
+            <!--<li><a class="tekstkleur" href="groepen.php">Groepen</a></li>-->
         </ul>
     </div>
 </nav>

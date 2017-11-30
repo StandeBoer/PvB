@@ -1,18 +1,27 @@
 <div id="ModalAddStudent" class="modal">
     <div class="modal-header">
-        <h5>Add Student</h5>
+        <h5>Student toevoegen</h5>
     </div>
     <div class="modal-content">
 
         <form method="POST">
-            <label>Student naam:</label>
-            <input type="text" class="form-control" style="border-radius: 0;" name="student_naam" placeholder="Naam" required>
+            <label>Naam student:</label>
+            <input type="text" class="form-control" style="border-radius: 0;" name="student_naam" placeholder="Naam">
             <br>
-            <label>Student e-mailadres:</label>
-            <input type="text" class="form-control" style="border-radius: 0;" name="student_email" placeholder="Emailadres" required>
+            <label>E-mailadres:</label>
+            <input type="text" class="form-control" style="border-radius: 0;" name="student_email" placeholder="Emailadres">
             <input type="submit" name="NewStudentSubmit" class="btn btn-success" value="Versturen" style="border-radius: 0;">
+            <input type="submit" name="sluiten" class="btn btn-success data-dismiss" value="Annuleren">
         </form>
-        
+        <script type="text/javascript">
+               $(document).ready(function () {
+     $('#modalClose').click(function (){
+                window.setTimeout(function () {
+                  $('#contact').modal('hide');
+                }, 5000);
+              });
+          });
+          </script>
         <?php
         if (isset($_POST['NewStudentSubmit'])) {
             if (!empty($_POST['student_naam'] && $_POST['student_email'])) {
@@ -28,5 +37,6 @@
         }
         ?>
         
+         
     </div>
 </div>
