@@ -18,8 +18,8 @@
         include("ModalAddCohort.php");
         include("ModalAddKlas.php");
         ?>
-        <div class="row">
-            <div class="col s12 m4 l3" style="background-color: gray; height: 100%;">
+        <div class="row" style="margin-bottom: auto;">
+            <div class="col s12 m4 l3" style="background-color: grey; float: left; height: 100vh;">
                 <h2 style="text-align: center;">Welkom</h2>
                 <?php
                 $get_name = "SELECT user_first_name, user_last_name FROM users WHERE user_emailadres = '" . $_SESSION['email'] . "'";
@@ -36,11 +36,11 @@
                 ?>
                 <!--         Button voor de modal voor het toevoegen van een student -->
                 <ul class="collection">
-                    <li class="collection-item"><button data-target="ModalAddStudent" class="btn modal-trigger">Add Student</button></li>
-                    <li class="collection-item"><button data-target="ModalAddKerntaak" class="btn modal-trigger">Add Kerntaak</button></li>
-                    <li class="collection-item"><button data-target="ModalAddWerkproces" class="btn modal-trigger">Add Werkproces</button></li>
-                    <li class="collection-item"><button data-target="ModalAddCriterium" class="btn modal-trigger">Add Criterium</button></li>
-                </ul>
+                    <li class="collection-item" style="background-color: grey;"><button style="min-width: 200px;" data-target="ModalAddStudent" class="btn modal-trigger">Add Student</button></li>
+                    <li class="collection-item" style="background-color: grey;"><button style="min-width: 200px;" data-target="ModalAddKerntaak" class="btn modal-trigger">Add Kerntaak</button></li>
+                    <li class="collection-item" style="background-color: grey;"><button style="min-width: 200px;" data-target="ModalAddWerkproces" class="btn modal-trigger">Add Werkproces</button></li>
+                    <li class="collection-item" style="background-color: grey;"><button style="min-width: 200px;" data-target="ModalAddCriterium" class="btn modal-trigger">Add Criterium</button></li>
+                </ul>               
             </div>
             <div class="col s12 m8 l9">
                 Hallo
@@ -54,6 +54,7 @@
                 // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
                 $('.modal-trigger').leanModal();
                 $('select').material_select();
+                $(".button-collapse").sideNav();
             });
         </script>
     </body>

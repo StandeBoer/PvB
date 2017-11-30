@@ -18,7 +18,7 @@
         include("ModalDeleteKerntaak.php");
         ?>
         <div class="row">
-            <div class="col s12 m4 l3">
+            <div class="col s12 m4 l12">
                 <h5>Overzicht kerntaken <a data-target="ModalAddKerntaak" class="btn-floating btn-large waves-effect waves-light green btn modal-trigger"><i class="material-icons" >add</i></a></h5>
                 <table>
                     <thead>
@@ -66,6 +66,8 @@
                 // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
                 $('.modal-trigger').leanModal();
                 $('select').material_select();
+                $(".button-collapse").sideNav();
+
             });
         </script>
     </body>

@@ -54,7 +54,7 @@ if (isset($_POST["submit"])) {
     <body>
       
         <div class="container">
-        <div class="z-depth-5 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+        <div class="z-depth-5 grey lighten-4 row" style="position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto; display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
 
             <form class="col s12" method="post" id="login_form">
             <div class='row'>
