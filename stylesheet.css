@@ -8,28 +8,8 @@ and open the template in the editor.
     Author     : Jelmer
 */
 
-body, html {
-    height: 100vh;
-}
-
 .tekstkleur {
     color: black;
 }
 
-.banaan {
-    background-color: red;
-}
 
-.sidenavigatie {
-    background-color: grey !important;
-    float: left;
-}
-
-.s3 {
-    background-color: grey;
-}
-
-.knoppenlist {
-    background-color: red;
-    min-width: 500px;
-}

@@ -19,7 +19,6 @@
         include("ModalEditKerntaak.php");
         ?>
         <div class="row">
-<<<<<<< HEAD
             <div class="col s12 m4 l3" style="background-color: gray; height: 100%;">
                 <br>
                 <!-- Dropdown  -->
@@ -44,10 +43,6 @@
                     <li>Levert product op</li>
                     <li>Evalueert opgeleverde product</li>
                 </ul>
-=======
-            <div class="col s3" style="background-color: grey; float: left; height: 100vh;">
-                Hier moeten 2 lists komen
->>>>>>> Jelmer
             </div>
             <div class="col s12 m8 l9">
                <h5>Overzicht criteria <a data-target="ModalAddCriterium" class="btn-floating btn-large waves-effect waves-light green btn modal-trigger"><i class="material-icons" >add</i></a></h5>
@@ -91,8 +86,6 @@
                 // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
                 $('.modal-trigger').leanModal();
                 $('select').material_select();
-                $(".button-collapse").sideNav();
-
             });
         </script>
     </body>

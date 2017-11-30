@@ -1,11 +1,6 @@
 <div id="ModalAddStudent" class="modal">
-<<<<<<< HEAD
     <div class="modal-header">
         <h5>Student toevoegen</h5>
-=======
-    <div class="modal-header" style="padding: 24px;">
-        <h5>Add Student</h5>
->>>>>>> Jelmer
     </div>
     <div class="modal-content">
 

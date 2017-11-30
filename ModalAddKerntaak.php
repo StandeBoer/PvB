@@ -1,5 +1,5 @@
 <div id="ModalAddKerntaak" class="modal">
-    <div class="modal-header" style="padding: 24px;">
+    <div class="modal-header">
         <h5>Kerntaak toevoegen</h5>
     </div>
     <div class="modal-content">

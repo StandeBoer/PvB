@@ -11,11 +11,14 @@
         include("check.php");
         include("connect.php");
         include("navbar.php");
+        include("modalAddStudent.php");
         include("ModalAddKerntaak.php");
+        include("ModalAddWerkproces.php");
         include("ModalEditKerntaak.php");
         include("ModalDeleteKerntaak.php");
         ?>
         <div class="row">
+            <div class="col s12 m4 l3" style="background-color: gray; height: 100%;"></div>
             <div class="col s12 m8 l9" margin="0 auto">
                 <h5>Overzicht kerntaken <a data-target="ModalAddKerntaak" class="btn-floating btn-large waves-effect waves-light green btn modal-trigger"><i class="material-icons" >add</i></a></h5>
                 <table>
@@ -35,24 +38,10 @@
                             while ($row_get_kerntaak_inhoud = $result_get_kerntaak_inhoud->fetch_assoc()) {
                                 ?>
                                 <tr>
-
-                                    <td>
-                                        <input type="hidden" name="kerntaak_id" value="<?php echo $row_get_kerntaak_inhoud['kerntaak_id']; ?>">
-                                        <?php echo $row_get_kerntaak_inhoud['kerntaak_naam']; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $row_get_kerntaak_inhoud['kerntaak_omschrijving']; ?>
-                                    </td>
-                                    <td>
-                                        <a data-target="ModalEditKerntaak" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger">
-                                            <i class="material-icons" >edit</i>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a data-target="ModalDeleteKerntaak" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger">
-                                            <i class="material-icons">delete</i>
-                                        </a>
-                                    </td>
+                                    <td><?php echo $row_get_kerntaak_inhoud['kerntaak_naam']; ?></td>
+                                    <td><?php echo $row_get_kerntaak_inhoud['kerntaak_omschrijving']; ?></td>
+                                    <td><a data-target="ModalEditKerntaak" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></a></td>
+                                    <td><a data-target="ModalDeleteKerntaak" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></a></td>
                                 <tr>
                                     <?php
                                 }
@@ -62,7 +51,6 @@
                             ?>
                     </tbody>
                 </table>
-                <br>
             </div>
         </div>
         <!--EINDE CODE VOOR KLAS TOEVOEGEN BACKEND -->
@@ -73,8 +61,6 @@
                 // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
                 $('.modal-trigger').leanModal();
                 $('select').material_select();
-                $(".button-collapse").sideNav();
-
             });
         </script>
     </body>
