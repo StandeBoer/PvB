@@ -15,8 +15,6 @@
         include("ModalAddKerntaak.php");
         include("ModalAddWerkproces.php");
         include("ModalAddCriterium.php");
-        include("ModalAddCohort.php");
-        include("ModalAddKlas.php");
         ?>
         <div class="row">
             <div class="col s12 m4 l3" style="background-color: gray; height: 100%;">
@@ -43,10 +41,11 @@
                 </ul>
             </div>
             <div class="col s12 m8 l9">
-                Hallo
+                Hallo                
             </div>
         </div>
         <!--EINDE CODE VOOR KLAS TOEVOEGEN BACKEND -->
+        <script type="text/javascript" src="js/script.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
         <script type="text/javascript">

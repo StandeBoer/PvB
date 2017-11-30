@@ -4,9 +4,9 @@
     </div>
     <div class="modal-content">
         <form method="POST">
-            <input type="submit" name="Kerntaak_delete" class="btn btn-success" value="Verwijderen" style="border-radius: 0;">
-            <input type="submit" name="sluiten" class="btn btn-success data-dismiss" value="sluiten">
-            
+            Wilt u deze kerntaak echt verwijderen?<br><br>
+            <input type="submit" name="Kerntaak_delete" class="btn btn-success" value="Ja">
+            <input type="submit" name="sluiten" class="btn btn-success data-dismiss" value="Nee" align="right;">
         </form>
         
          <script type="text/javascript">

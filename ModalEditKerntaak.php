@@ -4,7 +4,9 @@
     </div>
     <div class="modal-content">
         <?php
-        $edit_kerntaak_inhoud = "SELECT * FROM kerntaak WHERE ";
+        $kerntaakid = $_POST['kerntaak_id'];
+        $edit_kerntaak_inhoud = "SELECT * FROM kerntaak WHERE kerntaak_id = '" . $kerntaakid . "'";
+        echo $kerntaakid;
         $result_edit_kerntaak_inhoud = $conn->query($edit_kerntaak_inhoud);
         if ($result_edit_kerntaak_inhoud->num_rows > 0) {
             while ($row_edit_kerntaak_inhoud = $result_edit_kerntaak_inhoud->fetch_assoc()) {
@@ -26,3 +28,10 @@
         
     </div>
 </div>
+<script>
+$(document).ready(function () {
+    $("button").click(function() {
+        alert(this.id); // or alert($(this).attr('id'));
+    });
+});
+</script>
