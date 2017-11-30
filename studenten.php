@@ -14,13 +14,51 @@
         include("modalAddStudent.php");
         include("ModalAddKerntaak.php");
         include("ModalAddWerkproces.php");
+        include("ModalDeleteKerntaak.php");
+        include("ModalEditKerntaak.php");
         ?>
         <div class="row">
-            <div class="col s3">
-                Col 1
+            <div class="col s12 m4 l3" style="background-color: gray; height: 100%;">
+                <br>
+                 <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Selecteer cohort</a>
+                <ul id='dropdown1' class='dropdown-content'>
+                    <li><a href="#!"></a></li>
+                    <li> 2014</li>
+                    <li> 2015</li>
+                    <li> 2016</li>
+                </ul><br><br>
             </div>
-            <div class="col s9">
-                Col 2
+            <div class="col s12 m8 l9">
+                <h5>Studenten <a data-target="ModalAddStudent" class="btn-floating btn-large waves-effect waves-light green btn modal-trigger"><i class="material-icons" >add</i></a></h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Kerntaak</th>
+                            <th>Naam</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                 <tbody>
+                        <?php
+                        $get_student_inhoud = "SELECT * FROM student";
+                        $result_get_student_inhoud = $conn->query($get_student_inhoud);
+                        if ($result_get_student_inhoud->num_rows > 0) {
+                            while ($row_get_student_inhoud = $result_get_student_inhoud->fetch_assoc()) {
+                                ?>
+                                <tr>
+                                    <td><?php echo $row_get_student_inhoud['student_naam']; ?></td>
+                                    <td><?php echo $row_get_student_inhoud['student_emailadres']; ?></td>
+                                    <td><a data-target="ModalEditKerntaak" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></a></td>
+                                    <td><a data-target="ModalDeleteKerntaak" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></a></td>
+                                <tr>
+                                    <?php
+                                }
+                            } else {
+                                echo '0 results';
+                            }
+                            ?>
+                    </tbody>
             </div>
         </div>
         <!--EINDE CODE VOOR KLAS TOEVOEGEN BACKEND -->

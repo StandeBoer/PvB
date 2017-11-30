@@ -18,9 +18,22 @@ if ($result_get_cohort->num_rows > 0) {
 ?>
 <form method="POST">
     <label>Cohort jaar:</label>
-    <input type="text" class="form-control" style="border-radius: 0;" name="cohort_jaar" placeholder="Cohortjaar" required>
+    <input type="text" class="form-control" style="border-radius: 0;" name="cohort_jaar" placeholder="Cohortjaar">
     <br>
     <input type="submit" name="new_cohort_submit" class="btn btn-success" value="Versturen" style="border-radius: 0;">
+     <input type="submit" name="sluiten" class="btn btn-success data-dismiss" value="Annuleren">
+            
+        </form>
+        
+         <script type="text/javascript">
+               $(document).ready(function () {
+     $('#modalClose').click(function (){
+                window.setTimeout(function () {
+                  $('#contact').modal('hide');
+                }, 5000);
+              });
+          });
+          </script>
 </form>
 <?php
 if (isset($_POST['new_cohort_submit'])) {

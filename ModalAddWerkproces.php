@@ -1,6 +1,6 @@
 <div id="ModalAddWerkproces" class="modal">
     <div class="modal-header">
-        <h5>Add werkproces</h5>
+        <h5>Werkproces toevoegen</h5>
     </div>
     <div class="modal-content">
     <!--START CODE VOOR WERKPROCES TOEVOEGEN BACKEND + KOPPELING NAAR KERNTAAK TOE -->
@@ -26,9 +26,19 @@
         <?php
         }
         ?>
-            <input type="text" class="form-control" style="border-radius: 0;" name="werkproces_naam" placeholder="Werkproces naam" required>
-            <input type="submit" name="new_werkproces_naam" class="btn btn-success" value="Versturen" style="border-radius: 0;">
+            <input type="text" class="form-control" style="border-radius: 0;" name="werkproces_naam" placeholder="Werkproces naam">
+            <input type="submit" name="new_werkproces_naam" class="btn btn-success" value="Versturen" style="border-radius: 10;">
+            <input type="submit" name="sluiten" class="btn btn-success data-dismiss" value="Annuleren">
         </form>
+        <script type="text/javascript">
+               $(document).ready(function () {
+     $('#modalClose').click(function (){
+                window.setTimeout(function () {
+                  $('#contact').modal('hide');
+                }, 5000);
+              });
+          });
+          </script>
         <?php
         if (isset($_POST['new_werkproces_naam'])){
             if (isset($_POST['kerntaak_option'])){
@@ -54,12 +64,5 @@
         ?>       
         <!--EINDE CODE VOOR WERKPROCES TOEVOEGEN BACKEND + KOPPELING NAAR KERNTAAK TOE -->
 
-        <script type="text/javascript">
-            $(document).ready(function () {
-                // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-                $('.modal-trigger').leanModal();
-                $('select').material_select();
-            });
-        </script>
     </div>
 </div>

@@ -18,10 +18,20 @@ if ($result_get_klas->num_rows > 0) {
 ?>
 <form method="POST">
     <label>Klas</label>
-    <input type="text" class="form-control" style="border-radius: 0;" name="klas_naam" placeholder="Klas" required>
+    <input type="text" class="form-control" style="border-radius: 0;" name="klas_naam" placeholder="Klas">
     <br>
     <input type="submit" name="new_klas_submit" class="btn btn-success" value="Versturen" style="border-radius: 0;">
-</form>
+    <input type="submit" name="sluiten" class="btn btn-success data-dismiss" value="Annuleren">
+        </form>
+        <script type="text/javascript">
+               $(document).ready(function () {
+     $('#modalClose').click(function (){
+                window.setTimeout(function () {
+                  $('#contact').modal('hide');
+                }, 5000);
+              });
+          });
+          </script>
 <?php
 if (isset($_POST['new_klas_submit'])) {
     if (!empty($_POST['klas_naam'])) {
