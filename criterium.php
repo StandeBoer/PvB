@@ -13,7 +13,7 @@
         include("navbar.php");
         include("ModalAddCriterium.php");
         ?>
-        <div class="row">
+        <div class="row" style="margin-bottom: auto;">
             <div class="col s12 m4 l3" style="background-color: gray; height: 100%;">
                 <br>
                 <!-- Dropdown  -->

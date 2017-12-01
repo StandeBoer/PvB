@@ -15,7 +15,7 @@ include("check.php");
 include("connect.php");
 include("navbar.php");
 ?>
-        <div class="row">
+        <div class="row" style="margin-bottom: auto;">
             <div class="col s6">
   <!-- Dropdown Trigger -->
   <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Drop Me!</a>
