@@ -15,8 +15,6 @@
         include("ModalAddKerntaak.php");
         include("ModalAddWerkproces.php");
         include("ModalAddCriterium.php");
-        include("ModalAddCohort.php");
-        include("ModalAddKlas.php");
         ?>
         <div class="row">
             <div class="col s12 m4 l3" style="background-color: gray; height: 100%;">

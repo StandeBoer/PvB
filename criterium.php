@@ -11,12 +11,7 @@
         include("check.php");
         include("connect.php");
         include("navbar.php");
-        include("modalAddStudent.php");
-        include("ModalAddKerntaak.php");
-        include("ModalAddWerkproces.php");
         include("ModalAddCriterium.php");
-        include("ModalDeleteKerntaak.php");
-        include("ModalEditKerntaak.php");
         ?>
         <div class="row">
             <div class="col s12 m4 l3" style="background-color: gray; height: 100%;">
@@ -49,7 +44,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Kerntaak</th>
+                            <th>Criterium</th>
                             <th>Naam</th>
                             <th></th>
                             <th></th>
