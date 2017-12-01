@@ -29,7 +29,6 @@
                     <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
                     <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
                 </ul>
-
                 <!-- Dropdown Trigger -->
                 <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Drop Me!</a>
 
@@ -42,7 +41,6 @@
                     <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
                     <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
                 </ul>
-
                 <!-- Dropdown Trigger -->
                 <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Drop Me!</a>
 

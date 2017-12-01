@@ -20,7 +20,7 @@
         <div class="row" style="margin-bottom: auto;">
             <div class="col s12 m4 l3" style="background-color: gray; height: 100%;">
                 <br>
-                 <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Selecteer cohort</a>
+                <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Selecteer cohort</a>
                 <ul id='dropdown1' class='dropdown-content'>
                     <li><a href="#!"></a></li>
                     <li> 2014</li>
@@ -29,7 +29,7 @@
                 </ul><br><br>
             </div>
             <div class="col s12 m8 l9">
-                <h5>Studenten <a data-target="ModalAddStudent" class="btn-floating btn-large waves-effect waves-light green btn modal-trigger"><i class="material-icons" >add</i></a></h5>
+                <h4>Studenten <a data-target="ModalAddStudent" class="btn-floating btn-small waves-effect waves-light green btn modal-trigger"><i class="material-icons" >add</i></a></h5>
                 <table>
                     <thead>
                         <tr>
@@ -39,7 +39,7 @@
                             <th></th>
                         </tr>
                     </thead>
-                 <tbody>
+                    <tbody>
                         <?php
                         $get_student_inhoud = "SELECT * FROM student";
                         $result_get_student_inhoud = $conn->query($get_student_inhoud);

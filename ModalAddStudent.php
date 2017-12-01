@@ -5,9 +5,9 @@
     <div class="modal-content">
 
         <form method="POST">
-            <label>Naam student:</label>
+            <i class="material-icons prefix tiny">mode_edit</i><label>Naam student:</label>
             <input type="text" class="form-control" style="border-radius: 0;" name="student_naam" placeholder="Naam">
-            <br>
+            <br><i class="material-icons prefix tiny">mode_edit</i>
             <label>E-mailadres:</label>
             <input type="text" class="form-control" style="border-radius: 0;" name="student_email" placeholder="Emailadres">
             <input type="submit" name="NewStudentSubmit" class="btn btn-success" value="Versturen" style="border-radius: 0;">
