@@ -1,5 +1,5 @@
 <div id="ModalDeleteKerntaak" class="modal">
-    <div class="modal-header">
+    <div class="modal-header" style="padding-left: 24px;">
         <h5>Verwijderen</h5>
     </div>
     <div class="modal-content">
