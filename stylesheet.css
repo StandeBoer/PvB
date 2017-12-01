@@ -12,6 +12,29 @@ and open the template in the editor.
     color: black;
 }
 
-html, body{
-    max-height: 100%; overflow: hidden;
+html, body {
+    max-height: 100%;
+    overflow: hidden;
+}
+
+.achtergrond {
+    background-color: #000;
+}
+
+.sidebar {
+    background-color: grey;
+    height: 100%;
+}
+
+h2 {
+    text-align: center;
+}
+
+h4 {
+    text-align: center;
+}
+
+.collection-item {
+    background-color: grey !important;
+    border-bottom: hidden !important;
 }

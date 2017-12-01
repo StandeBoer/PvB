@@ -1,5 +1,5 @@
 <div id="ModalEditKerntaak" class="modal">
-    <div class="modal-header">
+    <div class="modal-header" style="padding-left: 24px;">
         <h5> Bewerken</h5>
     </div>
     <div class="modal-content">
