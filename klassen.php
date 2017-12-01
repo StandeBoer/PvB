@@ -11,26 +11,27 @@
         include("check.php");
         include("connect.php");
         include("navbar.php");
-        include("modalAddStudent.php");
-        include("ModalAddKerntaak.php");
-        include("ModalAddWerkproces.php");
+        include("modalAddKlas.php");
+        include("modalAddCohort.php");
         ?>
-        <div class="row">
-            <div class="col s3">
-                Col 1
+        <div class="row" style="margin-bottom: auto;">
+            <div class="col s12 m4 l3" style="background-color: gray; height: 100%;">
+                <button data-target="ModalAddCohort" class="btn modal-trigger" style="min-width: 200px;">Add Student</button>
+                <button data-target="ModalAddKlas" class="btn modal-trigger" style="min-width: 200px;">Add Student</button>
             </div>
-            <div class="col s9">
-                Col 2
+            <div class="col s12 m8 l9">
+               
             </div>
         </div>
         <!--EINDE CODE VOOR KLAS TOEVOEGEN BACKEND -->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
                 // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
                 $('.modal-trigger').leanModal();
                 $('select').material_select();
+                $(".button-collapse").sideNav();
             });
         </script>
     </body>
