@@ -6,7 +6,8 @@
     <!--START CODE VOOR WERKPROCES TOEVOEGEN BACKEND + KOPPELING NAAR KERNTAAK TOE -->
         <form method="POST">
             <label>Om een werkproces toe te voegen selecteerd u eerst de kerntaak en daarna vult u het werkproces in:</label>
-            <br>
+            <br><br>
+            <label>Werkproces valt onder:</label>
         <?php
         $error = '';
         $get_kerntaak = "SELECT * FROM kerntaak";
@@ -26,7 +27,9 @@
         <?php
         }
         ?>
-            <input type="text" class="form-control" style="border-radius: 0;" name="werkproces_naam" placeholder="Werkproces naam">
+            <br>
+            <i class="material-icons prefix tiny">mode_edit</i><label>Werkproces naam:</label>
+            <input type="text" class="form-control" style="border-radius: 0;" name="werkproces_naam" placeholder="Werkproces">
             <input type="submit" name="new_werkproces_naam" class="btn btn-success" value="Versturen" style="border-radius: 10;">
             <input type="submit" name="sluiten" class="btn btn-success data-dismiss" value="Annuleren">
         </form>

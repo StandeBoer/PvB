@@ -18,7 +18,7 @@
         <div class="row" style="margin-bottom: auto;">
             <div class="col s12 m4 l3" style="background-color: gray; height: 100%;"></div>
             <div class="col s12 m8 l9" margin="0 auto">
-                <h5>Overzicht kerntaken <a data-target="ModalAddKerntaak" class="btn-floating btn-small waves-effect waves-light green btn modal-trigger"><i class="material-icons" >add</i></a></h5>
+                <h4>Overzicht kerntaken <a data-target="ModalAddKerntaak" class="btn-floating btn-small waves-effect waves-light green btn modal-trigger"><i class="material-icons" >add</i></a></h5>
                 <table>
                     <thead>
                         <tr>

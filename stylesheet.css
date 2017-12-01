@@ -12,4 +12,6 @@ and open the template in the editor.
     color: black;
 }
 
-
+html, body{
+    max-height: 100%; overflow: hidden;
+}

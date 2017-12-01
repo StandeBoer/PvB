@@ -16,10 +16,9 @@
         include("ModalAddWerkproces.php");
         include("ModalDeleteKerntaak.php");
         include("ModalEditKerntaak.php");
-        
         ?>
         <div class="row" style="margin-bottom: auto;">
-                <div class="col s12 m4 l3" style="background-color: gray; height: 100%;">
+            <div class="col s12 m4 l3" style="background-color: gray; height: 100%;">
                 <br>
                 <!-- Dropdown Trigger -->
                 <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Selecteer kerntaak</a>
@@ -33,7 +32,7 @@
                 </ul>
             </div>
             <div class="col s12 m8 l9">
-                <h5>Overzicht werkprocessen <a data-target="ModalAddWerkproces" class="btn-floating btn-large waves-effect waves-light green btn modal-trigger"><i class="material-icons" >add</i></a></h5>
+                <h4>Overzicht werkprocessen <a data-target="ModalAddWerkproces" class="btn-floating btn-small waves-effect waves-light green btn modal-trigger"><i class="material-icons" >add</i></a></h5>
                 <table>
                     <thead>
                         <tr>
