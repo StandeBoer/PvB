@@ -1,4 +1,4 @@
-<html>
+[14:01, 12/6/2017] +31 6 54762356: <html>
     <head>
         <meta charset="UTF-8">
         <title>MiniProeve</title>
@@ -18,7 +18,7 @@
         <div class="row" style="margin-bottom: auto; z-index: 999;">
 
             <form method="POST">
-                <div class="col s2">
+                <div class="col s12 m2 l2">
 
                     <?php
                     $error = '';
@@ -40,7 +40,7 @@
                     }
                     ?>
                 </div>
-                <div class="col s2">
+                <div class="col s12 m2 l2">
 
                     <?php
                     $error = '';
@@ -62,7 +62,7 @@
                     }
                     ?>
                 </div>
-                <div class="col s2">
+                <div class="col s12 m2 l2">
 
                     <?php
                     $error = '';
@@ -84,7 +84,7 @@
                     }
                     ?>
                 </div>
-                <div class="col s2">
+                <div class="col s12 m2 l2">
 
                     <?php
                     $error = '';
@@ -106,11 +106,8 @@
                     }
                     ?>
                 </div>
-                <div class="col s4">
-
+                <div class="col s12 m4 l4">
                     <input type="submit" name="new_werkproces_naam" class="btn btn-success" value="Versturen" style="border-radius: 10;">
-
-
                     <input type="submit" name="sluiten" class="btn btn-success data-dismiss" value="Annuleren">
                 </div>
             </form>
