@@ -9,8 +9,8 @@
         $result_kerntaak_criterium = $conn->query($get_kerntaak_criterium);
         if ($result_kerntaak_criterium->num_rows > 0) {
             ?>
-            <label>Om een criterium toe te voegen selecteerd u eerst de kerntaak en daarna het werkproces:</label>
-            <br>
+            Om een criterium toe te voegen selecteerd u eerst de kerntaak en daarna het werkproces:
+            <br><br>
             <select name="kerntaak_criterium_option" required>
                 <option selected="selected" value="0" disabled>Kies een kerntaak</option>
                 <?php
@@ -22,21 +22,13 @@
                 ?>
             </select>
             <select name="werkproces_criterium_option" class="hide">
-                <option value="0">-</option>
+                <option selected="selected" value="" disabled>Kies een werkproces</option>
             </select>
+            <input type="text" class="hide" name="criterium_oms" placeholder="Criterium omschrijving">
+            <input type="submit" class="hide" name="new_student_submit" class="btn btn-success" value="Versturen" style="border-radius: 0;">
             <?php
         }
         ?>
-        <!--EINDE CODE VOOR CRITERIUM TOEVOEGEN BACKEND -->
-        <script type = "text/javascript">
-            $(document).ready(function () {
-                $('#modalClose').click(function () {
-                    window.setTimeout(function () {
-                        $('#contact').modal('hide');
-                    }, 5000);
-                });  
-            });
-        </script>
         <!--EINDE CODE VOOR CRITERIUM TOEVOEGEN BACKEND -->
     </div>
 </div>

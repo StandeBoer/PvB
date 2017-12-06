@@ -72,8 +72,6 @@ function GetCriteria() {
 
                 // verbergen elementen
                 $("select[name=kerntaak_criterium_option]").on('change', function () {
-                    $("select[name=werkproces_criterium_option]").closest('.select-wrapper').removeClass("hide");
-
                     // waarde van geslecteerde id ophalen
                     kt = this.value;
                     //alert(kt);
@@ -81,32 +79,40 @@ function GetCriteria() {
                     // Alles leeg maken:
                     $("select[name=werkproces_criterium_option]").empty().append($('<option>', {
                         value: 0,
-                        text: "-"
+                        text: "Kies een werkproces",
+                        
                     }));
 
                     // ophalen van informatie, met ajax
-                    $.ajax({
-                        type: 'GET',
-                        url: 'json.werkproces.php',
-                        data: {id: kt},
-                        dataType: 'json',
-                        success: function (data) {
-                            $.each(data, function (index, element) {
-                                $("select[name=werkproces_criterium_option]").append($('<option>', {
-                                    value: element.id,
-                                    text: element.name
-                                }));
-                            });
-                            // toepassen css
-                            // ** material only! **
-                            // $("select[name=werkproces]").material_select();
-                            // als alles is opgehaald. Select weer laten zien.
-                            $("select[name=werkproces_criterium_option]").show();
-                        }
-                    });
+                   $.ajax({
+                    type: 'GET',
+                    url: 'json.werkproces.php',
+                    data: { id: kt },
+                    dataType: 'json',
+                    success: function (data) {
+                        //alert(data);
+                        $.each(data, function(index, element) {
+                            //console.log(element.name);
+                            $("select[name=werkproces_criterium_option]").append($('<option>', {
+                                value: element.id,
+                                text : element.name
+                            }));
+                        });
+                        // toepassen css
+                        // ** material only! **
+                       $("select[name=werkproces_criterium_option]").material_select();
+                        // als alles is opgehaald. Select weer laten zien.
+                        //$("select[name=werkproces]").show();
+                        $("select[name=werkproces_criterium_option]").closest('.select-wrapper').removeClass("hide");
+                    }
+                });
 
-                }).material_select();
+                });
 
+                $("select[name=werkproces_criterium_option]").on('change', function () {
+                    $("input[name=criterium_oms]").removeClass("hide");
+                    $("input[name=new_student_submit]").removeClass("hide");
+                });
 
             });
         </script>
