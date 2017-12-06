@@ -5,7 +5,7 @@
     <div class="modal-content">
     <!--START CODE VOOR WERKPROCES TOEVOEGEN BACKEND + KOPPELING NAAR KERNTAAK TOE -->
         <form method="POST">
-            <label>Om een werkproces toe te voegen selecteerd u eerst de kerntaak en daarna vult u het werkproces in:</label>
+            <label>Om een werkproces toe te voegen selecteert u eerst de kerntaak en daarna vult u het werkproces in:</label>
             <br><br>
             <label>Werkproces valt onder:</label>
         <?php

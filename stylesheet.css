@@ -43,5 +43,8 @@ h4 {
 
 .btn.modal-trigger {
     padding: 0;
-    width: 200px !important;
+    // width: 200px !important;
+}
+label {
+    font-size: 120% !important;
 }
