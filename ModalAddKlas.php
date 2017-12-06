@@ -20,6 +20,27 @@ if ($result_get_klas->num_rows > 0) {
     <label>Klas</label>
     <input type="text" class="form-control" style="border-radius: 0;" name="klas_naam" placeholder="Klas">
     <br>
+    
+    <?php
+        $error = '';
+        $get_cohort = "SELECT * FROM cohort";
+        $result_cohort = $conn->query($get_cohort);
+        if ($result_cohort->num_rows > 0) {
+            ?>
+            <select name="cohort_option" required>
+                <option selected="selected" disabled>Kies een Cohort</option>
+            <?php
+            while ($row_cohort = $result_cohort->fetch_assoc()) {
+                ?>
+                <option value="<?php echo $row_cohort["cohort_id"]?>"><?php echo $row_cohort["cohort_jaar"]?></option>
+                <?php  
+            }
+            ?>
+            </select>
+        <?php
+        }
+        ?>
+    
     <input type="submit" name="new_klas_submit" class="btn btn-success" value="Versturen" style="border-radius: 0;">
     <input type="submit" name="sluiten" class="btn btn-success data-dismiss" value="Annuleren">
         </form>
