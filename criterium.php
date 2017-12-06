@@ -53,12 +53,12 @@ function GetCriteria() {
                     </thead>
                     <tbody>
                         <?php
-                        
                         ?>
                     </tbody>
                 </table>
             </div>
         </div>
+
 
         <!--EINDE CODE VOOR KLAS TOEVOEGEN BACKEND -->
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -80,39 +80,39 @@ function GetCriteria() {
                     $("select[name=werkproces_criterium_option]").empty().append($('<option>', {
                         value: 0,
                         text: "Kies een werkproces",
-                        
                     }));
 
                     // ophalen van informatie, met ajax
-                   $.ajax({
-                    type: 'GET',
-                    url: 'json.werkproces.php',
-                    data: { id: kt },
-                    dataType: 'json',
-                    success: function (data) {
-                        //alert(data);
-                        $.each(data, function(index, element) {
-                            //console.log(element.name);
-                            $("select[name=werkproces_criterium_option]").append($('<option>', {
-                                value: element.id,
-                                text : element.name
-                            }));
-                        });
-                        // toepassen css
-                        // ** material only! **
-                       $("select[name=werkproces_criterium_option]").material_select();
-                        // als alles is opgehaald. Select weer laten zien.
-                        //$("select[name=werkproces]").show();
-                        $("select[name=werkproces_criterium_option]").closest('.select-wrapper').removeClass("hide");
-                    }
-                });
+                    $.ajax({
+                        type: 'GET',
+                        url: 'json.werkproces.php',
+                        data: {id: kt},
+                        dataType: 'json',
+                        success: function (data) {
+                            //alert(data);
+                            $.each(data, function (index, element) {
+                                //console.log(element.name);
+                                $("select[name=werkproces_criterium_option]").append($('<option>', {
+                                    value: element.id,
+                                    text: element.name
+                                }));
+                            });
+                            // toepassen css
+                            // ** material only! **
+                            $("select[name=werkproces_criterium_option]").material_select();
+                            // als alles is opgehaald. Select weer laten zien.
+                            //$("select[name=werkproces]").show();
+                            $("select[name=werkproces_criterium_option]").closest('.select-wrapper').removeClass("hide");
+                        }
+                    });
 
                 });
 
                 $("select[name=werkproces_criterium_option]").on('change', function () {
                     $("input[name=criterium_oms]").removeClass("hide");
-                    $("input[name=new_student_submit]").removeClass("hide");
+                    $("button[name=new_criterium_submit]").removeClass("hide");
                 });
+
 
             });
         </script>

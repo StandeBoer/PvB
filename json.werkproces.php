@@ -1,4 +1,5 @@
 <?php
+
 include("connect.php");
 $return[] = array();
 $get_id = $_GET['id'];
@@ -15,3 +16,6 @@ if ($result_werkproces->num_rows > 0) {
 }
 
 echo json_encode($return);
+
+
+
