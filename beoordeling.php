@@ -19,9 +19,7 @@
 
             <form method="POST">
                 <div class="col s12 m3 l2">
-
                     <?php
-                    $error = '';
                     $get_kerntaak = "SELECT * FROM kerntaak";
                     $result_kerntaak = $conn->query($get_kerntaak);
                     if ($result_kerntaak->num_rows > 0) {
@@ -41,7 +39,6 @@
                     ?>
                 </div>
                 <div class="col s12 m3 l2">
-
                     <?php
                     $error = '';
                     $get_cohort = "SELECT * FROM cohort";
@@ -63,7 +60,6 @@
                     ?>
                 </div>
                 <div class="col s12 m3 l2">
-
                     <?php
                     $error = '';
                     $get_klas = "SELECT * FROM klas";
@@ -85,7 +81,6 @@
                     ?>
                 </div>
                 <div class="col s12 m3 l2">
-
                     <?php
                     $error = '';
                     $get_student = "SELECT * FROM student";
