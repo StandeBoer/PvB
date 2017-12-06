@@ -4,24 +4,8 @@ include("connect.php");
 
 function GetCriteria() {
     global $conn;
-    $get_werkproces_criterium_inhoud = "SELECT * FROM kerntaak";
-    $result_get_werkproces_criterium_inhoud = $conn->query($get_werkproces_criterium_inhoud);
-    if ($result_get_werkproces_criterium_inhoud->num_rows > 0) {
-        while ($row_get_werkproces_criterium_inhoud = $result_get_werkproces_criterium_inhoud->fetch_assoc()) {
-            ?>
-            <tr>
-                <td><?php echo $row_get_werkproces_criterium_inhoud['kerntaak_naam']; ?></td>
-                <td><?php echo $row_get_werkproces_criterium_inhoud['kerntaak_omschrijving']; ?></td>
-                <td><a data-target="ModalEditKerntaak" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></a></td>
-                <td><a data-target="ModalDeleteKerntaak" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></a></td>
-            <tr>
-                <?php
-            }
-        } else {
-            echo '0 results';
-        }
-    }
-    ?>
+}
+?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -46,14 +30,28 @@ function GetCriteria() {
                     <thead>
                         <tr>
                             <th>Criterium</th>
-                            <th>Naam</th>
                             <th></th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                        ?>
+                        $get_werkproces_criterium_inhoud = "SELECT * FROM werkproces_criterium";
+                        $result_get_werkproces_criterium_inhoud = $conn->query($get_werkproces_criterium_inhoud);
+                        if ($result_get_werkproces_criterium_inhoud->num_rows > 0) {
+                            while ($row_get_werkproces_criterium_inhoud = $result_get_werkproces_criterium_inhoud->fetch_assoc()) {
+                                ?>
+                                <tr>
+                                    <td><?php echo $row_get_werkproces_criterium_inhoud['werkproces_criterium_naam']; ?></td>
+                                    <td><a data-target="ModalEditKerntaak" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></a></td>
+                                    <td><a data-target="ModalDeleteKerntaak" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></a></td>
+                                <tr>
+                                    <?php
+                                }
+                            } else {
+                                echo '0 results';
+                            }
+                            ?>
                     </tbody>
                 </table>
             </div>
@@ -85,7 +83,7 @@ function GetCriteria() {
                     // ophalen van informatie, met ajax
                     $.ajax({
                         type: 'GET',
-                        url: 'json.werkproces.php',
+                        url: 'json_add_criterium.php',
                         data: {id: kt},
                         dataType: 'json',
                         success: function (data) {
