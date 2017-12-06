@@ -15,59 +15,106 @@
         include("connect.php");
         include("navbar.php");
         ?>
-        <div class="row" style="margin-bottom: auto;">
-            <div class="col s6">
-                <!-- Dropdown Trigger -->
-                <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Drop Me!</a>
+        <div class="row" style="margin-bottom: auto; z-index: 999;">
+             
+                <form method="POST">
+                                <div class="col s2">
 
-                <!-- Dropdown Structure -->
-                <ul id='dropdown1' class='dropdown-content'>
-                    <li><a href="#!">one</a></li>
-                    <li><a href="#!">two</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#!">three</a></li>
-                    <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-                    <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
-                </ul>
-                <!-- Dropdown Trigger -->
-                <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Drop Me!</a>
+        <?php
+        $error = '';
+        $get_kerntaak = "SELECT * FROM kerntaak";
+        $result_kerntaak = $conn->query($get_kerntaak);
+        if ($result_kerntaak->num_rows > 0) {
+            ?>
+            <select name="kerntaak_option" required>
+                <option selected="selected" disabled>Kies een kerntaak</option>
+            <?php
+            while ($row_kerntaak = $result_kerntaak->fetch_assoc()) {
+                ?>
+                <option value="<?php echo $row_kerntaak["kerntaak_id"]?>"><?php echo $row_kerntaak["kerntaak_naam"]?></option>
+                <?php  
+            }
+            ?>
+            </select>
+        <?php
+        }
+        ?>
+                                </div>
+                                <div class="col s2">
 
-                <!-- Dropdown Structure -->
-                <ul id='dropdown1' class='dropdown-content'>
-                    <li><a href="#!">one</a></li>
-                    <li><a href="#!">two</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#!">three</a></li>
-                    <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-                    <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
-                </ul>
-                <!-- Dropdown Trigger -->
-                <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Drop Me!</a>
+            <?php
+            $error = '';
+            $get_cohort = "SELECT * FROM cohort";
+            $result_cohort = $conn->query($get_cohort);
+            if ($result_cohort->num_rows > 0) {
+                ?>
+                <select name="cohort_option" required>
+                    <option selected="selected" disabled>Kies een Cohort</option>
+                    <?php
+                    while ($row_cohort = $result_cohort->fetch_assoc()) {
+                        ?>
+                        <option value="<?php echo $row_cohort["cohort_id"] ?>"><?php echo $row_cohort["cohort_id"] . ' - ' . $row_cohort["cohort_jaar"] ?></option>
+                        <?php
+                    }
+                    ?>
+                </select>
+                <?php
+            }
+            ?>
+                                </div>
+                                <div class="col s2">
 
-                <!-- Dropdown Structure -->
-                <ul id='dropdown1' class='dropdown-content'>
-                    <li><a href="#!">one</a></li>
-                    <li><a href="#!">two</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#!">three</a></li>
-                    <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-                    <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
-                </ul>
+            <?php
+            $error = '';
+            $get_klas = "SELECT * FROM klas";
+            $result_klas = $conn->query($get_klas);
+            if ($result_klas->num_rows > 0) {
+                ?>
+                <select name="klas_option" required>
+                    <option selected="selected" disabled>Kies een Klas</option>
+                    <?php
+                    while ($row_klas = $result_klas->fetch_assoc()) {
+                        ?>
+                        <option value="<?php echo $row_klas["klas_id"] ?>"><?php echo $row_klas["klas_id"] . ' - ' . $row_klas["klas_naam"] ?></option>
+                        <?php
+                    }
+                    ?>
+                </select>
+                <?php
+            }
+            ?>
+                                </div>
+                                <div class="col s2">
 
+            <?php
+            $error = '';
+            $get_student = "SELECT * FROM student";
+            $result_student = $conn->query($get_student);
+            if ($result_student->num_rows > 0) {
+                ?>
+                <select name="student_option" required>
+                    <option selected="selected" disabled>Kies een Student</option>
+                    <?php
+                    while ($row_student = $result_student->fetch_assoc()) {
+                        ?>
+                        <option value="<?php echo $row_student["student_naam"] ?>"><?php echo $row_student["student_naam"] ?></option>
+                        <?php
+                    }
+                    ?>
+                </select>
+                <?php
+            }
+            ?>
+                                </div>
+                                <div class="col s4">
 
-                <!-- Dropdown Trigger -->
-                <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Drop Me!</a>
+            <input type="submit" name="new_werkproces_naam" class="btn btn-success" value="Versturen" style="border-radius: 10;">
+                              
 
-                <!-- Dropdown Structure -->
-                <ul id='dropdown1' class='dropdown-content'>
-                    <li><a href="#!">one</a></li>
-                    <li><a href="#!">two</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#!">three</a></li>
-                    <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-                    <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
-                </ul>
-            </div>
+            <input type="submit" name="sluiten" class="btn btn-success data-dismiss" value="Annuleren">
+                                </div>
+        </form>
+                
         </div>
 
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>

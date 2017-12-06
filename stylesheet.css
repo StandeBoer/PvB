@@ -37,4 +37,11 @@ h4 {
 .collection-item {
     background-color: grey !important;
     border-bottom: hidden !important;
+    display: flex;
+    justify-content: center;
+}
+
+.btn.modal-trigger {
+    padding: 0;
+    width: 200px !important;
 }

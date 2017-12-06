@@ -35,13 +35,13 @@
                 ?>
                 <!--         Button voor de modal voor het toevoegen van een student -->
                 <ul class="collection">
-                    <li class="collection-item"><button data-target="ModalAddStudent" class="btn modal-trigger" style="min-width: 200px;">Add Student</button></li>
-                    <li class="collection-item"><button data-target="ModalAddKerntaak" class="btn modal-trigger" style="min-width: 200px;">Add Kerntaak</button></li>
-                    <li class="collection-item"><button data-target="ModalAddWerkproces" class="btn modal-trigger" style="min-width: 200px;">Add Werkproces</button></li>
-                    <li class="collection-item"><button data-target="ModalAddCriterium" class="btn modal-trigger" style="min-width: 200px;">Add Criterium</button></li>
+                    <li class="collection-item"><button data-target="ModalAddStudent" class="btn modal-trigger">Add Student</button></li>
+                    <li class="collection-item"><button data-target="ModalAddKerntaak" class="btn modal-trigger">Add Kerntaak</button></li>
+                    <li class="collection-item"><button data-target="ModalAddWerkproces" class="btn modal-trigger">Add Werkproces</button></li>
+                    <li class="collection-item"><button data-target="ModalAddCriterium" class="btn modal-trigger">Add Criterium</button></li>
                 </ul>
             </div>
-            <div class="col s12 m8 l9"style="background-color: white; float: right; height: 100%;">
+            <div class="col s12 m8 l9">
                 Hallo
             </div>
         </div>
