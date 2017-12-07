@@ -1,4 +1,7 @@
-<html>
+<?php
+include("check.php");
+include("connect.php");
+?><html>
     <head>
         <meta charset="UTF-8">
         <title>MiniProeve</title>
@@ -8,8 +11,6 @@
     </head>
     <body> 
         <?php
-        include("check.php");
-        include("connect.php");
         include("navbar.php");
         include("modalAddKlas.php");
         include("modalAddCohort.php");
@@ -20,8 +21,31 @@
                 <br>
                 <button data-target="ModalAddKlas" class="btn modal-trigger" style="min-width: 200px;">Add Klas</button>
             </div>
+            
+            
+            <?php
+            $error = '';
+            $get_cohort = "SELECT * FROM cohort";
+            $result_cohort = $conn->query($get_cohort);
+            if ($result_cohort->num_rows > 0) {
+                ?>
+                <select name="cohort_option" required>
+                    <option selected="selected" disabled>Kies een Cohort</option>
+                    <?php
+                    while ($row_cohort = $result_cohort->fetch_assoc()) {
+                        ?>
+                        <option value="<?php echo $row_cohort["cohort_id"] ?>"><?php echo $row_cohort["cohort_id"] . ' - ' . $row_cohort["cohort_jaar"] ?></option>
+                        <?php
+                    }
+                    ?>
+                </select>
+                <?php
+            }
+            ?>
+            
+            
             <div class="col s12 m8 l9">
-               
+
             </div>
         </div>
         <!--EINDE CODE VOOR KLAS TOEVOEGEN BACKEND -->

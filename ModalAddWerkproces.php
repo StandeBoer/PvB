@@ -33,15 +33,7 @@
             <input type="submit" name="new_werkproces_naam" class="btn btn-success" value="Versturen" style="border-radius: 10;">
             <input type="submit" name="sluiten" class="btn btn-success data-dismiss" value="Annuleren">
         </form>
-        <script type="text/javascript">
-               $(document).ready(function () {
-     $('#modalClose').click(function (){
-                window.setTimeout(function () {
-                  $('#contact').modal('hide');
-                }, 5000);
-              });
-          });
-          </script>
+        
         <?php
         if (isset($_POST['new_werkproces_naam'])){
             if (isset($_POST['kerntaak_option'])){
