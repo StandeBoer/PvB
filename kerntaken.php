@@ -40,16 +40,16 @@ include("connect.php");
                                     <tr>
                                         <td><?php echo $row_get_kerntaak_inhoud['kerntaak_naam']; ?></td>
                                         <td><?php echo $row_get_kerntaak_inhoud['kerntaak_omschrijving']; ?></td>
-                                        <td><a data-target="ModalEditKerntaak" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></a></td>
-                                        <td><a data-target="ModalDeleteKerntaak" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></a></td>
-                                    <tr>
-                                        <?php
-                                    }
-                                } else {
-                                    echo '0 results';
+                                        <td><button data-id="<?php echo $row_get_kerntaak_inhoud['kerntaak_id']; ?>" data-target="ModalEditKerntaak" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button></td>
+                                        <td><button data-id="<?php echo $row_get_kerntaak_inhoud['kerntaak_id']; ?>" data-target="ModalDeleteKerntaak" name="DeleteKerntaak" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></button></td>
+                                <tr>
+                                    <?php
                                 }
-                                ?>
-                        </tbody>
+                            } else {
+                                echo '0 results';
+                            }
+                            ?>
+                            </tbody>
                     </table>
             </div>
         </div>
@@ -62,6 +62,14 @@ include("connect.php");
                 $('.modal-trigger').leanModal();
                 $('select').material_select();
                 $(".button-collapse").sideNav();
+                $("button[name=DeleteKerntaak]").click(function (event) {
+                    event.preventDefault();
+                    // ophalen van het id
+                    var kerntaak_id = $(this).data("id");
+                    //alert(student_id);
+                    // link aanpassen
+                    $("#delhref").attr("href", "delete_kerntaak.php?id=" + kerntaak_id);
+                });
             });
         </script>
     </body>

@@ -18,6 +18,7 @@ function GetCriteria() {
         <?php
         include("navbar.php");
         include("ModalAddCriterium.php");
+        include("ModalDeleteCriterium.php");
         ?>
         <div class="row" style="margin-bottom: auto;">
             <div class="col s12 m4 l3" style="background-color: gray; height: 100%;">
@@ -43,8 +44,8 @@ function GetCriteria() {
                                 ?>
                                 <tr>
                                     <td><?php echo $row_get_werkproces_criterium_inhoud['werkproces_criterium_naam']; ?></td>
-                                    <td><a data-target="ModalEditKerntaak" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></a></td>
-                                    <td><a data-target="ModalDeleteKerntaak" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></a></td>
+                                    <td><button data-id="<?php echo $row_get_werkproces_criterium_inhoud['werkproces_criterium_id']; ?>" data-target="ModalEditwerkproces" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button></td>
+                                    <td><button data-id="<?php echo $row_get_werkproces_criterium_inhoud['werkproces_criterium_id']; ?>" data-target="ModalDeleteCriterium" name="DeleteCriterium" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></button></td>
                                 <tr>
                                     <?php
                                 }
@@ -68,6 +69,15 @@ function GetCriteria() {
                 $("select").material_select();
                 $(".button-collapse").sideNav();
 
+                $("button[name=DeleteCriterium]").click(function (event) {
+                    event.preventDefault();
+                    // ophalen van het id
+                    var werkproces_criterium_id = $(this).data("id");
+                    
+                    // link aanpassen
+                    $("#delhref").attr("href", "delete_criterium.php?id=" + werkproces_criterium_id);
+                });
+
                 // verbergen elementen
                 $("select[name=kerntaak_criterium_option]").on('change', function () {
                     // waarde van geslecteerde id ophalen
@@ -79,7 +89,6 @@ function GetCriteria() {
                         value: 0,
                         text: "Kies een werkproces",
                     }));
-
                     // ophalen van informatie, met ajax
                     $.ajax({
                         type: 'GET',
@@ -103,15 +112,11 @@ function GetCriteria() {
                             $("select[name=werkproces_criterium_option]").closest('.select-wrapper').removeClass("hide");
                         }
                     });
-
                 });
-
                 $("select[name=werkproces_criterium_option]").on('change', function () {
                     $("input[name=criterium_oms]").removeClass("hide");
                     $("button[name=new_criterium_submit]").removeClass("hide");
                 });
-
-
             });
         </script>
     </body>
