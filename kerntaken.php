@@ -35,18 +35,21 @@ include("connect.php");
                             $get_kerntaak_inhoud = "SELECT * FROM kerntaak";
                             $result_get_kerntaak_inhoud = $conn->query($get_kerntaak_inhoud);
                             if ($result_get_kerntaak_inhoud->num_rows > 0) {
-                                while ($row_get_kerntaak_inhoud = $result_get_kerntaak_inhoud->fetch_assoc()) {
-                                    ?>
-                                    <tr>
-                                        <td><?php echo $row_get_kerntaak_inhoud['kerntaak_naam']; ?></td>
-                                        <td><?php echo $row_get_kerntaak_inhoud['kerntaak_omschrijving']; ?></td>
-                                        <td><button data-id="<?php echo $row_get_kerntaak_inhoud['kerntaak_id']; ?>" data-target="ModalEditKerntaak" name="EditKerntaak" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button></td>
-                                        <td><button data-id="<?php echo $row_get_kerntaak_inhoud['kerntaak_id']; ?>" data-target="ModalDeleteKerntaak" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></button></td>
-                                    <tr>
-                                        <?php
-                                    }
+                            while ($row_get_kerntaak_inhoud = $result_get_kerntaak_inhoud->fetch_assoc()) {
+                            ?>
+                            <tr>
+                                <td><?php echo $row_get_kerntaak_inhoud['kerntaak_naam']; ?></td>
+                                <td><?php echo $row_get_kerntaak_inhoud['kerntaak_omschrijving']; ?></td>
+                                <td><button data-id="<?php echo $row_get_kerntaak_inhoud['kerntaak_id']; ?>" data-target="ModalEditKerntaak" name="EditKerntaak" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button></td>
+                                <td><button data-id="<?php echo $row_get_kerntaak_inhoud['kerntaak_id']; ?>" data-target="ModalDeleteKerntaak" name="DeleteKerntaak"  class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></button></td>
+                            <tr>
+                                <?php
+                                }
                                 } else {
-                                    echo '0 results';
+                                echo '0 results';
+                                }
+                                } else {
+                                echo '0 results';
                                 }
                                 ?>
                         </tbody>
@@ -84,6 +87,15 @@ include("connect.php");
                             $("#kerntaak_naam").removeClass("hide");
                             $("#kerntaak_omschrijving").removeClass("hide");
                         }
+                    });
+
+                    $("button[name=DeleteKerntaak]").click(function (event) {
+                        event.preventDefault();
+                        // ophalen van het id
+                        var kerntaak_id = $(this).data("id");
+                        //alert(student_id);
+                        // link aanpassen
+                        $("#delhref").attr("href", "delete_kerntaak.php?id=" + kerntaak_id);
                     });
                 });
             });

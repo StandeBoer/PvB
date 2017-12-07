@@ -1,4 +1,4 @@
-<div id="ModalDeleteKerntaak" class="modal">
+<div id="ModalDeleteCriterium" class="modal">
     <div class="modal-header" style="padding-left: 24px;">
         <h5>Verwijderen</h5>
     </div>

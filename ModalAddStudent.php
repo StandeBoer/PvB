@@ -56,10 +56,7 @@
 
 
         </form>
-
-
         <!-- Hier nog de cohort en klas id's toevoegen!!!!!!!!!!!!! -->
-
         <?php
         if (isset($_POST['NewStudentSubmit'])) {
             if (!empty($_POST['student_naam'] && $_POST['student_email'])) {

@@ -28,57 +28,56 @@
             </div>
             <div class="col s12 m8 l9">
                 <h4>Studenten <a data-target="ModalAddStudent" class="btn-floating btn-small waves-effect waves-light green btn modal-trigger"><i class="material-icons" >add</i></a></h5>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Kerntaak</th>
-                            <th>Naam</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $get_student_inhoud = "SELECT * FROM student";
-                        $result_get_student_inhoud = $conn->query($get_student_inhoud);
-                        if ($result_get_student_inhoud->num_rows > 0) {
-                            while ($row_get_student_inhoud = $result_get_student_inhoud->fetch_assoc()) {
-                                ?>
-                                <tr>
-                                    <td><?php echo $row_get_student_inhoud['student_naam']; ?></td>
-                                    <td><?php echo $row_get_student_inhoud['student_emailadres']; ?></td>
-                                    <td><button data-id="<?php echo $row_get_student_inhoud['student_id']; ?>" data-target="ModalEditKerntaak" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button></td>
-                                    <td><button data-id="<?php echo $row_get_student_inhoud['student_id']; ?>" data-target="ModalDeleteStudent" name="DeleteStudent" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></button></td>
-                                <tr>
-                                    <?php
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Kerntaak</th>
+                                <th>Naam</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $get_student_inhoud = "SELECT * FROM student";
+                            $result_get_student_inhoud = $conn->query($get_student_inhoud);
+                            if ($result_get_student_inhoud->num_rows > 0) {
+                                while ($row_get_student_inhoud = $result_get_student_inhoud->fetch_assoc()) {
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $row_get_student_inhoud['student_naam']; ?></td>
+                                        <td><?php echo $row_get_student_inhoud['student_emailadres']; ?></td>
+                                        <td><button data-id="<?php echo $row_get_student_inhoud['student_id']; ?>" data-target="ModalEditKerntaak" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button></td>
+                                        <td><button data-id="<?php echo $row_get_student_inhoud['student_id']; ?>" data-target="ModalDeleteStudent" name="DeleteStudent" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></button></td>
+                                    <tr>
+                                        <?php
+                                    }
+                                } else {
+                                    
                                 }
-                            } else {
-                                
-                            }
-                            ?>
-                    </tbody>
-            </div>
-        </div>
+                                ?>
+                        </tbody>
+                        </div>
+                        </div>
 
-        <!--EINDE CODE VOOR KLAS TOEVOEGEN BACKEND -->
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-                $('.modal-trigger').leanModal();
-                $('select').material_select();
-                $(".button-collapse").sideNav();
-                
-                $("button[name=DeleteStudent]").click(function(event) {
-                    event.preventDefault();
-                    // ophalen van het id
-                    var student_id = $(this).data("id");
-                    //alert(student_id);
-                    // link aanpassen
-                    $("#delhref").attr("href", "delete_student.php?id=" + student_id);
-                });
-            });
-        </script>
-    </body>
-</html>
+                        <!--EINDE CODE VOOR KLAS TOEVOEGEN BACKEND -->
+                        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+                        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+                        <script type="text/javascript">
+                            $(document).ready(function () {
+                                // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+                                $('.modal-trigger').leanModal();
+                                $('select').material_select();
+                                $(".button-collapse").sideNav();
+
+                                $("button[name=DeleteStudent]").click(function (event) {
+                                    event.preventDefault();
+                                    // ophalen van het id
+                                    var student_id = $(this).data("id");
+                                    // link aanpassen
+                                    $("#delhref").attr("href", "delete_student.php?id=" + student_id);
+                                });
+                            });
+                        </script>
+                        </body>
+                        </html>
