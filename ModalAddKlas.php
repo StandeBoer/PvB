@@ -44,15 +44,7 @@ if ($result_get_klas->num_rows > 0) {
     <input type="submit" name="new_klas_submit" class="btn btn-success" value="Versturen" style="border-radius: 0;">
     <input type="submit" name="sluiten" class="btn btn-success data-dismiss" value="Annuleren">
         </form>
-        <script type="text/javascript">
-               $(document).ready(function () {
-     $('#modalClose').click(function (){
-                window.setTimeout(function () {
-                  $('#contact').modal('hide');
-                }, 5000);
-              });
-          });
-          </script>
+
 <?php
 if (isset($_POST['new_klas_submit'])) {
     if (!empty($_POST['klas_naam'])) {

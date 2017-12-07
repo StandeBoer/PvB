@@ -56,15 +56,7 @@
 
 
         </form>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('#modalClose').click(function () {
-                    window.setTimeout(function () {
-                        $('#contact').modal('hide');
-                    }, 5000);
-                });
-            });
-        </script>
+
 
         <!-- Hier nog de cohort en klas id's toevoegen!!!!!!!!!!!!! -->
 

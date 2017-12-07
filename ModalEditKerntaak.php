@@ -12,11 +12,11 @@
             }
         }
         ?>
-        <form method="POST">
+        <form method="POST" name="form_kerntaken">
             <label>Om een kerntaak toe te voegen dient u hieronder de naam van de kerntaak aan te geven:</label>
-            <input type="text" class="form-control" style="border-radius: 0;" name="kerntaak_naam" placeholder="Kerntaak naam">
-            <input type="text" class="form-control" style="border-radius: 0;" name="kerntaak_omschrijving" placeholder="omschrijving">
-            <input type="submit" name="edit_kerntaak_submit" class="btn btn-success" value="Versturen" style="border-radius: 0;">
+            <input type="text" class="form-control hide" style="border-radius: 0;" name="kerntaak_naam" id="kerntaak_naam" placeholder="Kerntaak naam">
+            <input type="text" class="form-control hide" style="border-radius: 0;" name="kerntaak_omschrijving" id="kerntaak_omschrijving" placeholder="omschrijving">
+            <input type="submit" name="edit_kerntaak_submit" class="btn btn-success" value="Opslaan" style="border-radius: 0;">
             <input type="submit" name="sluiten" class="btn btn-success data-dismiss" value="Annuleren">
         </form>
     </div>

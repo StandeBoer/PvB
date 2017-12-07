@@ -10,7 +10,7 @@ include("connect.php");
         <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link type="text/css" rel="stylesheet" media="screen,projection" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css" />
     </head>
-    <body> 
+    <body>
         <?php
         include("navbar.php");
         include("ModalAddKerntaak.php");
@@ -40,8 +40,8 @@ include("connect.php");
                                     <tr>
                                         <td><?php echo $row_get_kerntaak_inhoud['kerntaak_naam']; ?></td>
                                         <td><?php echo $row_get_kerntaak_inhoud['kerntaak_omschrijving']; ?></td>
-                                        <td><a data-target="ModalEditKerntaak" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></a></td>
-                                        <td><a data-target="ModalDeleteKerntaak" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></a></td>
+                                        <td><button data-id="<?php echo $row_get_kerntaak_inhoud['kerntaak_id']; ?>" data-target="ModalEditKerntaak" name="EditKerntaak" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button></td>
+                                        <td><button data-id="<?php echo $row_get_kerntaak_inhoud['kerntaak_id']; ?>" data-target="ModalDeleteKerntaak" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></button></td>
                                     <tr>
                                         <?php
                                     }
@@ -62,6 +62,30 @@ include("connect.php");
                 $('.modal-trigger').leanModal();
                 $('select').material_select();
                 $(".button-collapse").sideNav();
+
+                // Edit button
+                $("button[name=EditKerntaak]").on('click', function () {
+                    // waarde van het geselecteerde id ophalen
+                    id_kerntaak = $(this).data("id");
+
+                    // Velden leeg maken
+                    document.getElementById("kerntaak_naam").value = "";
+                    document.getElementById("kerntaak_omschrijving").value = "";
+
+                    // ophalen van informatie, met ajax
+                    $.ajax({
+                        type: 'GET',
+                        url: 'json_edit_kerntaak.php',
+                        data: {id: id_kerntaak},
+                        dataType: 'json',
+                        success: function (data) {
+                            $("#kerntaak_naam").val(data.name);
+                            $("#kerntaak_omschrijving").val(data.description);
+                            $("#kerntaak_naam").removeClass("hide");
+                            $("#kerntaak_omschrijving").removeClass("hide");
+                        }
+                    });
+                });
             });
         </script>
     </body>
