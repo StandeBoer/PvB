@@ -11,11 +11,9 @@
         include("check.php");
         include("connect.php");
         include("navbar.php");
-        include("modalAddStudent.php");
-        include("ModalAddKerntaak.php");
-        include("ModalAddWerkproces.php");
-        include("ModalDeleteKerntaak.php");
-        include("ModalEditKerntaak.php");
+        include("ModalAddStudent.php");
+        include("ModalEditStudent.php");
+        include("ModalDeleteStudent.php");
         ?>
         <div class="row" style="margin-bottom: auto;">
             <div class="col s12 m4 l3" style="background-color: gray; height: 100%;">
@@ -49,18 +47,19 @@
                                 <tr>
                                     <td><?php echo $row_get_student_inhoud['student_naam']; ?></td>
                                     <td><?php echo $row_get_student_inhoud['student_emailadres']; ?></td>
-                                    <td><a data-target="ModalEditKerntaak" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></a></td>
-                                    <td><a data-target="ModalDeleteKerntaak" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></a></td>
+                                    <td><button data-id="<?php echo $row_get_student_inhoud['student_id']; ?>" data-target="ModalEditKerntaak" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button></td>
+                                    <td><button data-id="<?php echo $row_get_student_inhoud['student_id']; ?>" data-target="ModalDeleteStudent" name="DeleteStudent" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></button></td>
                                 <tr>
                                     <?php
                                 }
                             } else {
-                                echo '0 results';
+                                
                             }
                             ?>
                     </tbody>
             </div>
         </div>
+
         <!--EINDE CODE VOOR KLAS TOEVOEGEN BACKEND -->
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
@@ -70,6 +69,15 @@
                 $('.modal-trigger').leanModal();
                 $('select').material_select();
                 $(".button-collapse").sideNav();
+                
+                $("button[name=DeleteStudent]").click(function(event) {
+                    event.preventDefault();
+                    // ophalen van het id
+                    var student_id = $(this).data("id");
+                    //alert(student_id);
+                    // link aanpassen
+                    $("#delhref").attr("href", "delete_student.php?id=" + student_id);
+                });
             });
         </script>
     </body>
