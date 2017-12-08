@@ -7,26 +7,20 @@
             <label>Om een kerntaak toe te voegen dient u hieronder de naam van de kerntaak aan te geven:</label><br><br>
             <i class="material-icons prefix tiny">mode_edit</i><label>Kerntaak naam:</label>
             <input type="text" class="form-control" style="border-radius: 0;" name="kerntaak_naam" placeholder="Kerntaak">
-            <i class="material-icons prefix tiny">mode_edit</i><label>Omschrijving:</label>
-            <input type="text" class="form-control" style="border-radius: 0;" name="kerntaak_omschrijving" placeholder="omschrijving">
             <input type="submit" name="new_kerntaak_submit" class="btn btn-success" value="Versturen" style="border-radius: 0;">
             <input type="submit" name="sluiten" class="btn btn-success data-dismiss" value="Annuleren">
         </form>
-            <?php
-            if (isset($_POST['new_kerntaak_submit'])) {
+        <?php
+        if (isset($_POST['new_kerntaak_submit'])) {
             if (!empty($_POST['kerntaak_naam'])) {
-                if (!empty($_POST['kerntaak_omschrijving'])){
                 $kerntaak_name = $_POST['kerntaak_naam'];
-                $kerntaak_desc = $_POST['kerntaak_omschrijving'];
-                $add_kerntaak_sql = "INSERT INTO kerntaak(kerntaak_naam, kerntaak_omschrijving) VALUES ('" . $kerntaak_name .  "' , '" . $kerntaak_desc . "')";
+                $add_kerntaak_sql = "INSERT INTO kerntaak(kerntaak_naam) VALUES ('" . $kerntaak_name . "')";
                 echo "<meta http-equiv='refresh' content='0'>";
                 if ($conn->query($add_kerntaak_sql) === TRUE) {
-                    echo "Kerntaak is toegevoegd";
+                    //echo "Kerntaak is toegevoegd";
                 } else {
-                    echo "FOUTMELDING! Probeer opnieuw";
-                } 
+                    //echo "FOUTMELDING! Probeer opnieuw";
                 }
-
             }
         }
         ?>

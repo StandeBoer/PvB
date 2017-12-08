@@ -1,3 +1,7 @@
+<?php
+include("check.php");
+include("connect.php");
+?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -8,10 +12,9 @@
     </head>
     <body> 
         <?php
-        include("check.php");
-        include("connect.php");
         include("navbar.php");
         include("ModalAddWerkproces.php");
+        include("ModalEditWerkproces.php");
         include("ModalDeleteWerkproces.php");
         ?>
         <div class="row" style="margin-bottom: auto;">
@@ -34,7 +37,6 @@
                         <thead>
                             <tr>
                                 <th>Naam</th>
-                                <th>Omschrijving</th>
                                 <th></th>
                                 <th></th>
                             </tr>
@@ -48,8 +50,7 @@
                                     ?>
                                     <tr>
                                         <td><?php echo $row_get_werkproces_inhoud['werkproces_naam']; ?></td>
-                                        <td><?php echo $row_get_werkproces_inhoud['werkproces_id']; ?></td>
-                                        <td><button data-id="<?php echo $row_get_werkproces_inhoud['werkproces_id']; ?>" data-target="ModalEditwerkproces" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button></td>
+                                        <td><button data-id="<?php echo $row_get_werkproces_inhoud['werkproces_id']; ?>" data-target="ModalEditWerkproces" name="EditWerkproces" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button></td>
                                         <td><button data-id="<?php echo $row_get_werkproces_inhoud['werkproces_id']; ?>" data-target="ModalDeleteWerkproces" name="DeleteWerkproces" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></button></td>
                                     <tr>
                                         <?php
@@ -72,6 +73,30 @@
                             $('.modal-trigger').leanModal();
                             $('select').material_select();
                             $(".button-collapse").sideNav();
+
+                            // Edit button
+                            $("button[name=EditWerkproces]").on('click', function () {
+                                // waarde van het geselecteerde id ophalen
+                                id_werkproces = $(this).data("id");
+                                //alert(id_werkproces);
+
+                                // Velden leeg maken
+                                document.getElementById("werkproces_id").value = "";
+                                document.getElementById("werkproces_naam").value = "";
+
+                                // ophalen van informatie, met ajax om naam/omschrijving werkproces op te halen
+                                $.ajax({
+                                    type: 'GET',
+                                    url: 'json_edit_werkproces.php',
+                                    data: {id: id_werkproces},
+                                    dataType: 'json',
+                                    success: function (data) {
+                                        $("#werkproces_id").val(data.id);
+                                        $("#werkproces_naam").val(data.name);
+                                        $("#werkproces_naam").removeClass("hide");
+                                    }
+                                });
+                            });
 
                             $("button[name=DeleteWerkproces]").click(function (event) {
                                 event.preventDefault();

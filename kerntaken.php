@@ -25,7 +25,6 @@ include("connect.php");
                         <thead>
                             <tr>
                                 <th>Naam</th>
-                                <th>Omschrijving</th>
                                 <th></th>
                                 <th></th>
                             </tr>
@@ -39,7 +38,6 @@ include("connect.php");
                                     ?>
                                     <tr>
                                         <td><?php echo $row_get_kerntaak_inhoud['kerntaak_naam']; ?></td>
-                                        <td><?php echo $row_get_kerntaak_inhoud['kerntaak_omschrijving']; ?></td>
                                         <td><button data-id="<?php echo $row_get_kerntaak_inhoud['kerntaak_id']; ?>" data-target="ModalEditKerntaak" name="EditKerntaak" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button></td>
                                         <td><button data-id="<?php echo $row_get_kerntaak_inhoud['kerntaak_id']; ?>" data-target="ModalDeleteKerntaak" name="DeleteKerntaak"  class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></button></td>
                                     <tr>
@@ -51,6 +49,7 @@ include("connect.php");
                     </table>
             </div>
         </div>
+
         <!--EINDE CODE VOOR KLAS TOEVOEGEN BACKEND -->
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
@@ -67,32 +66,33 @@ include("connect.php");
                     id_kerntaak = $(this).data("id");
 
                     // Velden leeg maken
+                    document.getElementById("kerntaak_id").value = "";
                     document.getElementById("kerntaak_naam").value = "";
-                    document.getElementById("kerntaak_omschrijving").value = "";
 
-                    // ophalen van informatie, met ajax
+                    // ophalen van informatie, met ajax om naam/omschrijving kerntaak op te halen
                     $.ajax({
                         type: 'GET',
                         url: 'json_edit_kerntaak.php',
                         data: {id: id_kerntaak},
                         dataType: 'json',
                         success: function (data) {
+                            $("#kerntaak_id").val(data.id);
                             $("#kerntaak_naam").val(data.name);
-                            $("#kerntaak_omschrijving").val(data.description);
                             $("#kerntaak_naam").removeClass("hide");
-                            $("#kerntaak_omschrijving").removeClass("hide");
                         }
                     });
-
-                    $("button[name=DeleteKerntaak]").click(function (event) {
-                        event.preventDefault();
-                        // ophalen van het id
-                        var kerntaak_id = $(this).data("id");
-                        //alert(student_id);
-                        // link aanpassen
-                        $("#delhref").attr("href", "delete_kerntaak.php?id=" + kerntaak_id);
-                    });
                 });
+
+                // DELETE BUTTON
+                $("button[name=DeleteKerntaak]").click(function (event) {
+                    event.preventDefault();
+                    // ophalen van het id
+                    var kerntaak_id = $(this).data("id");
+                    //alert(student_id);
+                    // link aanpassen
+                    $("#delhref").attr("href", "delete_kerntaak.php?id=" + kerntaak_id);
+                });
+
             });
         </script>
     </body>

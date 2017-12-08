@@ -3,21 +3,26 @@
         <h5> Bewerken</h5>
     </div>
     <div class="modal-content">
-        <?php
-        $edit_kerntaak_inhoud = "SELECT * FROM kerntaak";
-        $result_edit_kerntaak_inhoud = $conn->query($edit_kerntaak_inhoud);
-        if ($result_edit_kerntaak_inhoud->num_rows > 0) {
-            while ($row_edit_kerntaak_inhoud = $result_edit_kerntaak_inhoud->fetch_assoc()) {
-                
-            }
-        }
-        ?>
-        <form method="POST" name="form_kerntaken">
-            <label>Om een kerntaak toe te voegen dient u hieronder de naam van de kerntaak aan te geven:</label>
+        <form method="POST">
+            <label>Om een kerntaak aan te passen dient u de aanpassingen op te slaan:</label>
+            <input type="hidden" class="form-control" style="border-radius: 0;" name="kerntaak_id" id="kerntaak_id">
             <input type="text" class="form-control hide" style="border-radius: 0;" name="kerntaak_naam" id="kerntaak_naam" placeholder="Kerntaak naam">
-            <input type="text" class="form-control hide" style="border-radius: 0;" name="kerntaak_omschrijving" id="kerntaak_omschrijving" placeholder="omschrijving">
-            <input type="submit" name="edit_kerntaak_submit" class="btn btn-success" value="Opslaan" style="border-radius: 0;">
+            <button type="submit" name="edit_kerntaak_submit" class="btn btn-success" value="Opslaan">Opslaan</button>
             <input type="submit" name="sluiten" class="btn btn-success data-dismiss" value="Annuleren">
         </form>
     </div>
 </div>
+<?php
+if (isset($_POST["edit_kerntaak_submit"])) {
+    if (isset($_POST["kerntaak_naam"])) {
+        $edit_kerntaak_id = $_POST["kerntaak_id"];
+        $edit_kerntaak_naam = $_POST["kerntaak_naam"];
+        $edit_kerntaak = "UPDATE kerntaak SET kerntaak_naam='$edit_kerntaak_naam' WHERE kerntaak_id = $edit_kerntaak_id";
+        if ($conn->query($edit_kerntaak) === TRUE) {
+            //echo "Record updated successfully";
+        } else {
+            //echo "Error updating record: " . $conn->error;
+        }
+    }
+}
+?>

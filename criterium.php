@@ -18,6 +18,7 @@ function GetCriteria() {
         <?php
         include("navbar.php");
         include("ModalAddCriterium.php");
+        include("ModalEditCriterium.php");
         include("ModalDeleteCriterium.php");
         ?>
         <div class="row" style="margin-bottom: auto;">
@@ -25,8 +26,11 @@ function GetCriteria() {
 
             </div>
             <div class="col s12 m8 l9">
-                <h5>Overzicht criteria
-                    <a data-target="ModalAddCriterium" class="btn-floating btn-small waves-effect waves-light green btn modal-trigger"><i class="material-icons" >add</i></a></h5>
+                <h4>Overzicht criterium
+                    <a data-target="ModalAddCriterium" class="btn-floating btn-small waves-effect waves-light green btn modal-trigger">
+                        <i class="material-icons" >add</i>
+                    </a>
+                </h4>
                 <table>
                     <thead>
                         <tr>
@@ -44,7 +48,7 @@ function GetCriteria() {
                                 ?>
                                 <tr>
                                     <td><?php echo $row_get_werkproces_criterium_inhoud['werkproces_criterium_naam']; ?></td>
-                                    <td><button data-id="<?php echo $row_get_werkproces_criterium_inhoud['werkproces_criterium_id']; ?>" data-target="ModalEditwerkproces" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button></td>
+                                    <td><button data-id="<?php echo $row_get_werkproces_criterium_inhoud['werkproces_criterium_id']; ?>" data-target="ModalEditCriterium" name="EditCriterium" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button></td>
                                     <td><button data-id="<?php echo $row_get_werkproces_criterium_inhoud['werkproces_criterium_id']; ?>" data-target="ModalDeleteCriterium" name="DeleteCriterium" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></button></td>
                                 <tr>
                                     <?php
@@ -69,6 +73,32 @@ function GetCriteria() {
                 $("select").material_select();
                 $(".button-collapse").sideNav();
 
+                // Edit criteria
+                $("button[name=EditCriterium]").on('click', function () {
+                    // waarde van het geselecteerde id ophalen
+                    id_criterium = $(this).data("id");
+                    //alert(id_criterium);
+
+                    // Velden leeg maken
+                    document.getElementById("criterium_id").value = "";
+                    document.getElementById("criterium_naam").value = "";
+
+                    // ophalen van informatie, met ajax om naam/omschrijving kerntaak op te halen
+                    $.ajax({
+                        type: 'GET',
+                        url: 'json_edit_criterium.php',
+                        data: {id: id_criterium},
+                        dataType: 'json',
+                        success: function (data) {
+                            //console.log(data);
+                            $("#criterium_id").val(data.id);
+                            $("#criterium_naam").val(data.name);
+                            $("#criterium_naam").removeClass("hide");
+                        },
+                    });
+                });
+
+                // Delete criteria
                 $("button[name=DeleteCriterium]").click(function (event) {
                     event.preventDefault();
                     // ophalen van het id
@@ -78,7 +108,7 @@ function GetCriteria() {
                     $("#delhref").attr("href", "delete_criterium.php?id=" + werkproces_criterium_id);
                 });
 
-                // verbergen elementen
+                // Add criteria
                 $("select[name=kerntaak_criterium_option]").on('change', function () {
                     // waarde van geslecteerde id ophalen
                     kt = this.value;
