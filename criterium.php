@@ -25,8 +25,8 @@ function GetCriteria() {
 
             </div>
             <div class="col s12 m8 l9">
-                <h5>Overzicht criteria
-                    <a data-target="ModalAddCriterium" class="btn-floating btn-small waves-effect waves-light green btn modal-trigger"><i class="material-icons" >add</i></a></h5>
+                <h4>Overzicht criteria
+                    <a data-target="ModalAddCriterium" class="btn-floating btn-small waves-effect waves-light green btn modal-trigger"><i class="material-icons" >add</i></a></h4>
                 <table>
                     <thead>
                         <tr>

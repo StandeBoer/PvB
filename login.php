@@ -53,24 +53,24 @@ if (isset($_POST["submit"])) {
     </head>
     <body>
 
-        <div class="container">
+        <div class="container" style="margin: auto;">
             <div class="z-depth-5 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
 
-                <form class="col s12" method="post" id="login_form">
+                <form class="col s12 m12 l12" method="post" id="login_form">
                     <div class='row'>
                         <div class='col s12'>
                         </div>
                     </div>
 
                     <div class='row'>
-                        <div class='input-field col s12'>
+                        <div class='input-field col s12 m12 l12'>
                             <label for="email">E-Mail</label>
                             <input name="email" type="email" class="w3-input" id="email" placeholder="E-mail">
                         </div>
                     </div>
 
                     <div class='row'>
-                        <div class='input-field col s12'>
+                        <div class='input-field col s12 m12 l12'>
                             <label for="inputPassword">Wachtwoord</label>
                             <input name="password" type="password" class="w3-input" id="pass" placeholder="Wachtwoord">
                         </div>

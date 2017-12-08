@@ -17,32 +17,11 @@ include("connect.php");
         ?>
         <div class="row" style="margin-bottom: auto;">
             <div class="col s12 m4 l3" style="background-color: gray; height: 100%;">
-                <button data-target="ModalAddCohort" class="btn modal-trigger" style="min-width: 200px;">Add Cohort</button>
                 <br>
-                <button data-target="ModalAddKlas" class="btn modal-trigger" style="min-width: 200px;">Add Klas</button>
+                <button data-target="ModalAddCohort" class="btn modal-trigger" style="min-width: 200px;">Cohort toevoegen</button>
+                <br><br>
+                <button data-target="ModalAddKlas" class="btn modal-trigger" style="min-width: 200px;">Klas toevoegen</button>
             </div>
-            
-            
-            <?php
-            $error = '';
-            $get_cohort = "SELECT * FROM cohort";
-            $result_cohort = $conn->query($get_cohort);
-            if ($result_cohort->num_rows > 0) {
-                ?>
-                <select name="cohort_option" required>
-                    <option selected="selected" disabled>Kies een Cohort</option>
-                    <?php
-                    while ($row_cohort = $result_cohort->fetch_assoc()) {
-                        ?>
-                        <option value="<?php echo $row_cohort["cohort_id"] ?>"><?php echo $row_cohort["cohort_id"] . ' - ' . $row_cohort["cohort_jaar"] ?></option>
-                        <?php
-                    }
-                    ?>
-                </select>
-                <?php
-            }
-            ?>
-            
             
             <div class="col s12 m8 l9">
 

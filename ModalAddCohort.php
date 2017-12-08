@@ -1,8 +1,8 @@
 <div id="ModalAddCohort" class="modal">
-    <div class="modal-header" style="padding-left: 24px;">
+    <div class="modal-header" style="padding-left: 124px;">
         <h5>Add Cohort</h5>
     </div>
-    <div class="modal-c"
+    <div class="modal-content">
 <!-- CODE VOOR COHORT TOEVOEGEN BACK-END -->
 <?php
 $get_cohort = "SELECT * FROM cohort";
@@ -24,17 +24,7 @@ if ($result_get_cohort->num_rows > 0) {
      <input type="submit" name="sluiten" class="btn btn-success data-dismiss" value="Annuleren">
             
         </form>
-        
-         <script type="text/javascript">
-               $(document).ready(function () {
-     $('#modalClose').click(function (){
-                window.setTimeout(function () {
-                  $('#contact').modal('hide');
-                }, 5000);
-              });
-          });
-          </script>
-</form>
+
 <?php
 if (isset($_POST['new_cohort_submit'])) {
     if (!empty($_POST['cohort_jaar'])) {

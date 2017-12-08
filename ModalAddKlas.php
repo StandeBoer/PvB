@@ -53,9 +53,7 @@
 
         } 
         ?>
-    
-    <input type="submit" name="new_klas_submit" class="btn btn-success" value="Versturen" style="border-radius: 0;">
-    <input type="submit" name="sluiten" class="btn btn-success data-dismiss" value="Annuleren">
+
         </form>
 
 
