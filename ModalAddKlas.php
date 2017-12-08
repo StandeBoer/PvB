@@ -38,9 +38,9 @@
                     $klas_naam = $_POST['klas_naam'];
                     $add_klas_sql = "INSERT INTO klas(klas_naam, cohort_id) VALUES ('" . $klas_naam . "', '" . $cohort_id . "')";
                     if ($conn->query($add_klas_sql) === TRUE) {
-                        echo "Werkproces is toegevoegd";
+                        //echo "Werkproces is toegevoegd";
                     } else {
-                        echo "FOUTMELDING! Probeer opnieuw";
+                        //echo "FOUTMELDING! Probeer opnieuw";
                     }
                 }
             } else {
