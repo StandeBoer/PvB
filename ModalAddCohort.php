@@ -25,15 +25,6 @@ if ($result_get_cohort->num_rows > 0) {
             
         </form>
         
-         <script type="text/javascript">
-               $(document).ready(function () {
-     $('#modalClose').click(function (){
-                window.setTimeout(function () {
-                  $('#contact').modal('hide');
-                }, 5000);
-              });
-          });
-          </script>
 </form>
 <?php
 if (isset($_POST['new_cohort_submit'])) {

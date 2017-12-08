@@ -35,13 +35,13 @@
             if (isset($_POST['cohort_option'])) {
                 if (isset($_POST['klas_naam'])) {
                     $cohort_id = $_POST['cohort_option'];
-                    echo $cohort_id;
+                    //echo $cohort_id;
                     $klas_naam = $_POST['klas_naam'];
                     $add_klas_sql = "INSERT INTO klas(klas_naam, cohort_id) VALUES ('" . $klas_naam . "', '" . $cohort_id . "')";
                     if ($conn->query($add_klas_sql) === TRUE) {
-                        echo "Werkproces is toegevoegd";
+                        //echo "Werkproces is toegevoegd";
                     } else {
-                        echo "FOUTMELDING! Probeer opnieuw";
+                        //echo "FOUTMELDING! Probeer opnieuw";
                     }
                 }
             } else {
@@ -53,10 +53,6 @@
 
         } 
         ?>
-    
-    <input type="submit" name="new_klas_submit" class="btn btn-success" value="Versturen" style="border-radius: 0;">
-    <input type="submit" name="sluiten" class="btn btn-success data-dismiss" value="Annuleren">
-        </form>
 
 
         <!--EINDE CODE VOOR KLAS TOEVOEGEN BACKEND -->
