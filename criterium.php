@@ -31,6 +31,7 @@ function GetCriteria() {
                         <i class="material-icons" >add</i>
                     </a>
                 </h4>
+
                 <table>
                     <thead>
                         <tr>

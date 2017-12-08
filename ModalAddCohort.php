@@ -1,5 +1,5 @@
 <div id="ModalAddCohort" class="modal">
-    <div class="modal-header" style="padding-left: 24px;">
+    <div class="modal-header" style="padding-left: 124px;">
         <h5>Add Cohort</h5>
     </div>
     <div class="modal-content">

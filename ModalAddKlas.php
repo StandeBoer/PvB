@@ -52,7 +52,6 @@
 
         } 
         ?>
-
         <!--EINDE CODE VOOR KLAS TOEVOEGEN BACKEND -->
     </div>
 </div>

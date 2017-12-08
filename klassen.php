@@ -17,9 +17,10 @@ include("connect.php");
         ?>
         <div class="row" style="margin-bottom: auto;">
             <div class="col s12 m4 l3" style="background-color: gray; height: 100%;">
-                <button data-target="ModalAddCohort" class="btn modal-trigger" style="min-width: 200px;">Add Cohort</button>
                 <br>
-                <button data-target="ModalAddKlas" class="btn modal-trigger" style="min-width: 200px;">Add Klas</button>
+                <button data-target="ModalAddCohort" class="btn modal-trigger" style="min-width: 200px;">Cohort toevoegen</button>
+                <br><br>
+                <button data-target="ModalAddKlas" class="btn modal-trigger" style="min-width: 200px;">Klas toevoegen</button>
             </div>
             <div class="col s12 m8 l9">
 
