@@ -18,6 +18,7 @@ include("connect.php");
         ?>
         <div class="row" style="margin-bottom: auto;">
             <div class="col s12 m4 l3" style="background-color: gray; height: 100%;">
+                <br>
                 <button data-target="ModalAddCohort" class="btn modal-trigger" style="min-width: 200px;">Add Cohort</button>
 
                 <?php
@@ -51,6 +52,7 @@ include("connect.php");
                         </tr>
                     </thead>
                     <tbody name="tbody">
+
                     </tbody>
                 </table>
             </div>
@@ -70,7 +72,7 @@ include("connect.php");
                     cohort_id = this.value;
                     //alert(cohort_id);
 
-                    //Leegmaken
+                    //Leegmaken ingevulde shit komt hier
                     $("tbody[name=tbody]").empty();
 
                     // ophalen van informatie, met ajax
@@ -84,18 +86,18 @@ include("connect.php");
                             $.each(data, function (index, element) {
                                 $("#show_klas").find('tbody')
                                         .append($('<tr>'
-                                        ).append($('<td>', {
+                                                ).append($('<td>', {
                                             text: element.name},
                                         )).append($(
                                                 '<td><button data-target="ModalEditKlas" name="EditKlas" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button>', {
-                                            value: element.klas_id
-                                        }
-                                                )).append($(
+                                                    value: element.klas_id
+                                                }
+                                        )).append($(
                                                 '<td><button data-target="ModalDeleteKlas" onclick="myScript()" name="DeleteKlas" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></button>', {
-                                            value: element.klas_id,
-                                            
-                                        }
-                                                ))
+                                                    value: element.klas_id,
+                                                }
+                                        ))
+
                                                 );
                                 //$('#show_klas').append($('<td>', {value: element.klas_id, text: element.name}, '</td>'));
                                 $("#show_klas").removeClass("hide");
@@ -104,12 +106,12 @@ include("connect.php");
                     });
                 });
             });
-            
-                        
-                    function myScript(){
-                    var kerntaak_id = $(this).var();
-                    alert(kerntaak_id);
-    }
+
+
+            function myScript() {
+                var kerntaak_id = $(this).var();
+                alert(kerntaak_id);
+            }
         </script>
     </body>
 </html>
