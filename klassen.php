@@ -1,4 +1,4 @@
-<?php
++<?php
 include("check.php");
 include("connect.php");
 ?>
@@ -18,6 +18,7 @@ include("connect.php");
         ?>
         <div class="row" style="margin-bottom: auto;">
             <div class="col s12 m4 l3" style="background-color: gray; height: 100%;">
+                <br>
                 <button data-target="ModalAddCohort" class="btn modal-trigger" style="min-width: 200px;">Add Cohort</button>
 
                 <?php
@@ -42,10 +43,18 @@ include("connect.php");
             </div>
             <div class="col s12 m8 l9">
                 <h4>Overzicht klassen <a data-target="ModalAddKlas" class="btn-floating btn-small waves-effect waves-light green btn modal-trigger"><i class="material-icons" >add</i></a></h4>
-                <ul id="show_klas" class="hide">
-                    <h6>Voor het geselecteerde cohort zijn de volgende klassen aangemaakt:</h6>
-                    <li></li>
-                </ul>
+                <table id="show_klas" class="hide">
+                    <thead>
+                        <tr>
+                            <th>Klas</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody name="tbody">
+
+                    </tbody>
+                </table>
             </div>
         </div>
         <!--EINDE CODE VOOR KLAS TOEVOEGEN BACKEND -->
@@ -62,7 +71,10 @@ include("connect.php");
 
                     cohort_id = this.value;
                     //alert(cohort_id);
-
+                    //
+                    //Leegmaken ingevulde shit komt hier
+                    $("tbody[name=tbody]").empty();
+                    //
                     // ophalen van informatie, met ajax
                     $.ajax({
                         type: 'GET',
@@ -73,10 +85,12 @@ include("connect.php");
                             //alert(data);
                             $.each(data, function (index, element) {
                                 console.log(element.name);
-                                $('#show_klas').append($('<li>', {
-                                    value: element.id,
-                                    text: element.name
-                                }));
+                                $("#show_klas").find('tbody')
+                                        .append($('<tr>')
+                                                .append($('<td>', {value: element.klas_id, text: element.name}, '</td>')                                                        
+                                                        ).append($('<td><a data-target="ModalAddKlas" class="btn-floating btn-small waves-effect waves-light green btn modal-trigger"><i class="material-icons" >add</i></a></td>'))
+                                                );
+                                //$('#show_klas').append($('<td>', {value: element.klas_id, text: element.name}, '</td>'));
                                 $("#show_klas").removeClass("hide");
                             });
 
