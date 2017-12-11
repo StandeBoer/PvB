@@ -48,3 +48,16 @@ h4 {
 label {
     font-size: 120% !important;
 }
+
+.login {
+    background-color: #ffffff;
+    display: inline-block;
+    padding: 32px 48px 0px 48px;
+    border: 1px solid #EEE;
+    height: 100vh;
+    width: 100vw;
+}
+
+.beoordeling {
+    height: 100vh;
+}

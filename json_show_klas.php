@@ -1,4 +1,4 @@
-<?php 
+<?php
 include 'connect.php';
 $get_cohort_id = $_GET['id'];
 //echo $get_cohort_id;
@@ -15,5 +15,4 @@ if ($result_klas->num_rows > 0) {
     }
 }
 echo json_encode($return_klas);
-
 ?>

@@ -18,20 +18,20 @@ include("connect.php");
         ?>
         <div class="row" style="margin-bottom: auto;">
             <div class="col s12 m4 l3 sidebar">
-                <button data-target="ModalAddCohort" class="btn modal-trigger" style="min-width: 200px;">Cohort Toevoegen</button>
+              
 
                 <?php
                 $error = '';
-                $get_cohort = "SELECT * FROM cohort";
-                $result_cohort = $conn->query($get_cohort);
-                if ($result_cohort->num_rows > 0) {
+                $get_werkproces = "SELECT * FROM werkproces_criterium";
+                $result_werkproces = $conn->query($get_werkproces);
+                if ($result_werkproces->num_rows > 0) {
                     ?>
-                    <select name="selected_cohort" required>
-                        <option selected="selected" disabled>Kies een Cohort</option>
+                    <select name="selected_werkproces" required>
+                        <option selected="selected" disabled>Kies een Werkproces</option>
                         <?php
-                        while ($row_cohort = $result_cohort->fetch_assoc()) {
+                        while ($row_werkproces = $result_werkproces->fetch_assoc()) {
                             ?>
-                            <option value="<?php echo $row_cohort["cohort_id"] ?>"><?php echo $row_cohort["cohort_jaar"] ?></option>
+                            <option value="<?php echo $row_werkproces["werkproces_id"] ?>"><?php echo $row_werkproces["werkproces_criterium_naam"] ?></option>
                             <?php
                         }
                         ?>
@@ -41,9 +41,9 @@ include("connect.php");
                 ?>
             </div>
             <div class="col s12 m8 l9">
-                <h4>Overzicht klassen <a data-target="ModalAddKlas" class="btn-floating btn-small waves-effect waves-light green btn modal-trigger"><i class="material-icons" >add</i></a></h4>
+                <h4>Overzicht Normeringen <a data-target="ModalAddKlas" class="btn-floating btn-small waves-effect waves-light green btn modal-trigger"><i class="material-icons" >add</i></a></h4>
                 <ul id="show_klas" class="hide">
-                    <h6>Voor het geselecteerde cohort zijn de volgende klassen aangemaakt:</h6>
+                    <h6>Voor het geselecteerde werkproces zijn de volgende normeringen aangemaakt:</h6>
                     <li></li>
                 </ul>
 
@@ -60,9 +60,9 @@ include("connect.php");
                 $("select").material_select();
                 $(".button-collapse").sideNav();
 
-                $("select[name=selected_cohort]").on('change', function () {
+                $("select[name=selected_werkproces]").on('change', function () {
 
-                    cohort_id = this.value;
+                    werkproces_id = this.value;
                     //alert(cohort_id);
 
 
@@ -70,18 +70,18 @@ include("connect.php");
                     // ophalen van informatie, met ajax
                     $.ajax({
                         type: 'GET',
-                        url: 'json_show_klas.php',
-                        data: {id: cohort_id},
+                        url: 'json_show_normering.php',
+                        data: {id: werkproces_id},
                         dataType: 'json',
                         success: function (data) {
                             //alert(data);
                             $.each(data, function (index, element) {
                                 console.log(element.name);
-                                $('#show_klas').append($('<li>', {
+                                $('#show_normering').append($('<li>', {
                                     value: element.id,
                                     text: element.name
                                 }));
-                                $("#show_klas").removeClass("hide");
+                                $("#show_normering").removeClass("hide");
                             });
 
                         }

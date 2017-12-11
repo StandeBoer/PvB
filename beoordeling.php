@@ -15,7 +15,7 @@
         include("connect.php");
         include("navbar.php");
         ?>
-        <div class="row" style="margin-bottom: auto; z-index: 999;">
+        <div class="row beoordeling">
 
             <form method="POST">
                 <div class="col s12 m3 l2">
