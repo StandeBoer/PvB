@@ -17,9 +17,8 @@ include("connect.php");
         include("modalAddCohort.php");
         ?>
         <div class="row" style="margin-bottom: auto;">
-            <div class="col s12 m4 l3" style="background-color: gray; height: 100%;">
-                <br>
-                <button data-target="ModalAddCohort" class="btn modal-trigger" style="min-width: 200px;">Add Cohort</button>
+            <div class="col s12 m4 l3 sidebar">
+                <button data-target="ModalAddCohort" class="btn modal-trigger" style="min-width: 200px;">Cohort Toevoegen</button>
 
                 <?php
                 $error = '';

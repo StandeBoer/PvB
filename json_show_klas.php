@@ -1,4 +1,4 @@
-<?php 
+<?php
 include 'connect.php';
 $get_cohort_id = $_GET['id'];
 //echo $get_cohort_id;

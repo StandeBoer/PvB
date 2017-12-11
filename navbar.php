@@ -16,6 +16,7 @@
             <li><a class="tekstkleur" href="kerntaken.php">Kerntaken</a></li>
             <li><a class="tekstkleur" href="werkprocessen.php">Werkprocessen</a></li>
             <li><a class="tekstkleur" href="criterium.php">Criterium</a></li>
+            <li><a class="tekstkleur" href="normering.php">Normering<a/></li>
             <li><a class="tekstkleur" href="studenten.php">Studenten</a></li>
             <li><a class="tekstkleur" href="klassen.php">Klassen</a></li>
         </ul>
