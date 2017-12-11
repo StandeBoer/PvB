@@ -15,5 +15,4 @@ if ($result_klas->num_rows > 0) {
     }
 }
 echo json_encode($return_klas);
-
 ?>

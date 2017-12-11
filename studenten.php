@@ -31,8 +31,8 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>Kerntaak</th>
                                 <th>Naam</th>
+                                <th>Emailadres</th>
                                 <th></th>
                                 <th></th>
                             </tr>
@@ -47,7 +47,7 @@
                                     <tr>
                                         <td><?php echo $row_get_student_inhoud['student_naam']; ?></td>
                                         <td><?php echo $row_get_student_inhoud['student_emailadres']; ?></td>
-                                        <td><button data-id="<?php echo $row_get_student_inhoud['student_id']; ?>" data-target="ModalEditKerntaak" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button></td>
+                                        <td><button data-id="<?php echo $row_get_student_inhoud['student_id']; ?>" data-target="ModalEditStudent" name="EditStudent" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button></td>
                                         <td><button data-id="<?php echo $row_get_student_inhoud['student_id']; ?>" data-target="ModalDeleteStudent" name="DeleteStudent" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></button></td>
                                     <tr>
                                         <?php
@@ -70,6 +70,37 @@
                                 $('select').material_select();
                                 $(".button-collapse").sideNav();
 
+                                // Edit button
+                                $("button[name=EditStudent]").on('click', function () {
+                                    // waarde van het geselecteerde id ophalen
+                                    id_student = $(this).data("id");
+                                    //alert(id_student);
+                                    
+                                    // Velden leeg maken
+                                    document.getElementById("student_id").value = "";
+                                    document.getElementById("student_naam").value = "";
+                                    document.getElementById("student_email").value = "";
+
+                                    // ophalen van informatie, met ajax om naam/omschrijving kerntaak op te halen
+                                    $.ajax({
+                                        type: 'GET',
+                                        url: 'json_edit_student.php',
+                                        data: {id: id_student},
+                                        dataType: 'json',
+                                        success: function (data) {
+                                            $("#student_id").val(data.id);
+                                            $("#student_naam").val(data.name);
+                                            $("#student_naam").removeClass("hide");
+                                            $("#student_email").val(data.email);
+                                            $("#student_email").removeClass("hide");
+                                        },
+                                        error: function(){
+                                            console.log('error');
+                                        }
+                                    });
+                                });
+
+                                // DELETE BUTTON
                                 $("button[name=DeleteStudent]").click(function (event) {
                                     event.preventDefault();
                                     // ophalen van het id

@@ -2,7 +2,6 @@
     <div class="modal-header" style="padding-left: 124px;">
         <h5>Add Cohort</h5>
     </div>
-<<<<<<< HEAD
     <div class="modal-content">
         <!-- CODE VOOR COHORT TOEVOEGEN BACK-END -->
         <?php

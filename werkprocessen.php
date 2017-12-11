@@ -20,20 +20,29 @@ include("connect.php");
         <div class="row" style="margin-bottom: auto;">
             <div class="col s12 m4 l3" style="background-color: gray; height: 100%;">
                 <br>
-                <!-- Dropdown Trigger -->
-                <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Selecteer kerntaak</a>
-
-                <!-- Dropdown Structure -->
-                <ul id='dropdown1' class='dropdown-content'>
-                    <li><a href="#!"></a></li>
-                    <li>Stelt de opdracht vast</a></li>
-                    <li>Levert bijdrage projectplan</li>
-                    <li>Levert bijdrage onderwerp</li>
-                </ul>
+                <?php
+                $error = '';
+                $get_kerntaak = "SELECT * FROM kerntaak";
+                $result_kerntaak = $conn->query($get_kerntaak);
+                if ($result_kerntaak->num_rows > 0) {
+                    ?>
+                    <select name="selected_kerntaak" required>
+                        <option selected="selected" disabled>Kies een kerntaken</option>
+                        <?php
+                        while ($row_kerntaak = $result_kerntaak->fetch_assoc()) {
+                            ?>
+                            <option value="<?php echo $row_kerntaak["kerntaak_id"] ?>"><?php echo $row_kerntaak["kerntaak_naam"] ?></option>
+                            <?php
+                        }
+                        ?>
+                    </select>
+                    <?php
+                }
+                ?>
             </div>
             <div class="col s12 m8 l9">
                 <h4>Overzicht werkprocessen <a data-target="ModalAddWerkproces" class="btn-floating btn-small waves-effect waves-light green btn modal-trigger"><i class="material-icons" >add</i></a></h5>
-                    <table>
+                    <table  id="show_werkproces" class="hide">
                         <thead>
                             <tr>
                                 <th>Naam</th>
@@ -41,24 +50,8 @@ include("connect.php");
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <?php
-                            $get_werkproces_inhoud = "SELECT * FROM werkproces";
-                            $result_get_werkproces_inhoud = $conn->query($get_werkproces_inhoud);
-                            if ($result_get_werkproces_inhoud->num_rows > 0) {
-                                while ($row_get_werkproces_inhoud = $result_get_werkproces_inhoud->fetch_assoc()) {
-                                    ?>
-                                    <tr>
-                                        <td><?php echo $row_get_werkproces_inhoud['werkproces_naam']; ?></td>
-                                        <td><button data-id="<?php echo $row_get_werkproces_inhoud['werkproces_id']; ?>" data-target="ModalEditWerkproces" name="EditWerkproces" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button></td>
-                                        <td><button data-id="<?php echo $row_get_werkproces_inhoud['werkproces_id']; ?>" data-target="ModalDeleteWerkproces" name="DeleteWerkproces" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></button></td>
-                                    <tr>
-                                        <?php
-                                    }
-                                } else {
-                                    echo '0 results';
-                                }
-                                ?>
+                        <tbody name="tbody">
+
                         </tbody>
                     </table>
                     <br>
@@ -98,6 +91,7 @@ include("connect.php");
                                 });
                             });
 
+                            // DELETE WERKPROCES
                             $("button[name=DeleteWerkproces]").click(function (event) {
                                 event.preventDefault();
                                 // ophalen van het id

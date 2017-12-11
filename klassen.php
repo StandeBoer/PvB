@@ -42,10 +42,17 @@ include("connect.php");
             </div>
             <div class="col s12 m8 l9">
                 <h4>Overzicht klassen <a data-target="ModalAddKlas" class="btn-floating btn-small waves-effect waves-light green btn modal-trigger"><i class="material-icons" >add</i></a></h4>
-                <ul id="show_klas" class="hide">
-                    <h6>Voor het geselecteerde cohort zijn de volgende klassen aangemaakt:</h6>
-                    <li></li>
-                </ul>
+                <table id="show_klas" class="hide">
+                    <thead>
+                        <tr>
+                            <th>Klas</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody name="tbody">
+                    </tbody>
+                </table>
             </div>
         </div>
         <!--EINDE CODE VOOR KLAS TOEVOEGEN BACKEND -->
@@ -63,6 +70,9 @@ include("connect.php");
                     cohort_id = this.value;
                     //alert(cohort_id);
 
+                    //Leegmaken
+                    $("tbody[name=tbody]").empty();
+
                     // ophalen van informatie, met ajax
                     $.ajax({
                         type: 'GET',
@@ -72,19 +82,34 @@ include("connect.php");
                         success: function (data) {
                             //alert(data);
                             $.each(data, function (index, element) {
-                                console.log(element.name);
-                                $('#show_klas').append($('<li>', {
-                                    value: element.id,
-                                    text: element.name
-                                }));
+                                $("#show_klas").find('tbody')
+                                        .append($('<tr>'
+                                        ).append($('<td>', {
+                                            text: element.name},
+                                        )).append($(
+                                                '<td><button data-target="ModalEditKlas" name="EditKlas" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button>', {
+                                            value: element.klas_id
+                                        }
+                                                )).append($(
+                                                '<td><button data-target="ModalDeleteKlas" onclick="myScript()" name="DeleteKlas" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></button>', {
+                                            value: element.klas_id,
+                                            
+                                        }
+                                                ))
+                                                );
+                                //$('#show_klas').append($('<td>', {value: element.klas_id, text: element.name}, '</td>'));
                                 $("#show_klas").removeClass("hide");
                             });
-
                         }
                     });
-
                 });
             });
+            
+                        
+                    function myScript(){
+                    var kerntaak_id = $(this).var();
+                    alert(kerntaak_id);
+    }
         </script>
     </body>
 </html>
