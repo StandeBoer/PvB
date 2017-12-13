@@ -51,9 +51,84 @@
         <script type="text/javascript">
             $(document).ready(function () {
                 // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-                $('.modal-trigger').leanModal();
-                $('select').material_select();
+                $(".modal-trigger").leanModal();
+                $("select").material_select();
                 $(".button-collapse").sideNav();
+
+                // Edit criteria
+                $("button[name=EditCriterium]").on('click', function () {
+                    // waarde van het geselecteerde id ophalen
+                    id_criterium = $(this).data("id");
+                    //alert(id_criterium);
+
+                    // Velden leeg maken
+                    document.getElementById("criterium_id").value = "";
+                    document.getElementById("criterium_naam").value = "";
+
+                    // ophalen van informatie, met ajax om naam/omschrijving kerntaak op te halen
+                    $.ajax({
+                        type: 'GET',
+                        url: 'json_edit_criterium.php',
+                        data: {id: id_criterium},
+                        dataType: 'json',
+                        success: function (data) {
+                            //console.log(data);
+                            $("#criterium_id").val(data.id);
+                            $("#criterium_naam").val(data.name);
+                            $("#criterium_naam").removeClass("hide");
+                        },
+                    });
+                });
+
+                // Delete criteria
+                $("button[name=DeleteCriterium]").click(function (event) {
+                    event.preventDefault();
+                    // ophalen van het id
+                    var werkproces_criterium_id = $(this).data("id");
+                    
+                    // link aanpassen
+                    $("#delhref").attr("href", "delete_criterium.php?id=" + werkproces_criterium_id);
+                });
+
+                // Add criteria
+                $("select[name=kerntaak_criterium_option]").on('change', function () {
+                    // waarde van geslecteerde id ophalen
+                    kt = this.value;
+                    //alert(kt);
+
+                    // Alles leeg maken:
+                    $("select[name=werkproces_criterium_option]").empty().append($('<option>', {
+                        value: 0,
+                        text: "Kies een werkproces",
+                    }));
+                    // ophalen van informatie, met ajax
+                    $.ajax({
+                        type: 'GET',
+                        url: 'json_add_criterium.php',
+                        data: {id: kt},
+                        dataType: 'json',
+                        success: function (data) {
+                            //alert(data);
+                            $.each(data, function (index, element) {
+                                //console.log(element.name);
+                                $("select[name=werkproces_criterium_option]").append($('<option>', {
+                                    value: element.id,
+                                    text: element.name
+                                }));
+                            });
+                            // toepassen css
+                            // ** material only! **
+                            $("select[name=werkproces_criterium_option]").material_select();
+                            // als alles is opgehaald. Select weer laten zien.
+                            //$("select[name=werkproces]").show();
+                            $("select[name=werkproces_criterium_option]").closest('.select-wrapper').removeClass("hide");
+                        }
+                    });
+                });
+                $("select[name=werkproces_criterium_option]").on('change', function () {
+                    $("input[name=criterium_oms]").removeClass("hide");
+                    $("button[name=new_criterium_submit]").removeClass("hide");
+                });
             });
         </script>
     </body>
