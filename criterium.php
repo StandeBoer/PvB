@@ -23,7 +23,31 @@ function GetCriteria() {
         ?>
         <div class="row" style="margin-bottom: auto;">
             <div class="col s12 m4 l3" style="background-color: gray; height: 100%;">
+                <br />
+                <?php
+                $get_kerntaak = "SELECT * FROM kerntaak";
+                $result_kerntaak = $conn->query($get_kerntaak);
+                if ($result_kerntaak->num_rows > 0) {
+                    ?>
+                    <select name="selected_kerntaak" required>
+                        <option selected="selected" disabled>Kies een Kerntaak</option>
+                        <?php
+                        while ($row_kerntaak = $result_kerntaak->fetch_assoc()) {
+                            ?>
+                            <option value="<?php echo $row_kerntaak["kerntaak_id"] ?>"><?php echo $row_kerntaak["kerntaak_naam"] ?></option>
+                            <?php
+                        }
+                        ?>
+                    </select>
+                    <?php
+                }
+                ?>
+                <select name="selected_werkproces" class="hide">
 
+                </select><br />
+                <select name="selected_criteria" class="hide">
+
+                </select><br />
             </div>
             <div class="col s12 m8 l9">
                 <h4>Overzicht criterium
@@ -32,7 +56,7 @@ function GetCriteria() {
                     </a>
                 </h4>
 
-                <table>
+                <table id="show_criterium" class="">
                     <thead>
                         <tr>
                             <th>Criterium</th>
@@ -40,24 +64,9 @@ function GetCriteria() {
                             <th></th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <?php
-                        $get_werkproces_criterium_inhoud = "SELECT * FROM werkproces_criterium";
-                        $result_get_werkproces_criterium_inhoud = $conn->query($get_werkproces_criterium_inhoud);
-                        if ($result_get_werkproces_criterium_inhoud->num_rows > 0) {
-                            while ($row_get_werkproces_criterium_inhoud = $result_get_werkproces_criterium_inhoud->fetch_assoc()) {
-                                ?>
-                                <tr>
-                                    <td><?php echo $row_get_werkproces_criterium_inhoud['werkproces_criterium_naam']; ?></td>
-                                    <td><button data-id="<?php echo $row_get_werkproces_criterium_inhoud['werkproces_criterium_id']; ?>" data-target="ModalEditCriterium" name="EditCriterium" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button></td>
-                                    <td><button data-id="<?php echo $row_get_werkproces_criterium_inhoud['werkproces_criterium_id']; ?>" data-target="ModalDeleteCriterium" name="DeleteCriterium" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></button></td>
-                                <tr>
-                                    <?php
-                                }
-                            } else {
-                                echo '0 results';
-                            }
-                            ?>
+                    <tbody name="tbody">
+
+
                     </tbody>
                 </table>
             </div>
@@ -104,7 +113,7 @@ function GetCriteria() {
                     event.preventDefault();
                     // ophalen van het id
                     var werkproces_criterium_id = $(this).data("id");
-                    
+
                     // link aanpassen
                     $("#delhref").attr("href", "delete_criterium.php?id=" + werkproces_criterium_id);
                 });
@@ -120,6 +129,7 @@ function GetCriteria() {
                         value: 0,
                         text: "Kies een werkproces",
                     }));
+
                     // ophalen van informatie, met ajax
                     $.ajax({
                         type: 'GET',
@@ -147,6 +157,82 @@ function GetCriteria() {
                 $("select[name=werkproces_criterium_option]").on('change', function () {
                     $("input[name=criterium_oms]").removeClass("hide");
                     $("button[name=new_criterium_submit]").removeClass("hide");
+                });
+
+                //Show criterium
+                $("select[name=selected_kerntaak]").on('change', function () {
+                    // waarde van geslecteerde id ophalen
+                    kerntaak_id = this.value;
+                    //alert(kerntaak_id);
+
+                    // Alles leeg maken:
+                    $("select[name=selected_werkproces]").empty().append($('<option>', {
+                        value: 0,
+                        text: "Kies een werkproces",
+                    }));
+
+                    // ophalen van informatie, met ajax
+                    $.ajax({
+                        type: 'GET',
+                        url: 'json_show_werkproces.php',
+                        data: {id: kerntaak_id},
+                        dataType: 'json',
+                        success: function (data) {
+                            //alert(data);
+                            $.each(data, function (index, element) {
+                                //console.log(element.name);
+                                $("select[name=selected_werkproces]").append($('<option>', {
+                                    value: element.id,
+                                    text: element.name
+                                }));
+                            });
+                            // toepassen css
+                            // ** material only! **
+                            $("select[name=selected_werkproces]").material_select();
+                            // als alles is opgehaald. Select weer laten zien.
+                            //$("select[name=werkproces]").show();
+                            $("select[name=selected_werkproces]").closest('.select-wrapper').removeClass("hide");
+                        }
+                    });
+                });
+
+
+                $("select[name=selected_werkproces]").on("change", function () {
+                    werkproces_id = this.value;
+                    //alert(werkproces_id);
+//                    $("select[name=criteria]").empty().append($('<option>', {
+//                        value: 0,
+//                        text: "-"
+//                    }));
+                    // Ophalen informatie met Ajax
+                    $.ajax({
+                        type: 'GET',
+                        url: 'json_show_criterium.php',
+                        data: {id: werkproces_id},
+                        dataType: 'json',
+                        success: function (data) {
+                            $.each(data, function (index, element) {
+                                console.log(element.criterium_id, element.criterium_naam);
+                                $("#show_criterium").find('tbody')
+                                        .append($('<tr>'
+                                                ).append($('<td>', {
+                                            text: element.criterium_naam},
+                                        )).append($(
+                                                '<td><button data-target="ModalEditCriterium" name="EditKlas" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button>', {
+                                                    value: element.criterium_id
+                                                }
+                                        )).append($(
+                                                '<td><button data-target="ModalDeleteCriterium" onclick="myScript()" name="DeleteKlas" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></button>', {
+                                                    value: element.criterium_id,
+                                                }
+                                        ))
+
+                                                );
+                            });
+                            //$("select[name=criteria]").material_select();
+//                            $("select[name=selected_criteria]").show();
+                        }
+                    });
                 });
             });
         </script>
