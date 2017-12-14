@@ -30,7 +30,7 @@ function GetCriteria() {
                 if ($result_kerntaak->num_rows > 0) {
                     ?>
                     <select name="selected_kerntaak" required>
-                        <option selected="selected" disabled>Kies een Kerntaak</option>
+                        <option selected="selected" disabled>Kies een kerntaak</option>
                         <?php
                         while ($row_kerntaak = $result_kerntaak->fetch_assoc()) {
                             ?>
@@ -56,7 +56,7 @@ function GetCriteria() {
                     </a>
                 </h4>
 
-                <table id="show_criterium" class="">
+                <table id="show_criterium" class="hide">
                     <thead>
                         <tr>
                             <th>Criterium</th>
@@ -190,7 +190,6 @@ function GetCriteria() {
                             // ** material only! **
                             $("select[name=selected_werkproces]").material_select();
                             // als alles is opgehaald. Select weer laten zien.
-                            //$("select[name=werkproces]").show();
                             $("select[name=selected_werkproces]").closest('.select-wrapper').removeClass("hide");
                         }
                     });
@@ -200,10 +199,10 @@ function GetCriteria() {
                 $("select[name=selected_werkproces]").on("change", function () {
                     werkproces_id = this.value;
                     //alert(werkproces_id);
-//                    $("select[name=criteria]").empty().append($('<option>', {
-//                        value: 0,
-//                        text: "-"
-//                    }));
+                    
+                    // Table overzicht leegmaken voordat er nieuwe data ingeladen wordt.
+                    $("tbody[name=tbody]").empty();
+                    
                     // Ophalen informatie met Ajax
                     $.ajax({
                         type: 'GET',
@@ -212,7 +211,7 @@ function GetCriteria() {
                         dataType: 'json',
                         success: function (data) {
                             $.each(data, function (index, element) {
-                                console.log(element.criterium_id, element.criterium_naam);
+                                //console.log(element.criterium_id, element.criterium_naam);
                                 $("#show_criterium").find('tbody')
                                         .append($('<tr>'
                                                 ).append($('<td>', {
@@ -222,7 +221,7 @@ function GetCriteria() {
                                                     value: element.criterium_id
                                                 }
                                         )).append($(
-                                                '<td><button data-target="ModalDeleteCriterium" onclick="myScript()" name="DeleteKlas" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></button>', {
+                                                '<td><button data-target="ModalDeleteCriterium" name="DeleteKlas" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></button>', {
                                                     value: element.criterium_id,
                                                 }
                                         ))
@@ -230,7 +229,8 @@ function GetCriteria() {
                                                 );
                             });
                             //$("select[name=criteria]").material_select();
-//                            $("select[name=selected_criteria]").show();
+                            //$("select[name=selected_criteria]").show();
+                            $("table[id=show_criterium]").removeClass("hide");
                         }
                     });
                 });

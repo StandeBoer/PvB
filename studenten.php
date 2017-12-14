@@ -18,13 +18,25 @@
         <div class="row" style="margin-bottom: auto;">
             <div class="col s12 m4 l3" style="background-color: gray; height: 100%;">
                 <br>
-                <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Selecteer cohort</a>
-                <ul id='dropdown1' class='dropdown-content'>
-                    <li><a href="#!"></a></li>
-                    <li> 2014</li>
-                    <li> 2015</li>
-                    <li> 2016</li>
-                </ul><br><br>
+                <?php 
+                $get_cohort = "SELECT * FROM cohort";
+                $result_cohort = $conn->query($get_cohort);
+                if ($result_cohort->num_rows > 0) {
+                    ?>
+                    <select name="selected_cohort" required>
+                        <option selected="selected" disabled>Kies een kerntaken</option>
+                        <?php
+                        while ($row_cohort = $result_cohort->fetch_assoc()) {
+                            ?>
+                            <option value="<?php echo $row_cohort["kerntaak_id"] ?>"><?php echo $row_cohort["kerntaak_naam"] ?></option>
+                            <?php
+                        }
+                        ?>
+                    </select>
+                    <?php
+                }
+                
+                ?>
             </div>
             <div class="col s12 m8 l9">
                 <h4>Studenten <a data-target="ModalAddStudent" class="btn-floating btn-small waves-effect waves-light green btn modal-trigger"><i class="material-icons" >add</i></a></h5>

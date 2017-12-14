@@ -42,7 +42,7 @@ include("connect.php");
             </div>
             <div class="col s12 m8 l9">
                 <h4>Overzicht Normeringen <a data-target="ModalAddKlas" class="btn-floating btn-small waves-effect waves-light green btn modal-trigger"><i class="material-icons" >add</i></a></h4>
-                <ul id="show_klas" class="hide">
+                <ul id="show_normering" class="hide">
                     <h6>Voor het geselecteerde werkproces zijn de volgende normeringen aangemaakt:</h6>
                     <li></li>
                 </ul>
