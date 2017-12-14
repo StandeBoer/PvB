@@ -24,11 +24,11 @@
                 if ($result_cohort->num_rows > 0) {
                     ?>
                     <select name="selected_cohort" required>
-                        <option selected="selected" disabled>Kies een kerntaken</option>
+                        <option selected="selected" disabled>Kies een cohort</option>
                         <?php
                         while ($row_cohort = $result_cohort->fetch_assoc()) {
                             ?>
-                            <option value="<?php echo $row_cohort["kerntaak_id"] ?>"><?php echo $row_cohort["kerntaak_naam"] ?></option>
+                            <option value="<?php echo $row_cohort["cohort_id"] ?>"><?php echo $row_cohort["cohort_jaar"] ?></option>
                             <?php
                         }
                         ?>
