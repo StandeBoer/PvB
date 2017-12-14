@@ -54,38 +54,30 @@ if (isset($_POST["submit"])) {
     <body>
 
 
-        <div>
-            <div class="login">
-                <form class="col s12 m12 l12" method="post" id="login_form">
-                    <div class='row'>
-                        <div class='col s12'>
-                        </div>
+        <div class="container">
+            <div class="row">
+                <div style="text-align: center; margin-top: 100px;"><h2><b>Proeve van Bekwaamheid</b></h2></div>
+                <div class="col-md-8" style="float: none; margin-left: auto; margin-right: auto; margin-top: 75px;">
+
+
+                    <div>Inloggen</div>
+                    <div>
+                        <form method="post" id="login_form">
+                            <div>
+                                <label for="email">E-mail</label>
+                                <input name="email" class="form-control" id="email" placeholder="E-mail" type="email">
+                            </div>
+                            <div>
+                                <label for="inputPassword">Wachtwoord</label>
+                                <input name="password" class="w3-input" id="pass" placeholder="Wachtwoord" type="password">
+                            </div>
+                            <button id="button" name="submit" class="btn btn-primary" style="float: right" value="Login" type="submit">Login</button>
+                        </form>
                     </div>
 
-                    <div class='row'>
-                        <div class='input-field col s12 m12 l12'>
-                            <label for="email">E-Mail</label>
-                            <input name="email" type="email" class="w3-input" id="email" placeholder="E-mail">
-                        </div>
-                    </div>
-
-                    <div class='row'>
-                        <div class='input-field col s12 m12 l12'>
-                            <label for="inputPassword">Wachtwoord</label>
-                            <input name="password" type="password" class="w3-input" id="pass" placeholder="Wachtwoord">
-                        </div>      
-                    </div>
-
-                    <br />
-                    <center>
-                        <div class='row'>
-                            <button id="button" type='submit' name='submit' value="Login" class='col s12 btn btn-large waves-effect indigo'>Login</button>
-                        </div>
-                    </center>
-                </form>
+                </div>
             </div>
         </div>
-
         <?php
         if (!empty($error)) {
             ?>

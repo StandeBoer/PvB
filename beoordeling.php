@@ -20,26 +20,6 @@
             <form method="POST">
                 <div class="col s12 m3 l2">
                     <?php
-                    $get_kerntaak = "SELECT * FROM kerntaak";
-                    $result_kerntaak = $conn->query($get_kerntaak);
-                    if ($result_kerntaak->num_rows > 0) {
-                        ?>
-                        <select name="kerntaak_option" required>
-                            <option selected="selected" disabled>Kies een kerntaak</option>
-                            <?php
-                            while ($row_kerntaak = $result_kerntaak->fetch_assoc()) {
-                                ?>
-                                <option value="<?php echo $row_kerntaak["kerntaak_id"] ?>"><?php echo $row_kerntaak["kerntaak_naam"] ?></option>
-                                <?php
-                            }
-                            ?>
-                        </select>
-                        <?php
-                    }
-                    ?>
-                </div>
-                <div class="col s12 m3 l2">
-                    <?php
                     $error = '';
                     $get_cohort = "SELECT * FROM cohort";
                     $result_cohort = $conn->query($get_cohort);
@@ -93,6 +73,26 @@
                             while ($row_student = $result_student->fetch_assoc()) {
                                 ?>
                                 <option value="<?php echo $row_student["student_naam"] ?>"><?php echo $row_student["student_naam"] ?></option>
+                                <?php
+                            }
+                            ?>
+                        </select>
+                        <?php
+                    }
+                    ?>
+                </div>
+                <div class="col s12 m3 l2">
+                    <?php
+                    $get_kerntaak = "SELECT * FROM kerntaak";
+                    $result_kerntaak = $conn->query($get_kerntaak);
+                    if ($result_kerntaak->num_rows > 0) {
+                        ?>
+                        <select name="kerntaak_option" required>
+                            <option selected="selected" disabled>Kies een kerntaak</option>
+                            <?php
+                            while ($row_kerntaak = $result_kerntaak->fetch_assoc()) {
+                                ?>
+                                <option value="<?php echo $row_kerntaak["kerntaak_id"] ?>"><?php echo $row_kerntaak["kerntaak_naam"] ?></option>
                                 <?php
                             }
                             ?>
