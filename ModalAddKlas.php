@@ -1,6 +1,6 @@
 <div id="ModalAddKlas" class="modal">
     <div class="modal-header" style="padding-left: 24px;">
-        <h5>Add Klas</h5>
+        <h5>Klas toevoegen</h5>
     </div>
     <div class="modal-content">
         <!-- CODE VOOR KLAS TOEVOEGEN BACK-END -->

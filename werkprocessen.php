@@ -66,6 +66,7 @@ include("connect.php");
                 $('select').material_select();
                 $(".button-collapse").sideNav();
 
+                // Show werkproces
                 $("select[name=selected_kerntaak]").on('change', function () {
                     kerntaak_id = this.value;
                     //alert(kerntaak_id);
@@ -86,11 +87,11 @@ include("connect.php");
                                                 ).append($('<td>', {
                                             text: element.name},
                                         )).append($(
-                                                '<td><button data-target="ModalEditKlas" name="EditKlas" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button>', {
+                                                '<td><button data-target="ModalEditWerkproces" name="EditWerkproces" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button>', {
                                                     value: element.id
                                                 }
                                         )).append($(
-                                                '<td><button data-target="ModalDeleteKlas" onclick="myScript()" name="DeleteKlas" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></button>', {
+                                                '<td><button data-target="ModalDeleteWerkproces" name="DeleteWerkproces" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></button>', {
                                                     value: element.id,
                                                 }
                                         ))
@@ -98,12 +99,11 @@ include("connect.php");
                                                 );
                                 //$('#show_klas').append($('<td>', {value: element.klas_id, text: element.name}, '</td>'));
                                 $("#show_klas").removeClass("hide");
+                                $(".modal-trigger").leanModal();
                             });
                         }
                     });
                 });
-
-
 
                 // Edit button
                 $("button[name=EditWerkproces]").on('click', function () {

@@ -15,6 +15,8 @@ include("connect.php");
         include("navbar.php");
         include("modalAddKlas.php");
         include("modalAddCohort.php");
+//        include("ModalEditKlas.php");
+//        include("ModalDeleteKlas.php");
         ?>
         <div class="row" style="margin-bottom: auto;">
             <div class="col s12 m4 l3 sidebar">
@@ -86,7 +88,7 @@ include("connect.php");
                                 $("#show_klas").find('tbody')
                                         .append($('<tr>'
                                                 ).append($('<td>', {
-                                            text: element.name},
+                                            text: element.klas_name},
                                         )).append($(
                                                 '<td><button data-target="ModalEditKlas" name="EditKlas" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button>', {
                                                     value: element.klas_id
@@ -108,7 +110,7 @@ include("connect.php");
 
 
             function myScript() {
-                var kerntaak_id = $(this).var();
+                var kerntaak_id = $(this).val();
                 alert(kerntaak_id);
             }
         </script>
