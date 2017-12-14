@@ -15,9 +15,13 @@ include("connect.php");
         include("navbar.php");
         include("modalAddKlas.php");
         include("modalAddCohort.php");
+        //include("ModalEditKlas.php");
+        include("ModalDeleteKlas.php");
+        include("ModalAddKerntaak.php");
         ?>
         <div class="row" style="margin-bottom: auto;">
             <div class="col s12 m4 l3 sidebar">
+                <br>
                 <button data-target="ModalAddCohort" class="btn modal-trigger" style="min-width: 200px;">Cohort Toevoegen</button>
 
                 <?php
@@ -58,13 +62,23 @@ include("connect.php");
         </div>
         <!--EINDE CODE VOOR KLAS TOEVOEGEN BACKEND -->
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
         <script type="text/javascript">
+
+            $(document).on('click', '#DeleteKlasID', function(e) {
+                alert("Delete clicked");
+                e.preventDefault();
+
+            })
             $(document).ready(function () {
                 // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
                 $(".modal-trigger").leanModal();
                 $("select").material_select();
                 $(".button-collapse").sideNav();
+
+
 
                 $("select[name=selected_cohort]").on('change', function () {
 
@@ -88,16 +102,15 @@ include("connect.php");
                                                 ).append($('<td>', {
                                             text: element.name},
                                         )).append($(
-                                                '<td><button data-target="ModalEditKlas" name="EditKlas" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button>', {
-                                                    value: element.klas_id
-                                                }
+                                                '<td><button id="EditKlasID" data-target="ModalAddKerntaak" name="EditKlas" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button>'
                                         )).append($(
-                                                '<td><button data-target="ModalDeleteKlas" onclick="myScript()" name="DeleteKlas" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></button>', {
-                                                    value: element.klas_id,
-                                                }
+                                                '<td><button id="DeleteKlasID"  data-target="ModalDeleteKerntaak" name="DeleteKlas" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></button>'
+
                                         ))
 
                                                 );
+                                $(".modal-trigger").leanModal();
+
                                 //$('#show_klas').append($('<td>', {value: element.klas_id, text: element.name}, '</td>'));
                                 $("#show_klas").removeClass("hide");
                             });
@@ -107,10 +120,10 @@ include("connect.php");
             });
 
 
-            function myScript() {
-                var kerntaak_id = $(this).var();
-                alert(kerntaak_id);
-            }
+//            function myScript() {
+//                var kerntaak_id = $(this).val();
+//                //alert(kerntaak_id);
+//            }
         </script>
     </body>
 </html>
