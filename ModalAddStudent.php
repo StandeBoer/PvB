@@ -51,7 +51,7 @@
             }
             ?>
 
-            <input type="submit" name="NewStudentSubmit" class="btn btn-success" value="Versturen" style="border-radius: 0;">
+            <input type="submit" name="NewStudentSubmit" class="btn btn-success" value="Versturen">
             <input type="submit" name="sluiten" class="btn btn-success data-dismiss" value="Annuleren">
 
 
@@ -62,7 +62,9 @@
             if (!empty($_POST['student_naam'] && $_POST['student_email'])) {
                 $student_name = $_POST['student_naam'];
                 $student_email = $_POST['student_email'];
-                $add_student_sql = "INSERT INTO student (student_naam, student_emailadres) VALUES ('" . $student_name . "', '" . $student_email . "')";
+                $cohort_option = $_POST['cohort_option'];
+                $klas_option = $_POST['klas_option'];
+                $add_student_sql = "INSERT INTO student (student_naam, student_emailadres, cohort_id, klas_id) VALUES ('" . $student_name . "', '" . $student_email . "', '" . $cohort_option . "', '" . $klas_option . "')";
                 if ($conn->query($add_student_sql) === TRUE) {
                     echo "";
                 } else {
