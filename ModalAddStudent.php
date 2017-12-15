@@ -22,7 +22,7 @@
                     <?php
                     while ($row_cohort = $result_cohort->fetch_assoc()) {
                         ?>
-                        <option value="<?php echo $row_cohort["cohort_id"] ?>"><?php echo $row_cohort["cohort_id"] . ' - ' . $row_cohort["cohort_jaar"] ?></option>
+                        <option value="<?php echo $row_cohort["cohort_id"] ?>"><?php echo $row_cohort["cohort_jaar"] ?></option>
                         <?php
                     }
                     ?>
@@ -30,48 +30,56 @@
                 <?php
             }
             ?>
-            
-            <?php
-            $error = '';
-            $get_klas = "SELECT * FROM klas";
-            $result_klas = $conn->query($get_klas);
-            if ($result_klas->num_rows > 0) {
-                ?>
-                <select name="klas_option" required>
-                    <option selected="selected" disabled>Kies een Klas</option>
-                    <?php
-                    while ($row_klas = $result_klas->fetch_assoc()) {
-                        ?>
-                        <option value="<?php echo $row_klas["klas_id"] ?>"><?php echo $row_klas["klas_id"] . ' - ' . $row_klas["klas_naam"] ?></option>
-                        <?php
-                    }
-                    ?>
-                </select>
-                <?php
-            }
-            ?>
+
+            <select name="klas_option" class="hide">
+
+            </select><br />
 
             <input type="submit" name="NewStudentSubmit" class="btn btn-success" value="Versturen">
             <input type="submit" name="sluiten" class="btn btn-success data-dismiss" value="Annuleren">
 
-
         </form>
         <!-- Hier nog de cohort en klas id's toevoegen!!!!!!!!!!!!! -->
         <?php
-        if (isset($_POST['NewStudentSubmit'])) {
-            if (!empty($_POST['student_naam'] && $_POST['student_email'])) {
-                $student_name = $_POST['student_naam'];
-                $student_email = $_POST['student_email'];
-                $cohort_option = $_POST['cohort_option'];
-                $klas_option = $_POST['klas_option'];
-                $add_student_sql = "INSERT INTO student (student_naam, student_emailadres, cohort_id, klas_id) VALUES ('" . $student_name . "', '" . $student_email . "', '" . $cohort_option . "', '" . $klas_option . "')";
-                if ($conn->query($add_student_sql) === TRUE) {
-                    echo "";
-                } else {
-                    echo "FOUTMELDING! Probeer opnieuw";
-                }
-            }
-        }
+//        if (isset($_POST['NewStudentSubmit'])) {
+//            if (!empty($_POST['student_naam'] && $_POST['student_email'])) {
+//                $student_name = $_POST['student_naam'];
+//                $student_email = $_POST['student_email'];
+//                $cohort_option = $_POST['cohort_option'];
+//                $klas_option = $_POST['klas_option'];
+//                $add_student_sql = "INSERT INTO student (student_naam, student_emailadres, cohort_id, klas_id) VALUES ('" . $student_name . "', '" . $student_email . "', '" . $cohort_option . "', '" . $klas_option . "')";
+//                if ($conn->query($add_student_sql) === TRUE) {
+//                    echo "";
+//                } else {
+//                    echo "FOUTMELDING! Probeer opnieuw";
+//                }
+//            }
+//        }
+//        
+//        
+//        if (isset($_POST['NewStudentSubmit'])) {
+////            echo 'hoi <br>';
+//            if (isset($_POST['student_naam'])) {
+////                echo 'kerntaak gezet <br>';
+//                if (isset($_POST['werkproces_criterium_option'])) {
+//                    $werkproces_id = $_POST['werkproces_criterium_option'];
+////                    echo $r;
+////                    echo 'werkproces gezet<br>';
+//                    if (isset($_POST['criterium_oms'])) {
+//                        $criterium_omschrijving = $_POST['criterium_oms'];
+////                        echo $criterium_omschrijving;
+//                        $add_criterium = "INSERT INTO werkproces_criterium (werkproces_criterium_naam, werkproces_id) VALUES ('" . $criterium_omschrijving . "','" . $werkproces_id . "')";
+//                        if ($conn->query($add_criterium) === TRUE) {
+////                            echo "Klas is toegevoegd";
+//                        } else {
+////                            echo "FOUTMELDING! Probeer opnieuw";
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        
+        
         ?>
 
 

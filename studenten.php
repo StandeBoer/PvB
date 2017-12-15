@@ -69,7 +69,40 @@ include("connect.php");
                 $('.modal-trigger').leanModal();
                 $('select').material_select();
                 $(".button-collapse").sideNav();
+                
+                $("select[name=cohort_option]").on('change', function () {
+                    modal_cohort_id = this.value;
+                    //alert(modal_cohort_id);
+                    
+                    $("select[name=klas_option]").empty().append($('<option>', {
+                        value: 0,
+                        text: "Kies een klas",
+                    }));
+                    
+                    // ophalen van informatie, met ajax
+                    $.ajax({
+                        type: 'GET',
+                        url: 'json_show_klas.php',
+                        data: {id: modal_cohort_id},
+                        dataType: 'json',
+                        success: function (data) {
+                            //console.log(data);
+                            
+                            $.each(data, function (index, element) {
+                                //console.log(element.klas_name);
+                                $("select[name=klas_option]").append($('<option>', {
+                                    value: element.klas_id,
+                                    text: element.klas_name
+                                }));
+                            });
+                            $("select[name=klas_option]").removeClass("hide");
+                            $("select[name=klas_option]").material_select();
+                        }
+                    });
+                    
+                });
 
+                // Show klas sidemenu
                 $("select[name=selected_cohort]").on('change', function () {
                     cohort_id = this.value;
                     //alert(cohort_id);
@@ -96,15 +129,16 @@ include("connect.php");
                                 }));
                             });
                             $("select[name=selected_klas]").material_select();
-                            
+
                         }
                     });
                 });
 
+                // Show student table
                 $("select[name=selected_klas]").on('change', function () {
                     klas_id = this.value;
                     //alert(klas_id);
-                    
+
                     $("tbody[name=tbody]").empty();
 
                     // ophalen van informatie, met ajax
@@ -121,7 +155,7 @@ include("connect.php");
                                                 ).append($('<td>', {
                                             text: element.student_name}
                                         )).append($('<td>', {
-                                            text:element.student_email}
+                                            text: element.student_email}
                                         )).append($(
                                                 '<td><button data-target="ModalEditWerkproces" name="EditWerkproces" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button>', {
                                                     value: element.id
@@ -179,6 +213,8 @@ include("connect.php");
                     // link aanpassen
                     $("#delhref").attr("href", "delete_student.php?id=" + student_id);
                 });
+
+
             });
         </script>
     </body>
