@@ -4,8 +4,9 @@
     </div>
     <div class="modal-content">
         Weet u zeker dat u dit record wilt verwijderen?<br><br>
+        <form method="POST">
             <a type="button" class="btn" id="delhref" href="">Verwijderen</a>
-            <button type="submit" name="ModalDismiss" class="modal-action modal-close waves-effect waves-green btn">Annuleren</button>
-            
+            <input type="submit" name="sluiten" class="btn btn-success data-dismiss" value="Annuleren">
+            </form>
     </div>
 </div>
