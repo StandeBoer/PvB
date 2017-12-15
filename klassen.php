@@ -13,11 +13,10 @@ include("connect.php");
     <body>
         <?php
         include("navbar.php");
-        include("modalAddKlas.php");
-        include("modalAddCohort.php");
-        //include("ModalEditKlas.php");
+        include("ModalAddKlas.php");
+        include("ModalAddCohort.php");
+        include("ModalEditKlas.php");
         include("ModalDeleteKlas.php");
-        include("ModalAddKerntaak.php");
         ?>
         <div class="row" style="margin-bottom: auto;">
             <div class="col s12 m4 l3 sidebar">
@@ -62,8 +61,6 @@ include("connect.php");
         </div>
         <!--EINDE CODE VOOR KLAS TOEVOEGEN BACKEND -->
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
-
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
@@ -94,11 +91,10 @@ include("connect.php");
                                             text: element.klas_name},
                                         )).append($(
                                                 '<td><button id="EditKlasID" data-target="ModalAddKerntaak" name="EditKlas" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button>'
-                                        )).append($(
+                                                )).append($(
                                                 '<td><button id="DeleteKlasID"  data-target="ModalDeleteKerntaak" name="DeleteKlas" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></button>'
 
-                                        ))
-
+                                                ))
                                                 );
                                 $(".modal-trigger").leanModal();
 

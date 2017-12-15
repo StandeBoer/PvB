@@ -14,5 +14,4 @@ if ($result_selected_student->num_rows > 0) {
         $return_student["email"] = $row_selected_student["student_emailadres"];
     }
 }
-
 echo json_encode($return_student);

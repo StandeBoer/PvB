@@ -42,7 +42,7 @@ include("connect.php");
             </div>
             <div class="col s12 m8 l9">
                 <h4>Overzicht werkprocessen <a data-target="ModalAddWerkproces" class="btn-floating btn-small waves-effect waves-light green btn modal-trigger"><i class="material-icons" >add</i></a></h4>
-                <table id="show_werkproces" class="">
+                <table id="show_werkproces" class="hide">
                     <thead>
                         <tr>
                             <th>Werkprocesnaam</th>
@@ -85,49 +85,54 @@ include("connect.php");
                                 $("#show_werkproces").find('tbody')
                                         .append($('<tr>'
                                                 ).append($('<td>', {
+                                            value: element.id,
                                             text: element.name},
                                         )).append($(
-                                                '<td><button data-target="ModalEditWerkproces" name="EditWerkproces" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button>', {
-                                                    value: element.id
-                                                }
+                                                '<td><button data-target="ModalEditWerkproces" name="EditWerkproces" id="EditWerkproces" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button>'
                                         )).append($(
-                                                '<td><button data-target="ModalDeleteWerkproces" name="DeleteWerkproces" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></button>', {
-                                                    value: element.id,
-                                                }
+                                                '<td><button data-target="ModalDeleteWerkproces" name="DeleteWerkproces" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></button>'
                                         ))
 
                                                 );
                                 //$('#show_klas').append($('<td>', {value: element.klas_id, text: element.name}, '</td>'));
-                                $("#show_klas").removeClass("hide");
+                                $("#show_werkproces").removeClass("hide");
                                 $(".modal-trigger").leanModal();
+                                
+                                $("#EditWerkproces").on('click', function () {
+                                    //alert('hi');
+                                    id = $(button['name=EditWerkproces']).parent('<td>').parent('<td>').val();
+                                    alert(id);
+                                });
                             });
                         }
                     });
                 });
 
+
+
                 // Edit button
-                $("button[name=EditWerkproces]").on('click', function () {
-                    // waarde van het geselecteerde id ophalen
-                    id_werkproces = $(this).data("id");
-                    //alert(id_werkproces);
-
-                    // Velden leeg maken
-                    document.getElementById("werkproces_id").value = "";
-                    document.getElementById("werkproces_naam").value = "";
-
-                    // ophalen van informatie, met ajax om naam/omschrijving werkproces op te halen
-                    $.ajax({
-                        type: 'GET',
-                        url: 'json_edit_werkproces.php',
-                        data: {id: id_werkproces},
-                        dataType: 'json',
-                        success: function (data) {
-                            $("#werkproces_id").val(data.id);
-                            $("#werkproces_naam").val(data.name);
-                            $("#werkproces_naam").removeClass("hide");
-                        }
-                    });
-                });
+//                $("button[name=EditWerkproces]").on('click', function () {
+//                    // waarde van het geselecteerde id ophalen
+//                    id_werkproces = $(this).data("id");
+//                    //alert(id_werkproces);
+//
+//                    // Velden leeg maken
+//                    document.getElementById("werkproces_id").value = "";
+//                    document.getElementById("werkproces_naam").value = "";
+//
+//                    // ophalen van informatie, met ajax om naam/omschrijving werkproces op te halen
+//                    $.ajax({
+//                        type: 'GET',
+//                        url: 'json_edit_werkproces.php',
+//                        data: {id: id_werkproces},
+//                        dataType: 'json',
+//                        success: function (data) {
+//                            $("#werkproces_id").val(data.id);
+//                            $("#werkproces_naam").val(data.name);
+//                            $("#werkproces_naam").removeClass("hide");
+//                        }
+//                    });
+//                });
 
                 // DELETE WERKPROCES
                 $("button[name=DeleteWerkproces]").click(function (event) {
