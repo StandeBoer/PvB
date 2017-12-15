@@ -1,3 +1,7 @@
+<?php
+include("check.php");
+include("connect.php");
+?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -11,26 +15,23 @@
 
     <body>
         <?php
-        include("check.php");
-        include("connect.php");
         include("navbar.php");
         ?>
         <div class="row beoordeling">
 
             <form method="POST">
-                <div class="col s12 m3 l2">
+                <div name="cohort_beoordeling" class="col s12 m3 l2">
                     <?php
-                    $error = '';
                     $get_cohort = "SELECT * FROM cohort";
                     $result_cohort = $conn->query($get_cohort);
                     if ($result_cohort->num_rows > 0) {
                         ?>
-                        <select name="cohort_option" required>
+                        <select name="cohort_option_beoordeling" required>
                             <option selected="selected" disabled>Kies een Cohort</option>
                             <?php
                             while ($row_cohort = $result_cohort->fetch_assoc()) {
                                 ?>
-                                <option value="<?php echo $row_cohort["cohort_id"] ?>"><?php echo $row_cohort["cohort_id"] . ' - ' . $row_cohort["cohort_jaar"] ?></option>
+                                <option value="<?php echo $row_cohort["cohort_id"] ?>"><?php echo $row_cohort["cohort_jaar"] ?></option>
                                 <?php
                             }
                             ?>
@@ -39,55 +40,23 @@
                     }
                     ?>
                 </div>
-                <div class="col s12 m3 l2">
-                    <?php
-                    $error = '';
-                    $get_klas = "SELECT * FROM klas";
-                    $result_klas = $conn->query($get_klas);
-                    if ($result_klas->num_rows > 0) {
-                        ?>
-                        <select name="klas_option" required>
-                            <option selected="selected" disabled>Kies een Klas</option>
-                            <?php
-                            while ($row_klas = $result_klas->fetch_assoc()) {
-                                ?>
-                                <option value="<?php echo $row_klas["klas_id"] ?>"><?php echo $row_klas["klas_id"] . ' - ' . $row_klas["klas_naam"] ?></option>
-                                <?php
-                            }
-                            ?>
-                        </select>
-                        <?php
-                    }
-                    ?>
+                <div name="klas_beoordeling" class="col s12 m3 l2">
+                    <select name="klas_option_beoordeling" class="">
+
+                    </select>
                 </div>
-                <div class="col s12 m3 l2">
-                    <?php
-                    $error = '';
-                    $get_student = "SELECT * FROM student";
-                    $result_student = $conn->query($get_student);
-                    if ($result_student->num_rows > 0) {
-                        ?>
-                        <select name="student_option" required>
-                            <option selected="selected" disabled>Kies een Student</option>
-                            <?php
-                            while ($row_student = $result_student->fetch_assoc()) {
-                                ?>
-                                <option value="<?php echo $row_student["student_naam"] ?>"><?php echo $row_student["student_naam"] ?></option>
-                                <?php
-                            }
-                            ?>
-                        </select>
-                        <?php
-                    }
-                    ?>
+                <div name="student_beoordeling" class="col s12 m3 l2">
+                    <select name="student_option_beoordeling" class="">
+
+                    </select>
                 </div>
-                <div class="col s12 m3 l2">
+                <div name="kerntaak_beoordeling" class="col s12 m3 l2">
                     <?php
                     $get_kerntaak = "SELECT * FROM kerntaak";
                     $result_kerntaak = $conn->query($get_kerntaak);
                     if ($result_kerntaak->num_rows > 0) {
                         ?>
-                        <select name="kerntaak_option" required>
+                        <select name="kerntaak_option_beoordeling" class="hide" required>
                             <option selected="selected" disabled>Kies een kerntaak</option>
                             <?php
                             while ($row_kerntaak = $result_kerntaak->fetch_assoc()) {
@@ -101,8 +70,8 @@
                     }
                     ?>
                 </div>
-                <div class="col s12 m6 l4">
-                    <input type="submit" name="new_werkproces_naam" class="btn btn-success" value="Versturen" style="border-radius: 10;">
+                <div class="col s12 m6 l4" style="float: right;">
+                    <input type="submit" name="submit_beoordeling" class="btn btn-success" value="Versturen" style="border-radius: 10;">
                     <input type="submit" name="sluiten" class="btn btn-success data-dismiss" value="Annuleren">
                 </div>
             </form>
@@ -117,6 +86,79 @@
                 $('.modal-trigger').leanModal();
                 $('select').material_select();
                 $(".button-collapse").sideNav();
+
+                $("select[name=cohort_option_beoordeling]").on('change', function () {
+                    beoordeling_cohort_id = this.value;
+                    //alert(beoordeling_cohort_id);
+
+                    $("select[name=klas_option_beoordeling]").empty().append($('<option>', {
+                        value: 0,
+                        text: "Kies een klas",
+                    }));
+
+                    $("select[name=student_option_beoordeling]").empty().append($('<option>', {
+                        value: 0,
+                        text: "Kies een student",
+                    }));
+
+                    // ophalen van informatie, met ajax
+                    $.ajax({
+                        type: 'GET',
+                        url: 'json_show_klas.php',
+                        data: {id: beoordeling_cohort_id},
+                        dataType: 'json',
+                        success: function (data) {
+                            //$("select[name=klas_option_beoordeling]").removeClass("hide");
+                            $.each(data, function (index, element) {
+                                //console.log(element.klas_name);
+                                $("select[name=klas_option_beoordeling]").append($('<option>', {
+                                    value: element.klas_id,
+                                    text: element.klas_name
+                                }));
+                            });
+                            $("select[name=klas_option_beoordeling]").material_select();
+                        }
+                    });
+                });
+
+                // Show student table
+                $("select[name=klas_option_beoordeling]").on('change', function () {
+                    beoordeling_klas_id = this.value;
+                    //alert(beoordeling_klas_id);
+
+                    $("select[name=student_option_beoordeling]").empty().append($('<option>', {
+                        value: 0,
+                        text: "Kies een student",
+                    }));
+
+                    // ophalen van informatie, met ajax
+                    $.ajax({
+                        type: 'GET',
+                        url: 'json_show_student.php',
+                        data: {id: beoordeling_klas_id},
+                        dataType: 'json',
+                        success: function (data) {
+                            //alert(data);
+                            //$("select[name=student_option_beoordeling]").removeClass("hide");
+                            $.each(data, function (index, element) {
+                                $("select[name=student_option_beoordeling]").append($('<option>', {
+                                    value: element.student_id,
+                                    text: element.student_name
+                                }));
+                            });
+                            $("select[name=student_option_beoordeling]").material_select();
+                        },
+                        error: function () {
+                            console.log('error');
+                            $("select[name=student_option_beoordeling]").empty().append($('<option>', {
+                                value: 0,
+                                text: "Kies een student",
+                            }));
+                        }
+                    });
+
+                });
+
             });
         </script>
     </body>

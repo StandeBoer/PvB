@@ -98,13 +98,16 @@ include("connect.php");
                                 $("#show_werkproces").removeClass("hide");
                                 $(".modal-trigger").leanModal();
                                 
-                                $("#EditWerkproces").on('click', function () {
-                                    //alert('hi');
-                                    id = $(button['name=EditWerkproces']).parent('<td>').parent('<td>').val();
-                                    alert(id);
-                                });
+                                
                             });
+                                    $("#EditWerkproces").on('click', function () {
+                                    //alert('hi');
+                                    console.log(element.id);
+                                    //id = $(button['name=EditWerkproces']).parent('<td>').parent('<td>').val();
+                                    //alert(id);
+                                });
                         }
+                        
                     });
                 });
 

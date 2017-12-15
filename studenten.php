@@ -70,6 +70,7 @@ include("connect.php");
                 $('select').material_select();
                 $(".button-collapse").sideNav();
                 
+                //Student toevoegen modal klas afhankelijk van cohort
                 $("select[name=cohort_option]").on('change', function () {
                     modal_cohort_id = this.value;
                     //alert(modal_cohort_id);
@@ -87,7 +88,6 @@ include("connect.php");
                         dataType: 'json',
                         success: function (data) {
                             //console.log(data);
-                            
                             $.each(data, function (index, element) {
                                 //console.log(element.klas_name);
                                 $("select[name=klas_option]").append($('<option>', {

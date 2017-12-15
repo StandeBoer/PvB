@@ -1,8 +1,8 @@
 <?php
 include 'connect.php';
-$get_cohort_id = $_GET['id'];
+$get_klas_id = $_GET['id'];
 //echo $get_kerntaak_id;
-$get_student = "SELECT student_id, student_naam, student_emailadres FROM student WHERE cohort_id = '" . $get_cohort_id . "'";
+$get_student = "SELECT student_id, student_naam, student_emailadres FROM student WHERE klas_id = '" . $get_klas_id . "'";
 //echo $get_student;
 $result_student = $conn->query($get_student);
 //echo $result_student;
