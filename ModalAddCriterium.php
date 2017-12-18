@@ -26,9 +26,7 @@
                     <option selected="selected" value="" disabled>Kies een werkproces</option>
                 </select>
                 <input type="text" class="hide" name="criterium_oms" placeholder="Criterium omschrijving" required>
-                <button class="btn waves-effect waves-light hide" type="submit" name="new_criterium_submit">Versturen
-                    <i class="material-icons right">send</i>
-                </button>
+                <button class="btn waves-effect waves-light hide" type="submit" name="new_criterium_submit">Versturen</button>
             </form>
             <?php
         }

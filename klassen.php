@@ -21,7 +21,7 @@ include("connect.php");
         <div class="row" style="margin-bottom: auto;">
             <div class="col s12 m4 l3 sidebar">
                 <br>
-                <button data-target="ModalAddCohort" class="btn modal-trigger" style="min-width: 200px;">Cohort Toevoegen</button>
+                <button data-target="ModalAddCohort" class="btn modal-trigger" style="min-width: 200px; margin-left: 15px;">Cohort Toevoegen</button>
 
                 <?php
                 $error = '';
@@ -86,20 +86,18 @@ include("connect.php");
                             //alert(data);
                             $.each(data, function (index, element) {
                                 $("#show_klas").find('tbody')
-                                        .append($('<tr>'
-                                                ).append($('<td>', {
+                                        .append($('<tr>', {id: element.klas_id}
+                                        ).append($('<td>', {
                                             text: element.klas_name},
                                         )).append($(
-                                                '<td><button id="EditKlasID" data-target="ModalAddKerntaak" name="EditKlas" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button>'
+                                                '<td><button data-target="ModalEditKlas" class="EditKlas btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button>'
                                                 )).append($(
-                                                '<td><button id="DeleteKlasID"  data-target="ModalDeleteKerntaak" name="DeleteKlas" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></button>'
-
+                                                '<td><button data-target="ModalDeleteKlas" class="DeleteKlas btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></button>'
                                                 ))
-                                                );
-                                $(".modal-trigger").leanModal();
 
-                                //$('#show_klas').append($('<td>', {value: element.klas_id, text: element.name}, '</td>'));
+                                                );
                                 $("#show_klas").removeClass("hide");
+                                $(".modal-trigger").leanModal();
                             });
                         }
                     });

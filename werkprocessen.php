@@ -88,9 +88,9 @@ include("connect.php");
                                         ).append($('<td>', {
                                             text: element.name},
                                                 )).append($(
-                                                '<td><button data-target="ModalEditWerkproces" name="EditWerkproces" class="EditWerkproces btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button>'
+                                                '<td><button data-target="ModalEditWerkproces" class="EditWerkproces btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button>'
                                                 )).append($(
-                                                '<td><button data-target="ModalDeleteWerkproces" name="DeleteWerkproces" class="DeleteWerkproces btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></button>'
+                                                '<td><button data-target="ModalDeleteWerkproces" class="DeleteWerkproces btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></button>'
                                                 ))
 
                                                 );
@@ -128,7 +128,7 @@ include("connect.php");
                                 
                                 // ophalen van het id
                                 var werkproces_id = $(this).parent().parent().attr('id');
-                                console.log(werkproces_id);
+                                //console.log(werkproces_id);
                                 // link aanpassen
                                 $("#delhref").attr("href", "delete_werkproces.php?id=" + werkproces_id);
                             });

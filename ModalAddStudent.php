@@ -39,49 +39,21 @@
             <input type="submit" name="sluiten" class="btn btn-success data-dismiss" value="Annuleren">
 
         </form>
-        <!-- Hier nog de cohort en klas id's toevoegen!!!!!!!!!!!!! -->
-        <?php
-//        if (isset($_POST['NewStudentSubmit'])) {
-//            if (!empty($_POST['student_naam'] && $_POST['student_email'])) {
-//                $student_name = $_POST['student_naam'];
-//                $student_email = $_POST['student_email'];
-//                $cohort_option = $_POST['cohort_option'];
-//                $klas_option = $_POST['klas_option'];
-//                $add_student_sql = "INSERT INTO student (student_naam, student_emailadres, cohort_id, klas_id) VALUES ('" . $student_name . "', '" . $student_email . "', '" . $cohort_option . "', '" . $klas_option . "')";
-//                if ($conn->query($add_student_sql) === TRUE) {
-//                    echo "";
-//                } else {
-//                    echo "FOUTMELDING! Probeer opnieuw";
-//                }
-//            }
-//        }
-//        
-//        
-//        if (isset($_POST['NewStudentSubmit'])) {
-////            echo 'hoi <br>';
-//            if (isset($_POST['student_naam'])) {
-////                echo 'kerntaak gezet <br>';
-//                if (isset($_POST['werkproces_criterium_option'])) {
-//                    $werkproces_id = $_POST['werkproces_criterium_option'];
-////                    echo $r;
-////                    echo 'werkproces gezet<br>';
-//                    if (isset($_POST['criterium_oms'])) {
-//                        $criterium_omschrijving = $_POST['criterium_oms'];
-////                        echo $criterium_omschrijving;
-//                        $add_criterium = "INSERT INTO werkproces_criterium (werkproces_criterium_naam, werkproces_id) VALUES ('" . $criterium_omschrijving . "','" . $werkproces_id . "')";
-//                        if ($conn->query($add_criterium) === TRUE) {
-////                            echo "Klas is toegevoegd";
-//                        } else {
-////                            echo "FOUTMELDING! Probeer opnieuw";
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        
-        
-        ?>
-
-
     </div>
 </div>
+<?php
+if (isset($_POST['NewStudentSubmit'])) {
+    if (!empty($_POST['student_naam'] && $_POST['student_email'] && $_POST['klas_option'])) {
+        //echo "gezet";   
+        $student_name = $_POST['student_naam'];
+        $student_email = $_POST['student_email'];
+        $klas_option = $_POST['klas_option'];
+        $add_student_sql = "INSERT INTO student (student_naam, student_emailadres, klas_id) VALUES ('" . $student_name . "', '" . $student_email . "','" . $klas_option . "')";
+        if ($conn->query($add_student_sql) === TRUE) {
+            echo "";
+        } else {
+            echo "FOUTMELDING! Probeer opnieuw";
+        }
+    }
+}
+?>

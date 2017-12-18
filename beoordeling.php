@@ -41,12 +41,12 @@ include("connect.php");
                     ?>
                 </div>
                 <div name="klas_beoordeling" class="col s12 m3 l2">
-                    <select name="klas_option_beoordeling" class="">
+                    <select name="klas_option_beoordeling" class="hide">
 
                     </select>
                 </div>
                 <div name="student_beoordeling" class="col s12 m3 l2">
-                    <select name="student_option_beoordeling" class="">
+                    <select name="student_option_beoordeling" class="hide">
 
                     </select>
                 </div>
@@ -56,7 +56,7 @@ include("connect.php");
                     $result_kerntaak = $conn->query($get_kerntaak);
                     if ($result_kerntaak->num_rows > 0) {
                         ?>
-                        <select name="kerntaak_option_beoordeling" class="hide" required>
+                        <select name="kerntaak_option_beoordeling" class="hide">
                             <option selected="selected" disabled>Kies een kerntaak</option>
                             <?php
                             while ($row_kerntaak = $result_kerntaak->fetch_assoc()) {
@@ -108,7 +108,8 @@ include("connect.php");
                         data: {id: beoordeling_cohort_id},
                         dataType: 'json',
                         success: function (data) {
-                            //$("select[name=klas_option_beoordeling]").removeClass("hide");
+                            //alert('test');
+                            
                             $.each(data, function (index, element) {
                                 //console.log(element.klas_name);
                                 $("select[name=klas_option_beoordeling]").append($('<option>', {
@@ -116,6 +117,7 @@ include("connect.php");
                                     text: element.klas_name
                                 }));
                             });
+                            $("select[name=klas_option_beoordeling]").removeClass("hide");     
                             $("select[name=klas_option_beoordeling]").material_select();
                         }
                     });
@@ -146,6 +148,7 @@ include("connect.php");
                                     text: element.student_name
                                 }));
                             });
+                            $("select[name=student_option_beoordeling]").removeClass("hide"); 
                             $("select[name=student_option_beoordeling]").material_select();
                         },
                         error: function () {
@@ -156,9 +159,12 @@ include("connect.php");
                             }));
                         }
                     });
-
                 });
-
+                
+                $("select[name=student_option_beoordeling]").on('change', function () {
+                   //console.log('kerntaak');
+                   $("select[name=kerntaak_option_beoordeling]").removeClass("hide"); 
+                });
             });
         </script>
     </body>

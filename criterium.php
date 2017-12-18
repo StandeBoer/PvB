@@ -1,10 +1,6 @@
 <?php
 include("check.php");
 include("connect.php");
-
-function GetCriteria() {
-    global $conn;
-}
 ?>
 <html>
     <head>
@@ -83,39 +79,114 @@ function GetCriteria() {
                 $("select").material_select();
                 $(".button-collapse").sideNav();
 
-                // Edit criteria
-                $("button[name=EditCriterium]").on('click', function () {
-                    // waarde van het geselecteerde id ophalen
-                    id_criterium = $(this).data("id");
-                    //alert(id_criterium);
+                //Show criterium
+                $("select[name=selected_kerntaak]").on('change', function () {
+                    // waarde van geslecteerde id ophalen
+                    kerntaak_id = this.value;
+                    //alert(kerntaak_id);
 
-                    // Velden leeg maken
-                    document.getElementById("criterium_id").value = "";
-                    document.getElementById("criterium_naam").value = "";
+                    // Alles leeg maken:
+                    $("select[name=selected_werkproces]").empty().append($('<option>', {
+                        value: 0,
+                        text: "Kies een werkproces",
+                    }));
 
-                    // ophalen van informatie, met ajax om naam/omschrijving kerntaak op te halen
+                    // ophalen van informatie, met ajax
                     $.ajax({
                         type: 'GET',
-                        url: 'json_edit_criterium.php',
-                        data: {id: id_criterium},
+                        url: 'json_show_werkproces.php',
+                        data: {id: kerntaak_id},
                         dataType: 'json',
                         success: function (data) {
-                            //console.log(data);
-                            $("#criterium_id").val(data.id);
-                            $("#criterium_naam").val(data.name);
-                            $("#criterium_naam").removeClass("hide");
-                        },
+                            //alert(data);
+                            $.each(data, function (index, element) {
+                                //console.log(element.name);
+                                $("select[name=selected_werkproces]").append($('<option>', {
+                                    value: element.id,
+                                    text: element.name
+                                }));
+                            });
+                            // toepassen css
+                            // ** material only! **
+                            $("select[name=selected_werkproces]").material_select();
+                            // als alles is opgehaald. Select weer laten zien.
+                            $("select[name=selected_werkproces]").closest('.select-wrapper').removeClass("hide");
+                        }
                     });
                 });
 
-                // Delete criteria
-                $("button[name=DeleteCriterium]").click(function (event) {
-                    event.preventDefault();
-                    // ophalen van het id
-                    var werkproces_criterium_id = $(this).data("id");
 
-                    // link aanpassen
-                    $("#delhref").attr("href", "delete_criterium.php?id=" + werkproces_criterium_id);
+                $("select[name=selected_werkproces]").on("change", function () {
+                    werkproces_id = this.value;
+                    //alert(werkproces_id);
+
+                    // Table overzicht leegmaken voordat er nieuwe data ingeladen wordt.
+                    $("tbody[name=tbody]").empty();
+
+                    // Ophalen informatie met Ajax
+                    $.ajax({
+                        type: 'GET',
+                        url: 'json_show_criterium.php',
+                        data: {id: werkproces_id},
+                        dataType: 'json',
+                        success: function (data) {
+                            $.each(data, function (index, element) {
+                                //console.log(element.criterium_id, element.criterium_naam);
+                                $("#show_criterium").find('tbody')
+                                        .append($('<tr>', {id: element.criterium_id}
+                                        ).append($('<td>', {
+                                            text: element.criterium_naam},
+                                        )).append($(
+                                                '<td><button data-target="ModalEditCriterium" name="EditCriterium" class="EditCriterium btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button>'
+                                                )).append($(
+                                                '<td><button data-target="ModalDeleteCriterium" name="DeleteCriterium" class="DeleteCriterium btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></button>'
+                                                ))
+
+                                                );
+                                //$("select[name=criteria]").material_select();
+                                //$("select[name=selected_criteria]").show();
+                                $("table[id=show_criterium]").removeClass("hide");
+                                $(".modal-trigger").leanModal();
+                            });
+
+
+                            // Edit criteria
+                            $(".EditCriterium").on('click', function () {
+                                // waarde van het geselecteerde id ophalen
+                                id_criterium = $(this).parent().parent().attr('id');
+                                //alert(id_criterium);
+
+
+                                // Velden leeg maken
+                                document.getElementById("criterium_id").value = "";
+                                document.getElementById("criterium_naam").value = "";
+
+                                // ophalen van informatie, met ajax om naam/omschrijving kerntaak op te halen
+                                $.ajax({
+                                    type: 'GET',
+                                    url: 'json_edit_criterium.php',
+                                    data: {id: id_criterium},
+                                    dataType: 'json',
+                                    success: function (data) {
+                                        //console.log(data);
+                                        $("#criterium_id").val(data.id);
+                                        $("#criterium_naam").val(data.name);
+                                        $("#criterium_naam").removeClass("hide");
+                                    },
+                                });
+                            });
+
+                            // Delete criteria
+                            $(".DeleteWerkproces").on('click', function () {
+                                // ophalen van het id
+                                var werkproces_criterium_id = $(this).parent().parent().attr('id');
+                                //console.log(werkproces_criterium_id);
+
+                                // link aanpassen
+                                $("#delhref").attr("href", "delete_criterium.php?id=" + werkproces_criterium_id);
+                            });
+                        }
+                    });
                 });
 
                 // Add criteria
@@ -159,81 +230,7 @@ function GetCriteria() {
                     $("button[name=new_criterium_submit]").removeClass("hide");
                 });
 
-                //Show criterium
-                $("select[name=selected_kerntaak]").on('change', function () {
-                    // waarde van geslecteerde id ophalen
-                    kerntaak_id = this.value;
-                    //alert(kerntaak_id);
 
-                    // Alles leeg maken:
-                    $("select[name=selected_werkproces]").empty().append($('<option>', {
-                        value: 0,
-                        text: "Kies een werkproces",
-                    }));
-
-                    // ophalen van informatie, met ajax
-                    $.ajax({
-                        type: 'GET',
-                        url: 'json_show_werkproces.php',
-                        data: {id: kerntaak_id},
-                        dataType: 'json',
-                        success: function (data) {
-                            //alert(data);
-                            $.each(data, function (index, element) {
-                                //console.log(element.name);
-                                $("select[name=selected_werkproces]").append($('<option>', {
-                                    value: element.id,
-                                    text: element.name
-                                }));
-                            });
-                            // toepassen css
-                            // ** material only! **
-                            $("select[name=selected_werkproces]").material_select();
-                            // als alles is opgehaald. Select weer laten zien.
-                            $("select[name=selected_werkproces]").closest('.select-wrapper').removeClass("hide");
-                        }
-                    });
-                });
-
-
-                $("select[name=selected_werkproces]").on("change", function () {
-                    werkproces_id = this.value;
-                    //alert(werkproces_id);
-                    
-                    // Table overzicht leegmaken voordat er nieuwe data ingeladen wordt.
-                    $("tbody[name=tbody]").empty();
-                    
-                    // Ophalen informatie met Ajax
-                    $.ajax({
-                        type: 'GET',
-                        url: 'json_show_criterium.php',
-                        data: {id: werkproces_id},
-                        dataType: 'json',
-                        success: function (data) {
-                            $.each(data, function (index, element) {
-                                //console.log(element.criterium_id, element.criterium_naam);
-                                $("#show_criterium").find('tbody')
-                                        .append($('<tr>'
-                                                ).append($('<td>', {
-                                            text: element.criterium_naam},
-                                        )).append($(
-                                                '<td><button data-target="ModalEditCriterium" name="EditKlas" class="btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button>', {
-                                                    value: element.criterium_id
-                                                }
-                                        )).append($(
-                                                '<td><button data-target="ModalDeleteCriterium" name="DeleteKlas" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></button>', {
-                                                    value: element.criterium_id,
-                                                }
-                                        ))
-
-                                                );
-                            });
-                            //$("select[name=criteria]").material_select();
-                            //$("select[name=selected_criteria]").show();
-                            $("table[id=show_criterium]").removeClass("hide");
-                        }
-                    });
-                });
             });
         </script>
     </body>
