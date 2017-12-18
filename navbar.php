@@ -12,20 +12,21 @@
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons black">menu</i></a>
         <ul class="hide-on-med-and-down">
             <li><a class="tekstkleur" href="index.php">Home</a></li>
-            <li><a class="tekstkleur" href="beoordeling.php">Beoordeling</a></li>
+            <li><a class="tekstkleur" href="beoordeling.php">Beoordelen</a></li>
             <li><a class="tekstkleur" href="kerntaken.php">Kerntaken</a></li>
             <li><a class="tekstkleur" href="werkprocessen.php">Werkprocessen</a></li>
-            <li><a class="tekstkleur" href="criterium.php">Criterium</a></li>
+            <li><a class="tekstkleur" href="criterium.php">Criteria</a></li>
             <li><a class="tekstkleur" href="normering.php">Normering<a/></li>
             <li><a class="tekstkleur" href="klassen.php">Klassen</a></li>
             <li><a class="tekstkleur" href="studenten.php">Studenten</a></li>
         </ul>
         <ul class="side-nav" id="mobile-demo">
             <li><a class="tekstkleur" href="index.php">Home</a></li>
-            <li><a class="tekstkleur" href="beoordeling.php">Beoordeling</a></li>
+            <li><a class="tekstkleur" href="beoordeling.php">Beoordelen</a></li>
             <li><a class="tekstkleur" href="kerntaken.php">Kerntaken</a></li>
             <li><a class="tekstkleur" href="werkprocessen.php">Werkprocessen</a></li>
-            <li><a class="tekstkleur" href="criterium.php">Criterium</a></li>
+            <li><a class="tekstkleur" href="criterium.php">Criteria</a></li>
+            <li><a class="tekstkleur" href="normering.php">Normering<a/></li>
             <li><a class="tekstkleur" href="klassen.php">Klassen</a></li>
             <li><a class="tekstkleur" href="studenten.php">Studenten</a></li>
         </ul>

@@ -4,10 +4,10 @@
     </div>
     <div class="modal-content">
         <form method="POST">
-            <label>Om een student aan te passen dient u de aanpassingen op te slaan:</label>
+            <i class="material-icons prefix tiny">mode_edit</i><label>Om studentgegevens aan te passen voert u hier de wijziging in:</label>
             <input type="hidden" class="form-control" style="border-radius: 0;" name="student_id" id="student_id">
             <input type="text" class="form-control hide" style="border-radius: 0;" name="student_naam" id="student_naam" placeholder="Naam">
-            <input type="text" class="form-control hide" style="border-radius: 0;" name="student_email" id="student_email" placeholder="Emailadres">
+            <input type="text" class="form-control hide" style="border-radius: 0;" name="student_email" id="student_email" placeholder="Emailadres"><br>
             <button type="submit" name="edit_student_submit" class="btn btn-success" value="Opslaan">Opslaan</button>
             <input type="submit" name="sluiten" class="btn btn-success data-dismiss" value="Annuleren">
         </form>

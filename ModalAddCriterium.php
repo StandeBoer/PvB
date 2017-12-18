@@ -9,7 +9,7 @@
         $result_kerntaak_criterium = $conn->query($get_kerntaak_criterium);
         if ($result_kerntaak_criterium->num_rows > 0) {
             ?>
-            Om een criterium toe te voegen selecteerd u eerst de kerntaak en daarna het werkproces:
+        <label>Om een criterium toe te voegen selecteert u eerst de bijbehorende kerntaak en daarna het werkproces:</label>
             <br><br>
             <form method="POST">
                 <select name="kerntaak_criterium_option" required>
