@@ -96,8 +96,8 @@ include("connect.php");
                                                 );
                                 //$('#show_klas').append($('<td>', {value: element.klas_id, text: element.name}, '</td>'));
                                 $("#show_werkproces").removeClass("hide");
-                                $(".modal-trigger").leanModal();
                             });
+                                $(".modal-trigger").leanModal();
 
                             //Edit button Werkproces
                             $(".EditWerkproces").on('click', function () {
