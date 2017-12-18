@@ -119,6 +119,8 @@ include("connect.php");
                             });
                             $("select[name=klas_option_beoordeling]").removeClass("hide");     
                             $("select[name=klas_option_beoordeling]").material_select();
+                            $("select[name=student_option_beoordeling]").material_select();
+
                         }
                     });
                 });
@@ -157,13 +159,15 @@ include("connect.php");
                                 value: 0,
                                 text: "Kies een student",
                             }));
+                            $("select[name=student_option_beoordeling]").material_select();
                         }
                     });
                 });
                 
                 $("select[name=student_option_beoordeling]").on('change', function () {
                    //console.log('kerntaak');
-                   $("select[name=kerntaak_option_beoordeling]").removeClass("hide"); 
+                   $("select[name=kerntaak_option_beoordeling]").removeClass("hide");
+                   $("select[name=kerntaak_option_beoordeling]").material_select();
                 });
             });
         </script>
