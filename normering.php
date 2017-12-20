@@ -17,7 +17,7 @@ include("connect.php");
         include("ModalEditNormering.php");
         include("ModalDeleteNormering.php");
         ?>
-        <div class="row" style="margin-bottom: auto;">
+        <div class="row">
             <div class="col s12 m4 l3 sidebar">
                 <br />
                 <?php

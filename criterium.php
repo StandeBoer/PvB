@@ -18,7 +18,7 @@ include("connect.php");
         include("ModalDeleteCriterium.php");
         ?>
         <div class="row" style="margin-bottom: auto;">
-            <div class="col s12 m4 l3" style="background-color: gray; height: 100%;">
+            <div class="col s12 m4 l3 sidebar">
                 <br />
                 <?php
                 $get_kerntaak = "SELECT * FROM kerntaak";

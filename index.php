@@ -42,7 +42,7 @@
                 </ul>
             </div>
             <div class="col s12 m8 l9">
-                Hallo
+                
             </div>
         </div>
         <!--EINDE CODE VOOR KLAS TOEVOEGEN BACKEND -->
