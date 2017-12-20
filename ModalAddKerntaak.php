@@ -4,7 +4,7 @@
     </div>
     <div class="modal-content">
         <form method="POST">
-            <label>Om een kerntaak toe te voegen dient u hieronder de naam van de kerntaak aan te geven:</label><br><br>
+            <label>Om een kerntaak toe te voegen vult u hier de naam van de kerntaak in:</label><br><br>
             <i class="material-icons prefix tiny">mode_edit</i><label>Kerntaak naam:</label>
             <input type="text" class="form-control" style="border-radius: 0;" name="kerntaak_naam" placeholder="Kerntaak">
             <input type="submit" name="new_kerntaak_submit" class="btn btn-success" value="Versturen" style="border-radius: 0;">

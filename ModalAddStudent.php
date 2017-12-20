@@ -5,11 +5,6 @@
     <div class="modal-content">
 
         <form method="POST">
-            <i class="material-icons prefix tiny">mode_edit</i><label>Naam student:</label>
-            <input type="text" class="form-control" style="border-radius: 0;" name="student_naam" placeholder="Naam">
-            <br><i class="material-icons prefix tiny">mode_edit</i>
-            <label>E-mailadres:</label>
-            <input type="text" class="form-control" style="border-radius: 0;" name="student_email" placeholder="Emailadres">
 
             <?php
             $error = '';
@@ -34,6 +29,12 @@
             <select name="klas_option" class="hide">
 
             </select><br />
+            <i class="material-icons prefix tiny">mode_edit</i><label>Naam student:</label>
+            <input type="text" class="form-control" style="border-radius: 0;" name="student_naam" placeholder="Naam">
+            <br><br><i class="material-icons prefix tiny">mode_edit</i>
+            <label>E-mailadres:</label>
+            <input type="text" class="form-control" style="border-radius: 0;" name="student_email" placeholder="Emailadres">
+            <br>
 
             <input type="submit" name="NewStudentSubmit" class="btn btn-success" value="Versturen">
             <input type="submit" name="sluiten" class="btn btn-success data-dismiss" value="Annuleren">

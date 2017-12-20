@@ -13,9 +13,9 @@ include("connect.php");
     <body>
         <?php
         include("navbar.php");
-        include("modalAddKlas.php");
-        include("modalAddCohort.php");
         include("ModalAddNormering.php");
+        include("ModalEditNormering.php");
+        include("ModalDeleteNormering.php");
         ?>
         <div class="row" style="margin-bottom: auto;">
             <div class="col s12 m4 l3 sidebar">
@@ -46,7 +46,7 @@ include("connect.php");
                 </select><br />
             </div>
             <div class="col s12 m8 l9">
-                <h4>Overzicht Normeringen <a data-target="ModalAddNormering" class="btn-floating btn-small waves-effect waves-light green btn modal-trigger"><i class="material-icons" >add</i></a></h4>
+                <h4>Overzicht normeringen <a data-target="ModalAddNormering" class="btn-floating btn-small waves-effect waves-light green btn modal-trigger"><i class="material-icons" >add</i></a></h4>
                 <table id="show_normering" class="hide">
                     <thead>
                         <tr>
@@ -85,7 +85,7 @@ include("connect.php");
                         value: 0,
                         text: "Kies een werkproces",
                     }));
-                    
+
                     $("select[name=selected_criteria]").empty().append($('<option>', {
                         value: 0,
                         text: "Kies een werkproces",
@@ -150,10 +150,10 @@ include("connect.php");
                 $("select[name=selected_criteria]").on("change", function () {
                     criteria_id = this.value;
                     //alert(criteria_id);
-                    
+
                     // Table overzicht leegmaken voordat er nieuwe data ingeladen wordt.
                     $("tbody[name=tbody]").empty();
-                    
+
                     // Ophalen informatie met Ajax
                     $.ajax({
                         type: 'GET',
@@ -165,23 +165,145 @@ include("connect.php");
                             $.each(data, function (index, element) {
                                 //console.log(element.criterium_id, element.criterium_naam);
                                 $("#show_normering").find('tbody')
-                                        .append($('<tr>', {id:element.criterium_normering_id}
-                                                ).append($('<td>', {
+                                        .append($('<tr>', {id: element.criterium_normering_id}
+                                        ).append($('<td>', {
                                             text: element.criterium_normering_name},
-                                        )).append($(
+                                                )).append($(
                                                 '<td><button data-target="ModalEditNormering" class="EditNormering btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button>'
-                                        )).append($(
+                                                )).append($(
                                                 '<td><button data-target="ModalDeleteNormering" class="DeleteNormering btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></button>'
-                                        ))
+                                                ))
 
                                                 );
+                                //$("select[name=criteria]").material_select();
+                                //$("select[name=selected_criteria]").show();
+                                $("table[id=show_normering]").removeClass("hide");
+                                $(".modal-trigger").leanModal();
                             });
-                            //$("select[name=criteria]").material_select();
-                            //$("select[name=selected_criteria]").show();
-                            $("table[id=show_normering]").removeClass("hide");
+                            // Edit normering
+                            $(".EditNormering").on('click', function () {
+                                // waarde van het geselecteerde id ophalen
+                                id_normering = $(this).parent().parent().attr('id');
+                                //alert(id_normering);
+
+                                // Velden leeg maken
+                                document.getElementById("normering_id").value = "";
+                                document.getElementById("normering_naam").value = "";
+
+                                // ophalen van informatie, met ajax om naam/omschrijving kerntaak op te halen
+                                $.ajax({
+                                    type: 'GET',
+                                    url: 'json_edit_normering.php',
+                                    data: {id: id_normering},
+                                    dataType: 'json',
+                                    success: function (data) {
+                                        //console.log(data);
+                                        $("#normering_id").val(data.id);
+                                        $("#normering_naam").val(data.name);
+                                        $("#normering_naam").removeClass("hide");
+                                    },
+                                });
+                            });
+
+                            //DELETE normering
+                            $(".DeleteNormering").on('click', function () {
+                                // ophalen van het id
+                                var criterium_normering_id = $(this).parent().parent().attr('id');
+                                //console.log(werkproces_criterium_id);
+
+                                // link aanpassen
+                                $("#delhref").attr("href", "delete_normering.php?id=" + criterium_normering_id);
+                            });
+
+
                         }
                     });
                 });
+
+                // Add normering
+                $("select[name=kerntaak_option]").on('change', function () {
+                    // waarde van geslecteerde id ophalen
+                    kt = this.value;
+                    //alert(kt);
+
+                    // Alles leeg maken:
+                    $("select[name=werkproces_option]").empty().append($('<option>', {
+                        value: 0,
+                        text: "Kies een werkproces",
+                    }));
+                    $("select[name=criterium_option]").empty().append($('<option>', {
+                        value: 0,
+                        text: "Kies een criterium",
+                    }));
+
+                    // ophalen van informatie, met ajax
+                    $.ajax({
+                        type: 'GET',
+                        url: 'json_show_werkproces.php',
+                        data: {id: kt},
+                        dataType: 'json',
+                        success: function (data) {
+                            //alert(data);
+                            $.each(data, function (index, element) {
+                                //console.log(element.name);
+                                $("select[name=werkproces_option]").append($('<option>', {
+                                    value: element.id,
+                                    text: element.name
+                                }));
+                            });
+                            // toepassen css
+                            // ** material only! **
+                            $("select[name=werkproces_option]").material_select();
+                            $("select[name=criterium_option]").material_select();
+                            // als alles is opgehaald. Select weer laten zien.
+                            //$("select[name=werkproces]").show();
+                            $("select[name=werkproces_option]").closest('.select-wrapper').removeClass("hide");
+//                            $("select[name=criterium_option]").closest('.select-wrapper').removeClass("hide");
+                        }
+                    });
+                });
+
+                $("select[name=werkproces_option]").on('change', function () {
+                    // waarde van geslecteerde id ophalen
+                    wp = this.value;
+                    //alert(kt);
+
+                    $("select[name=criterium_option]").empty().append($('<option>', {
+                        value: 0,
+                        text: "Kies een criterium",
+                    }));
+
+                    // ophalen van informatie, met ajax
+                    $.ajax({
+                        type: 'GET',
+                        url: 'json_show_criterium.php',
+                        data: {id: wp},
+                        dataType: 'json',
+                        success: function (data) {
+                            //alert(data);
+                            $.each(data, function (index, element) {
+                                //console.log(element.name);
+                                $("select[name=criterium_option]").append($('<option>', {
+                                    value: element.criterium_id,
+                                    text: element.criterium_naam
+                                }));
+                            });
+                            // toepassen css
+                            // ** material only! **
+                            $("select[name=criterium_option]").material_select();
+                            // als alles is opgehaald. Select weer laten zien.
+                            //$("select[name=werkproces]").show();
+                            //$("select[name=werkproces_option]").closest('.select-wrapper').removeClass("hide");
+                            $("select[name=criterium_option]").closest('.select-wrapper').removeClass("hide");
+                        }
+                    });
+                });
+                
+                $("select[name=criterium_option]").on('change', function () {
+                    $("input[name=normering_naam]").removeClass("hide");
+                    $("button[name=new_normering_submit]").removeClass("hide");
+                });
+
             });
         </script>
     </body>

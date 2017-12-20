@@ -4,7 +4,7 @@
     </div>
     <div class="modal-content">
         <form method="POST">
-            <label>Om een criterium aan te passen dient u de aanpassingen op te slaan:</label>
+            <i class="material-icons prefix tiny">mode_edit</i><label>Om een criterium aan te passen voert u hier de wijziging in:</label>
             <input type="hidden" class="form-control" style="border-radius: 0;" name="criterium_id" id="criterium_id">
             <input type="text" class="form-control hide" style="border-radius: 0;" name="criterium_naam" id="criterium_naam" placeholder="Criterium naam">
             <button type="submit" name="edit_criterium_submit" class="btn btn-success" value="Opslaan">Opslaan</button>
