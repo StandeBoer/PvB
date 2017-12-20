@@ -68,6 +68,7 @@ include("connect.php");
                 $(".modal-trigger").leanModal();
                 $("select").material_select();
                 $(".button-collapse").sideNav();
+                $(".lean-overlay").click(function(){ $("div.lean-overlay").remove(); });
 
                 $("select[name=selected_cohort]").on('change', function () {
                     cohort_id = this.value;
@@ -97,8 +98,45 @@ include("connect.php");
 
                                                 );
                                 $("#show_klas").removeClass("hide");
-                                $(".modal-trigger").leanModal();
                             });
+                            $(".modal-trigger").leanModal();
+                            
+                            // Edit button
+                                $(".EditKlas").on('click', function () {
+                                    // waarde van het geselecteerde id ophalen
+                                    id_klas = $(this).parent().parent().attr('id');
+                                    //console.log(id_student);
+
+                                    // Velden leeg maken
+                                    document.getElementById("klas_id").value = "";
+                                    document.getElementById("klas_naam").value = "";
+
+                                    // ophalen van informatie, met ajax om naam/omschrijving kerntaak op te halen
+                                    $.ajax({
+                                        type: 'GET',
+                                        url: 'json_edit_klas.php',
+                                        data: {id: id_klas},
+                                        dataType: 'json',
+                                        success: function (data) {
+                                            $("#klas_id").val(data.id);
+                                            $("#klas_naam").val(data.name);
+                                            $("#klas_naam").removeClass("hide");
+                                        },
+                                        error: function () {
+                                            console.log('error');
+                                        }
+                                    });
+                                });
+                                
+                                // DELETE BUTTON
+                                $(".DeleteKlas").on('click', function () {
+                                    // ophalen van het id
+                                    var klas_id = $(this).parent().parent().attr('id');
+                                    console.log(klas_id);
+                                    // link aanpassen
+                                    $("#delhref").attr("href", "delete_klas.php?id=" + klas_id);
+                                });
+                            
                         }
                     });
                 });

@@ -136,7 +136,7 @@ include("connect.php");
                                         .append($('<tr>', {id: element.criterium_id}
                                         ).append($('<td>', {
                                             text: element.criterium_naam},
-                                        )).append($(
+                                                )).append($(
                                                 '<td><button data-target="ModalEditCriterium" name="EditCriterium" class="EditCriterium btn-floating btn-large waves-effect waves-light yellow btn modal-trigger"><i class="material-icons" >edit</i></button>'
                                                 )).append($(
                                                 '<td><button data-target="ModalDeleteCriterium" name="DeleteCriterium" class="DeleteCriterium btn-floating btn-large waves-effect waves-light red btn modal-trigger"><i class="material-icons">delete</i></button>'
@@ -146,8 +146,8 @@ include("connect.php");
                                 //$("select[name=criteria]").material_select();
                                 //$("select[name=selected_criteria]").show();
                                 $("table[id=show_criterium]").removeClass("hide");
-                                $(".modal-trigger").leanModal();
                             });
+                            $(".modal-trigger").leanModal();
 
 
                             // Edit criteria

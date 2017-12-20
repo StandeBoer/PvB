@@ -164,8 +164,8 @@ include("connect.php");
 
                                                     );
                                     $("#show_student").removeClass("hide");
-                                    $(".modal-trigger").leanModal();
                                 });
+                                $(".modal-trigger").leanModal();
 
                                 // Edit button
                                 $(".EditStudent").on('click', function () {
