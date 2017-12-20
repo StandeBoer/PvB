@@ -18,7 +18,6 @@ include("connect.php");
         include("navbar.php");
         ?>
         <div class="row beoordeling">
-
             <form method="POST">
                 <div name="cohort_beoordeling" class="col s12 m3 l2">
                     <?php
@@ -56,7 +55,7 @@ include("connect.php");
                     $result_kerntaak = $conn->query($get_kerntaak);
                     if ($result_kerntaak->num_rows > 0) {
                         ?>
-                        <select name="kerntaak_option_beoordeling" class="hide">
+                        <select name="kerntaak_option_beoordeling" class="">
                             <option selected="selected" disabled>Kies een kerntaak</option>
                             <?php
                             while ($row_kerntaak = $result_kerntaak->fetch_assoc()) {
@@ -70,9 +69,34 @@ include("connect.php");
                     }
                     ?>
                 </div>
+
                 <div class="col s12 m6 l4" style="float: right;">
                     <input type="submit" name="submit_beoordeling" class="btn btn-success" value="Versturen" style="border-radius: 10;">
                     <input type="submit" name="sluiten" class="btn btn-success data-dismiss" value="Annuleren">
+                </div>
+
+                <div class="col s12 m12 l12">
+                    <table id="show_beoordeling" class="">
+                        <thead>
+                            <tr>
+                                <th>Werkproces</th>
+                                <th>Criterium</th> 
+                                <th>Normeringen:</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody name="tbody">
+                        <td>Werkproces 1</td>
+                        <td>Criterium 1</td>
+                        <td>Normering 1</td>
+                        <td>Normering 2</td>
+                        <td>Normering 3</td>
+                        <td>Normering 4</td>
+
+                        </tbody>
+                    </table>
                 </div>
             </form>
 
@@ -87,6 +111,7 @@ include("connect.php");
                 $('select').material_select();
                 $(".button-collapse").sideNav();
 
+                // Onchange cohortoptie beoordeling
                 $("select[name=cohort_option_beoordeling]").on('change', function () {
                     beoordeling_cohort_id = this.value;
                     //alert(beoordeling_cohort_id);
@@ -109,7 +134,7 @@ include("connect.php");
                         dataType: 'json',
                         success: function (data) {
                             //alert('test');
-                            
+
                             $.each(data, function (index, element) {
                                 //console.log(element.klas_name);
                                 $("select[name=klas_option_beoordeling]").append($('<option>', {
@@ -117,7 +142,7 @@ include("connect.php");
                                     text: element.klas_name
                                 }));
                             });
-                            $("select[name=klas_option_beoordeling]").removeClass("hide");     
+                            $("select[name=klas_option_beoordeling]").removeClass("hide");
                             $("select[name=klas_option_beoordeling]").material_select();
                             $("select[name=student_option_beoordeling]").material_select();
 
@@ -125,7 +150,7 @@ include("connect.php");
                     });
                 });
 
-                // Show student table
+                // Onchange klasoptie beoordeling
                 $("select[name=klas_option_beoordeling]").on('change', function () {
                     beoordeling_klas_id = this.value;
                     //alert(beoordeling_klas_id);
@@ -150,7 +175,7 @@ include("connect.php");
                                     text: element.student_name
                                 }));
                             });
-                            $("select[name=student_option_beoordeling]").removeClass("hide"); 
+                            $("select[name=student_option_beoordeling]").removeClass("hide");
                             $("select[name=student_option_beoordeling]").material_select();
                         },
                         error: function () {
@@ -163,11 +188,69 @@ include("connect.php");
                         }
                     });
                 });
-                
+
+                // Onchange studentoptie beoordeling
                 $("select[name=student_option_beoordeling]").on('change', function () {
-                   //console.log('kerntaak');
-                   $("select[name=kerntaak_option_beoordeling]").removeClass("hide");
-                   $("select[name=kerntaak_option_beoordeling]").material_select();
+//                   $("select[name=cohort_option_beoordeling]").addClass("hide");
+//                   $("select[name=cohort_option_beoordeling]").material_select();
+//                   $("select[name=klas_option_beoordeling]").addClass("hide");
+//                   $("select[name=klas_option_beoordeling]").material_select();
+                    $("select[name=kerntaak_option_beoordeling]").removeClass("hide");
+                    $("select[name=kerntaak_option_beoordeling]").material_select();
+                });
+
+                //Show werkproces/criterium en normeringen
+                $("select[name=kerntaak_option_beoordeling]").on('change', function () {
+                    //console.log('kerntaak selected');
+                    kerntaak_id = this.value;
+                    //console.log(kerntaak_id);
+
+                    $("tbody[name=tbody]").empty();
+
+                    // ophalen van informatie, met ajax
+                    $.ajax({
+                        type: 'GET',
+                        url: 'json_show_werkproces.php',
+                        data: {id: kerntaak_id},
+                        dataType: 'json',
+                        success: function (data) {
+                            //alert(data);
+                            $.each(data, function (index, element) {
+                                //console.log(element.name);
+                                $("#show_beoordeling").find('tbody')
+                                        .append($('<tr>'
+                                                ).append($('<td>', {
+                                            value: element.id,
+                                            text: element.name}
+                                        ))
+                                                );
+// ophalen van informatie, met ajax
+                                $.ajax({
+                                    type: 'GET',
+                                    url: 'json_show_criterium.php',
+                                    data: {id: element.id},
+                                    dataType: 'json',
+                                    success: function (data) {
+                                        //alert(data);
+                                        $.each(data, function (index, element) {
+                                            //console.log(element.name);
+                                        $("#show_beoordeling").find('tbody').find('tr')
+                                                .append($('<td>', {
+                                                    value: data.criterium_id,
+                                                    text: data.criterium_naam}
+                                                ));
+
+                                        });
+
+                                    }
+                                });
+                            });
+
+                        }
+                    });
+
+
+
                 });
             });
         </script>
