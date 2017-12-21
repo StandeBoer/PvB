@@ -2,7 +2,7 @@
 include 'connect.php';
 $return[] = array();
 $get_werkproces_id = $_GET['id'];
-$get_show_criterium= "SELECT * FROM werkproces_criterium WHERE werkproces_id = '" . $get_werkproces_id . "'";
+$get_show_criterium= "SELECT * FROM werkproces_criterium WHERE werkproces_id = " . $get_werkproces_id ;
 $result_show_criterium = $conn->query($get_show_criterium);
 if ($result_show_criterium->num_rows > 0) {
     $i = 0;

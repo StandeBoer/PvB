@@ -82,19 +82,57 @@ include("connect.php");
                                 <th>Werkproces</th>
                                 <th>Criterium</th> 
                                 <th>Normeringen:</th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
                             </tr>
                         </thead>
                         <tbody name="tbody">
-                        <td>Werkproces 1</td>
-                        <td>Criterium 1</td>
-                        <td>Normering 1</td>
-                        <td>Normering 2</td>
-                        <td>Normering 3</td>
-                        <td>Normering 4</td>
-
+                            <tr>
+                                <td>Werkproces 1</td>
+                                <td>Criterium 1.1</td>
+                                <td>Normering 1.1.1</td>
+                                <td>Normering 1.1.2</td>
+                                <td>Normering 1.1.3</td>
+                                <td>Normering 1.1.4</td>
+                            <tr>
+                            <tr>
+                                <td></td>
+                                <td>Criterium 1.2</td>
+                                <td>Normering 1.2.1</td>
+                                <td>Normering 1.2.2</td>
+                                <td>Normering 1.2.3</td>
+                                <td>Normering 1.2.4</td>
+                            <tr>
+                            <tr>
+                                <td>Werkproces 2</td>
+                                <td>Criterium 2.1</td>
+                                <td>Normering 2.1.1</td>
+                                <td>Normering 2.1.2</td>
+                                <td>Normering 2.1.3</td>
+                                <td>Normering 2.1.4</td>
+                            <tr>
+                            <tr>
+                                <td></td>
+                                <td>Criterium 2.2</td>
+                                <td>Normering 2.2.1</td>
+                                <td>Normering 2.2.2</td>
+                                <td>Normering 2.2.3</td>
+                                <td>Normering 2.2.4</td>
+                            <tr>
+                            <tr>
+                                <td></td>
+                                <td>Criterium 2.3</td>
+                                <td>Normering 2.3.1</td>
+                                <td>Normering 2.3.2</td>
+                                <td>Normering 2.3.3</td>
+                                <td>Normering 2.3.4</td>
+                            <tr>
+                            <tr>
+                                <td>Werkproces 3</td>
+                                <td>Criterium 3.1</td>
+                                <td>Normering 3.1.1</td>
+                                <td>Normering 3.1.2</td>
+                                <td>Normering 3.1.3</td>
+                                <td>Normering 3.1.4</td>
+                            <tr>
                         </tbody>
                     </table>
                 </div>
@@ -210,44 +248,42 @@ include("connect.php");
                     // ophalen van informatie, met ajax
                     $.ajax({
                         type: 'GET',
-                        url: 'json_show_werkproces.php',
+                        url: 'json_show_beoordeling.php',
                         data: {id: kerntaak_id},
                         dataType: 'json',
                         success: function (data) {
                             //alert(data);
                             $.each(data, function (index, element) {
-                                //console.log(element.name);
+//                                var a = element.id;
+//                                console.log(a);
+                                //console.log(data);
                                 $("#show_beoordeling").find('tbody')
-                                        .append($('<tr>'
-                                                ).append($('<td>', {
-                                            value: element.id,
-                                            text: element.name}
-                                        ))
-                                                );
-// ophalen van informatie, met ajax
-                                $.ajax({
-                                    type: 'GET',
-                                    url: 'json_show_criterium.php',
-                                    data: {id: element.id},
-                                    dataType: 'json',
-                                    success: function (data) {
-                                        //alert(data);
-                                        $.each(data, function (index, element) {
-                                            //console.log(element.name);
-                                        $("#show_beoordeling").find('tbody').find('tr')
-                                                .append($('<td>', {
-                                                    value: data.criterium_id,
-                                                    text: data.criterium_naam}
-                                                ));
+                                    .append(
+                                    $('<tr>')
+                                        .append(
+                                            $('<td>', {text: element.werkproces_naam})
+                                        )
+                                        .append(
+                                            $('<td>', {text: element.werkproces_criterium_naam})
+                                        )
+                                        .append(
+                                            $('<td><input type="radio">', {text: element.normering1 })
+                                        )
+                                        .append(
+                                            $('<td>', {text: element.normering2 })
+                                        )
+                                        .append(
+                                            $('<td>', {text: element.normering3 })
+                                        )
+                                        .append(
+                                            $('<td>', {text: element.normering4 })
+                                        )
 
-                                        });
+                                    );
 
-                                    }
-                                });
                             });
 
-                        }
-                    });
+                        }});
 
 
 

@@ -1,3 +1,7 @@
+<?php
+include("check.php");
+include("connect.php");
+?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -9,8 +13,6 @@
     </head>
     <body class="achtergrond"> 
         <?php
-        include("check.php");
-        include("connect.php");
         include("navbar.php");
         include("ModalAddStudent.php");
         include("ModalAddKerntaak.php");
@@ -42,7 +44,7 @@
                 </ul>
             </div>
             <div class="col s12 m8 l9">
-                
+
             </div>
         </div>
         <!--EINDE CODE VOOR KLAS TOEVOEGEN BACKEND -->
@@ -85,7 +87,7 @@
                     event.preventDefault();
                     // ophalen van het id
                     var werkproces_criterium_id = $(this).data("id");
-                    
+
                     // link aanpassen
                     $("#delhref").attr("href", "delete_criterium.php?id=" + werkproces_criterium_id);
                 });
