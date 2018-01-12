@@ -57,3 +57,6 @@ label {
     height: 100vh;
 }
 
+.sel {
+    background-color: #0f9d58 !important;
+}

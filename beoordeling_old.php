@@ -11,11 +11,6 @@ include("connect.php");
         <link type="text/css" rel="stylesheet" href="stylesheet.css">
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-    <style type="text/css">
-        .sel {
-            background-color: #0f9d58;
-        }
-    </style>
     </head>
 
     <body>
@@ -45,12 +40,12 @@ include("connect.php");
                     ?>
                 </div>
                 <div name="klas_beoordeling" class="col s12 m3 l2">
-                    <select name="klas_option_beoordeling" class="">
+                    <select name="klas_option_beoordeling" class="hide">
 
                     </select>
                 </div>
                 <div name="student_beoordeling" class="col s12 m3 l2">
-                    <select name="student_option_beoordeling" class="">
+                    <select name="student_option_beoordeling" class="hide">
 
                     </select>
                 </div>
@@ -81,46 +76,68 @@ include("connect.php");
                 </div>
 
                 <div class="col s12 m12 l12">
-                    <table>
+                    <table id="show_beoordeling" class="">
                         <thead>
-                        <th>Werkprocessen</th>
-                        <th>Criteria's</th>
-                        <th>Normeringen:</th>
+                            <tr>
+                                <th>Werkproces</th>
+                                <th>Criterium</th> 
+                                <th>Normeringen:</th>
+                            </tr>
                         </thead>
-                        <tbody>
-                            <?php
-                            $sql = "SELECT a.werkproces_naam, b.werkproces_criterium_naam, b.werkproces_criterium_id FROM werkproces AS a INNER JOIN werkproces_criterium AS b ON a.werkproces_id = b.werkproces_id WHERE a.kerntaak_id = 1";
-                            $result_sql = $conn->query($sql);
-                            if ($result_sql->num_rows > 0) {
-                                while ($row_sql = $result_sql->fetch_assoc()) {
-                                    ?>
-                                    <tr>
-                                        <?php
-                                        echo '<td>' . $row_sql['werkproces_naam'] . '</td>';
-                                        echo '<td>' . $row_sql['werkproces_criterium_naam'] . '</td>';
-
-                                        $sql_criterium = "SELECT a.criterium_normering_naam, a.criterium_normering_id FROM criterium_normering AS a INNER JOIN werkproces_criterium AS b ON a.werkproces_criterium_id = b.werkproces_criterium_id WHERE a.werkproces_criterium_id =  " . $row_sql["werkproces_criterium_id"];
-                                        $result_sql_criterium = $conn->query($sql_criterium);
-                                        if ($result_sql_criterium->num_rows > 0) {
-                                            $i = 1;
-                                            while ($row_sql_criterium = $result_sql_criterium->fetch_assoc()) {
-//                                                echo '<td class="selectable" id=[$i]>' . $i . ' ' . $row_sql_criterium['criterium_normering_naam'] . '</td>';
-//                                                $i++;
-                                                 echo "<td class='selectable' id=['" . $row_sql_criterium['criterium_normering_id'] . "']>" . $row_sql_criterium['criterium_normering_naam'] . "</td>";
-                                            }
-                                        }
-                                        ?>
-                                        <td><a class="waves-light btn remove">Delete</a></td>
-                                    </tr>
-                                    <?php
-                                }
-                            }
-                            ?>
-                        <td></td>
+                        <tbody name="tbody">
+                            <tr>
+                                <td>Werkproces 1</td>
+                                <td>Criterium 1.1</td>
+                                <td>Normering 1.1.1</td>
+                                <td>Normering 1.1.2</td>
+                                <td>Normering 1.1.3</td>
+                                <td>Normering 1.1.4</td>
+                            <tr>
+                            <tr>
+                                <td></td>
+                                <td>Criterium 1.2</td>
+                                <td>Normering 1.2.1</td>
+                                <td>Normering 1.2.2</td>
+                                <td>Normering 1.2.3</td>
+                                <td>Normering 1.2.4</td>
+                            <tr>
+                            <tr>
+                                <td>Werkproces 2</td>
+                                <td>Criterium 2.1</td>
+                                <td>Normering 2.1.1</td>
+                                <td>Normering 2.1.2</td>
+                                <td>Normering 2.1.3</td>
+                                <td>Normering 2.1.4</td>
+                            <tr>
+                            <tr>
+                                <td></td>
+                                <td>Criterium 2.2</td>
+                                <td>Normering 2.2.1</td>
+                                <td>Normering 2.2.2</td>
+                                <td>Normering 2.2.3</td>
+                                <td>Normering 2.2.4</td>
+                            <tr>
+                            <tr>
+                                <td></td>
+                                <td>Criterium 2.3</td>
+                                <td>Normering 2.3.1</td>
+                                <td>Normering 2.3.2</td>
+                                <td>Normering 2.3.3</td>
+                                <td>Normering 2.3.4</td>
+                            <tr>
+                            <tr>
+                                <td>Werkproces 3</td>
+                                <td>Criterium 3.1</td>
+                                <td>Normering 3.1.1</td>
+                                <td>Normering 3.1.2</td>
+                                <td>Normering 3.1.3</td>
+                                <td>Normering 3.1.4</td>
+                            <tr>
                         </tbody>
                     </table>
                 </div>
             </form>
+
         </div>
 
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
@@ -212,17 +229,64 @@ include("connect.php");
 
                 // Onchange studentoptie beoordeling
                 $("select[name=student_option_beoordeling]").on('change', function () {
+//                   $("select[name=cohort_option_beoordeling]").addClass("hide");
+//                   $("select[name=cohort_option_beoordeling]").material_select();
+//                   $("select[name=klas_option_beoordeling]").addClass("hide");
+//                   $("select[name=klas_option_beoordeling]").material_select();
                     $("select[name=kerntaak_option_beoordeling]").removeClass("hide");
                     $("select[name=kerntaak_option_beoordeling]").material_select();
                 });
 
-                $('.selectable').click(function () {
-                    $(this).closest('tr').find("td.sel").removeClass("sel");
+                //Show werkproces/criterium en normeringen
+                $("select[name=kerntaak_option_beoordeling]").on('change', function () {
+                    //console.log('kerntaak selected');
+                    kerntaak_id = this.value;
+                    //console.log(kerntaak_id);
 
-                    $(this).addClass("sel");
-                });
-                $('.remove').click(function () {
-                    $(this).closest('tr').find("td.sel").removeClass("sel");
+                    $("tbody[name=tbody]").empty();
+
+                    // ophalen van informatie, met ajax
+                    $.ajax({
+                        type: 'GET',
+                        url: 'json_show_beoordeling.php',
+                        data: {id: kerntaak_id},
+                        dataType: 'json',
+                        success: function (data) {
+                            //alert(data);
+                            $.each(data, function (index, element) {
+//                                var a = element.id;
+//                                console.log(a);
+                                //console.log(data);
+                                $("#show_beoordeling").find('tbody')
+                                    .append(
+                                    $('<tr>')
+                                        .append(
+                                            $('<td>', {text: element.werkproces_naam})
+                                        )
+                                        .append(
+                                            $('<td>', {text: element.werkproces_criterium_naam})
+                                        )
+                                        .append(
+                                            $('<td>', {text: element.normering1 })
+                                        )
+                                        .append(
+                                            $('<td>', {text: element.normering2 })
+                                        )
+                                        .append(
+                                            $('<td>', {text: element.normering3 })
+                                        )
+                                        .append(
+                                            $('<td>', {text: element.normering4 })
+                                        )
+
+                                    );
+
+                            });
+
+                        }});
+
+
+
                 });
             });
         </script>
