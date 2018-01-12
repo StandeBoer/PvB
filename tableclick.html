@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style type="text/css">
+        .sel {
+            background-color: #0f9d58;
+        }
+    </style>
+</head>
+<body>
+    <table border="1" width="500px">
+        <tr>
+            <td width="150px">Student:</td>
+            <td>
+                <select id="student" name="student">
+                    <option value="123" selected>Stan de Boer</option>
+                    <option value="332">Jelmer IJff</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <table border="1" width="500px">
+        <thead>
+            <tr>
+                <th width="150px">Onderdeel</th>
+                <th colspan="5">Beoordeling</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-criterium="1">
+                <td class="">Luisteren</td>
+                <td data-normering="1" class="selectable">Soms</td>
+                <td data-normering="2" class="selectable">Wel</td>
+                <td data-normering="3" class="selectable">Nooit</td>
+                <td data-normering="4" class="selectable">Doof</td>
+                <td><a class="remove" href="#">delete</a></td>
+            </tr>
+            <tr data-criterium="2">
+                <td class="">Praten</td>
+                <td data-normering="5" class="selectable">Altijd</td>
+                <td data-normering="6" class="selectable">Spaans</td>
+                <td data-normering="7" class="selectable">Duits</td>
+                <td data-normering="8" class="selectable">Nooit</td>
+                <td><a class="remove" href="#">delete</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // inlezen:
+            var student = $('#student').val();
+            $.ajax({
+                type: 'POST',
+                url: 'json_load_beoordeling.php',
+                data: {
+                    student: student
+                },
+                dataType: 'json',
+                success: function (data) {
+                    for (i in data) {
+                        var normering = data[i]['criterium_normering_id'];
+                        $("[data-normering='" + normering + "']").addClass("sel");
+                    }
+                }
+            });
+
+            $('.selectable').click(function() {
+                $( this ).closest('tr').find("td.sel").removeClass("sel");
+                $( this ).addClass("sel");
+
+                // opslaan:
+                var criterium = $( this ).closest('tr').data('criterium');
+                var normering = $( this ).data('normering');
+                var student = $('#student').val();
+
+                console.log('[' +  student + '] Criterium: ' + criterium + " - normering: " + normering);
+
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'json_save_beoordeling.php',
+                    data: {
+                        criterium: criterium,
+                        normering: normering,
+                        student: student
+                    },
+                    dataType: 'text',
+                    success: function (data) {
+                        //alert(data);
+                    }
+                }); // einde ajax
+
+            });
+            $('.remove').click(function() {
+                // opslaan:
+                var criterium = $( this ).closest('tr').data('criterium');
+                var student = $('#student').val();
+                var normering = $( this ).closest('tr').find("td.sel").data('normering');
+
+                console.log('[' +  student + '] Criterium: ' + criterium + " - normering: " + normering);
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'json_del_beoordeling.php',
+                    data: {
+                        criterium: criterium,
+                        student: student
+                    },
+                    dataType: 'text',
+                    success: function (data) {
+                        //alert(data);
+                    }
+                }); // einde ajax
+
+                // remove class:
+                $( this ).closest('tr').find("td.sel").removeClass("sel");
+
+            })
+        })
+    </script>
+</body>
+</html>
