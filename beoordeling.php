@@ -24,26 +24,6 @@ include("connect.php");
         ?>
         <div class="row beoordeling">
             <form method="POST">
-                <div name="kerntaak_beoordeling" class="col s12 m3 l3">
-                    <?php
-                    $get_kerntaak = "SELECT * FROM kerntaak";
-                    $result_kerntaak = $conn->query($get_kerntaak);
-                    if ($result_kerntaak->num_rows > 0) {
-                        ?>
-                        <select name="kerntaak_option_beoordeling" class="">
-                            <option selected="selected" disabled>Kies een kerntaak</option>
-                            <?php
-                            while ($row_kerntaak = $result_kerntaak->fetch_assoc()) {
-                                ?>
-                                <option value="<?php echo $row_kerntaak["kerntaak_id"] ?>"><?php echo $row_kerntaak["kerntaak_naam"] ?></option>
-                                <?php
-                            }
-                            ?>
-                        </select>
-                        <?php
-                    }
-                    ?>
-                </div>
                 <div name="cohort_beoordeling" class="col s12 m3 l3">
                     <?php
                     $get_cohort = "SELECT * FROM cohort";
@@ -73,6 +53,26 @@ include("connect.php");
                     <select name="student_option_beoordeling" id="student_option_beoordeling" class="">
 
                     </select>
+                </div>
+                <div name="kerntaak_beoordeling" class="col s12 m3 l3">
+                    <?php
+                    $get_kerntaak = "SELECT * FROM kerntaak";
+                    $result_kerntaak = $conn->query($get_kerntaak);
+                    if ($result_kerntaak->num_rows > 0) {
+                        ?>
+                        <select name="kerntaak_option_beoordeling" class="">
+                            <option selected="selected" disabled>Kies een kerntaak</option>
+                            <?php
+                            while ($row_kerntaak = $result_kerntaak->fetch_assoc()) {
+                                ?>
+                                <option value="<?php echo $row_kerntaak["kerntaak_id"] ?>"><?php echo $row_kerntaak["kerntaak_naam"] ?></option>
+                                <?php
+                            }
+                            ?>
+                        </select>
+                        <?php
+                    }
+                    ?>
                 </div>
                 <div class="col s12 m12 l12">
                     <?php
@@ -127,13 +127,8 @@ include("connect.php");
                 $('select').material_select();
                 $(".button-collapse").sideNav();
 
-                // Onchange kerntaak beoordeling
-                $("select[name=kerntaak_option_beoordeling]").on('change', function () {
-                    var kerntaak_id = this.value;
-                    //alert(kerntaak_id);
-                    window.location.href = "beoordeling.php?kid=" + kerntaak_id;
-                });
-                
+
+
                 // Onchange cohortoptie beoordeling
                 $("select[name=cohort_option_beoordeling]").on('change', function () {
                     beoordeling_cohort_id = this.value;
@@ -211,6 +206,13 @@ include("connect.php");
                         }
                     });
                 });
+                
+                                // Onchange kerntaak beoordeling
+                $("select[name=kerntaak_option_beoordeling]").on('change', function () {
+                    var kerntaak_id = this.value;
+                    //alert(kerntaak_id);
+                    window.location.href = "beoordeling.php?kid=" + kerntaak_id;
+                });
 
                 // Onchange studentoptie beoordeling
                 $("select[name=student_option_beoordeling]").on('change', function () {
@@ -230,11 +232,7 @@ include("connect.php");
                             }
                         }
                     });
-
                 });
-
-
-
 
                 // Select Normering
                 $('.selectable').click(function () {
