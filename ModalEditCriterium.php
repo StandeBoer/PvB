@@ -12,9 +12,9 @@
         <div class="modal-footer">
             <a href="#!" class="modal-action modal-close waves-effect waves-green btn btn-success ">Close</a>
             <button type="submit" name="edit_criterium_submit" class="btn btn-success" value="Opslaan">Opslaan</button>
-
-        </div>
-    </form>
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn btn-success ">Sluiten</a>
+        </form>
+    </div>
 </div>
 <?php
 if (isset($_POST["edit_criterium_submit"])) {

@@ -9,6 +9,11 @@ include("connect.php");
         <link type="text/css" rel="stylesheet" media="screen,projection" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css" />
         <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link type="text/css" rel="stylesheet" href="stylesheet.css">
+        <style>
+            textArea{
+                min-height: 500px;
+            }
+        </style>
 
     </head>
     <body class="achtergrond"> 
@@ -131,6 +136,38 @@ include("connect.php");
                     $("input[name=criterium_oms]").removeClass("hide");
                     $("button[name=new_criterium_submit]").removeClass("hide");
                 });
+
+                //Student toevoegen modal klas afhankelijk van cohort
+                $("select[name=cohort_option]").on('change', function () {
+                    modal_cohort_id = this.value;
+                    //alert(modal_cohort_id);
+
+                    $("select[name=klas_option]").empty().append($('<option>', {
+                        value: 0,
+                        text: "Kies een klas",
+                    }));
+
+                    // ophalen van informatie, met ajax
+                    $.ajax({
+                        type: 'GET',
+                        url: 'json_show_klas.php',
+                        data: {id: modal_cohort_id},
+                        dataType: 'json',
+                        success: function (data) {
+                            //console.log(data);
+                            $.each(data, function (index, element) {
+                                //console.log(element.klas_name);
+                                $("select[name=klas_option]").append($('<option>', {
+                                    value: element.klas_id,
+                                    text: element.klas_name
+                                }));
+                            });
+                            $("select[name=klas_option]").removeClass("hide");
+                            $("select[name=klas_option]").material_select();
+                        }
+                    });
+
+                }); F
             });
         </script>
     </body>

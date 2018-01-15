@@ -5,6 +5,6 @@
     <div class="modal-content">
         Weet u zeker dat u dit record wilt verwijderen?<br><br>      
             <a type="button" class="btn" id="delhref" href="">Verwijderen</a>
-            <a href="#!" class="modal-action modal-close waves-effect waves-green btn">Annuleren</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn btn-success ">Sluiten</a>
     </div>
 </div>

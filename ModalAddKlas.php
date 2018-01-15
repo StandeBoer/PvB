@@ -27,7 +27,7 @@
             <input type="text" class="form-control" style="border-radius: 0;" name="klas_naam" placeholder="Klas" required>
             <br>
             <input type="submit" name="new_klas_submit" class="btn btn-success" value="Versturen" style="border-radius: 0;">
-            <input type="submit" name="sluiten" class="btn btn-success data-dismiss" value="Annuleren">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn btn-success ">Sluiten</a>
         </form>
 
         <?php

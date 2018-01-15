@@ -30,8 +30,9 @@
                     <select name="criterium_option" class="hide">
                         <option selected="selected" value="" disabled>Kies een werkproces</option>
                     </select>
-                    <input type="text" class="hide" name="normering_naam" placeholder="Normering naam" required>
+                    <textarea class="hide" id="normering_naam" style="min-height: 100px;" rows="6" cols="20" name="normering_naam" placeholder="Normering naam" ></textarea><br><br>
                     <button class="btn waves-effect waves-light hide" type="submit" name="new_normering_submit">Versturen</button>
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn btn-success ">Sluiten</a>
                 </form>
                 <?php
             }

@@ -256,9 +256,41 @@ include("connect.php");
                         },
                         dataType: 'text',
                         success: function (data) {
+<<<<<<< HEAD
+                            //alert(data);
+                            $.each(data, function (index, element) {
+                                //console.log(element.name);
+                                $("#show_beoordeling").find('tbody')
+                                        .append($('<tr>'
+                                                ).append($('<td>', {
+                                            value: element.id,
+                                            text: element.name}
+                                        )).append($('<td>', {
+                                            value: element.id,
+                                            text: element.name}
+                                        ))lement.id,
+                                            text
+                                                );
+// ophalen van informatie, met ajax
+                                $.ajax({
+                                    type: 'GET',
+                                    url: 'json_show_criterium.php',
+                                    data: {id: element.id},
+                                    dataType: 'json',
+                                    success: function (data) {
+                                        //alert(data);
+                                        $.each(data, function (index, element) {
+                                            //console.log(element.name);
+                                            $("#show_beoordeling").find('tbody').find('tr')
+                                                    .append($('<td>', {
+                                                        value: data.criterium_id,
+                                                        text: data.criterium_naam}
+                                                    ));
+=======
                             alert(data);
                         }
                     }); // einde ajax
+>>>>>>> 15a559c4fe0be1ac2557f27c889c970c82384767
 
                 });
 
