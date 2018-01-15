@@ -6,7 +6,7 @@
         Weet u zeker dat u dit record wilt verwijderen?<br><br>
         <form method="POST">
             <a type="button" class="btn" id="delhref" href="">Verwijderen</a>
-            <input type="submit" name="sluiten" class="btn btn-success data-dismiss" value="Annuleren">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn btn-success ">Sluiten</a>
             </form>
     </div>
 </div>

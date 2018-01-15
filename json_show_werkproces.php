@@ -2,7 +2,7 @@
 include 'connect.php';
 $get_kerntaak_id = $_GET['id'];
 //echo $get_kerntaak_id;
-$get_werkproces = "SELECT werkproces_id, werkproces_naam FROM werkproces WHERE kerntaak_id = '" . $get_kerntaak_id . "'";
+$get_werkproces = "SELECT werkproces_id, werkproces_naam FROM werkproces WHERE kerntaak_id = " . $get_kerntaak_id ;
 //echo $get_werkproces;
 $result_werkproces = $conn->query($get_werkproces);
 if ($result_werkproces->num_rows > 0) {

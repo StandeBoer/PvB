@@ -37,7 +37,7 @@
             <br>
 
             <input type="submit" name="NewStudentSubmit" class="btn btn-success" value="Versturen">
-            <input type="submit" name="sluiten" class="btn btn-success data-dismiss" value="Annuleren">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn btn-success ">Sluiten</a>
 
         </form>
     </div>

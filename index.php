@@ -1,3 +1,7 @@
+<?php
+include("check.php");
+include("connect.php");
+?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -14,8 +18,6 @@
     </head>
     <body class="achtergrond"> 
         <?php
-        include("check.php");
-        include("connect.php");
         include("navbar.php");
         include("ModalAddStudent.php");
         include("ModalAddKerntaak.php");

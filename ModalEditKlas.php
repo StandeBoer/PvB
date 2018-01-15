@@ -8,7 +8,7 @@
             <input type="hidden" class="form-control" style="border-radius: 0;" name="klas_id" id="klas_id">
             <input type="text" class="form-control hide" style="border-radius: 0;" name="klas_naam" id="klas_naam" placeholder="Naam">
             <button type="submit" name="edit_klas_submit" class="btn btn-success" value="Opslaan">Opslaan</button>
-            <input type="submit" name="sluiten" class="btn btn-success data-dismiss" value="Annuleren">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn btn-success ">Sluiten</a>
         </form>
     </div>
 </div>

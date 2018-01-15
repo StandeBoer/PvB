@@ -27,6 +27,7 @@
                 </select>
                 <input type="text" class="hide" name="criterium_oms" placeholder="Criterium omschrijving" required>
                 <button class="btn waves-effect waves-light hide" type="submit" name="new_criterium_submit">Versturen</button>
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn btn-success">Sluiten</a>
             </form>
             <?php
         }

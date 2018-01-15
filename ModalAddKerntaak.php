@@ -8,7 +8,7 @@
             <i class="material-icons prefix tiny">mode_edit</i><label>Kerntaak naam:</label>
             <input type="text" class="form-control" style="border-radius: 0;" name="kerntaak_naam" placeholder="Kerntaak">
             <input type="submit" name="new_kerntaak_submit" class="btn btn-success" value="Versturen" style="border-radius: 0;">
-            <input type="submit" name="sluiten" class="btn btn-success data-dismiss" value="Annuleren">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn btn-success ">Sluiten</a>
         </form>
         <?php
         if (isset($_POST['new_kerntaak_submit'])) {
