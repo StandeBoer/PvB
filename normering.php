@@ -300,7 +300,7 @@ include("connect.php");
                 });
                 
                 $("select[name=criterium_option]").on('change', function () {
-                    $("input[name=normering_naam]").removeClass("hide");
+                    $("textarea[name=normering_naam]").removeClass("hide");
                     $("button[name=new_normering_submit]").removeClass("hide");
                 });
 

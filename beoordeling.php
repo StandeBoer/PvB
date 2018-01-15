@@ -222,7 +222,11 @@ include("connect.php");
                                                 ).append($('<td>', {
                                             value: element.id,
                                             text: element.name}
-                                        ))
+                                        )).append($('<td>', {
+                                            value: element.id,
+                                            text: element.name}
+                                        ))lement.id,
+                                            text
                                                 );
 // ophalen van informatie, met ajax
                                 $.ajax({
@@ -234,11 +238,11 @@ include("connect.php");
                                         //alert(data);
                                         $.each(data, function (index, element) {
                                             //console.log(element.name);
-                                        $("#show_beoordeling").find('tbody').find('tr')
-                                                .append($('<td>', {
-                                                    value: data.criterium_id,
-                                                    text: data.criterium_naam}
-                                                ));
+                                            $("#show_beoordeling").find('tbody').find('tr')
+                                                    .append($('<td>', {
+                                                        value: data.criterium_id,
+                                                        text: data.criterium_naam}
+                                                    ));
 
                                         });
 
