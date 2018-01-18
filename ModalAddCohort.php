@@ -1,6 +1,6 @@
-<div id="ModalAddCohort" class="modal">
-    <div class="modal-header" style="padding-left: 124px;">
-        <h5>Add Cohort</h5>
+<div id="ModalAddCohort" class="modal" style="height:100%">
+    <div class="modal-header" style="padding-left: 24px;">
+        <h5>Cohort toevoegen</h5>
     </div>
     <div class="modal-content">
         <!-- CODE VOOR COHORT TOEVOEGEN BACK-END -->
